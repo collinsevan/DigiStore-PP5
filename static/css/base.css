@@ -87,6 +87,30 @@ body {
   border: 1px solid black !important;
 }
 
+/* Header & navigation blending */
+
+header {
+  background: rgba(2, 6, 23, 0.85);
+}
+
+.navbar {
+  background: transparent;
+}
+
+.navbar .nav-link {
+  color: #fff;
+}
+
+.navbar .nav-link:hover {
+  color: #93c5fd;
+}
+
+/* Header search button alignment */
+
+.input-group-append .btn {
+  height: 100%;
+}
+
 /* Media Queries */
 
 /* Slightly larger container on xl screens */
