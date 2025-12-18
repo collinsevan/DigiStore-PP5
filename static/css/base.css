@@ -1,59 +1,56 @@
 /* Global styles */
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
-    background-size: cover;
-    height: calc(100vh - 164px);
-    color: #555;
-    font-family: 'Lato', sans-serif;
+  background: url("/media/home/hero.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: calc(100vh - 164px);
+  color: #555;
+  font-family: "Lato", sans-serif;
 }
-
 
 /* Header spacing */
 
 .header-container {
-    padding-top: 164px;
+  padding-top: 164px;
 }
-
 
 /* Icon styling */
 
 /* from Bulma */
 .icon {
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    height: 1.5rem;
-    width: 1.5rem;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  height: 1.5rem;
+  width: 1.5rem;
 }
-
 
 /* Branding */
 
 .logo-font {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .main-logo-link {
-    width: fit-content;
+  width: fit-content;
 }
-
 
 /* Button styling */
 
 .shop-now-button {
-    background: black;
-    color: white;
-    min-width: 260px;
+  background: #1f1f1f;
+  color: #fff;
+  min-width: 260px;
+  border: none;
 }
 
 .btn-black {
-    background: black;
-    color: white;
+  background: black;
+  color: white;
 }
 
 .shop-now-button:hover,
@@ -62,42 +59,54 @@ body {
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
-    background: #222;
-    color: white;
+  background: #2b2b2b;
+  color: #fff;
 }
 
+/* Inverse colour scheme (for dark backgrounds) */
+
+.text-inverse,
+.text-inverse a,
+.text-inverse p,
+.text-inverse i,
+.text-inverse h1,
+.text-inverse h2,
+.text-inverse h3,
+.text-inverse h4,
+.text-inverse h5,
+.text-inverse h6 {
+  color: #fff !important;
+}
+
+.text-inverse .dropdown-menu {
+  color: #000;
+}
 
 /* Utility classes */
-
-.text-black {
-    color: #000 !important;
-}
-
 .border-black {
-    border: 1px solid black !important;
+  border: 1px solid black !important;
 }
-
 
 /* Media Queries */
 
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
-    .container {
-        max-width: 80%;
-    }
+  .container {
+    max-width: 80%;
+  }
 }
 
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    }
+  .fixed-top-desktop-only {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
 
-    .header-container {
-        padding-top: 164px;
-    }
+  .header-container {
+    padding-top: 164px;
+  }
 }
