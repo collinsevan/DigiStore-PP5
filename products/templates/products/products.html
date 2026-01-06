@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="content-backdrop"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col text-center mt-3">
+            <h2 class="logo-font">Products</h2>
+            <hr class="w-50 mb-4">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="row">
+
+                <!-- Product listing grid -->
+                {% for product in products %}
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <div class="card h-100 border-0">
+
+                        <!-- Product image / fallback -->
+                        {% if product.image %}
+                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                        <div class="card-img-top d-flex align-items-center justify-content-center"
+                            style="height: 220px;">
+                            <span class="text-muted">No image</span>
+                        </div>
+                        {% endif %}
+
+                        <div class="card-body pb-0">
+                            <p class="mb-0">{{ product.name }}</p>
+                        </div>
+
+                        <div class="card-footer bg-white pt-0 border-0 text-left">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="lead mb-0 font-weight-bold">€{{ product.price }}</p>
+                                    {% if product.rating %}
+                                    <small class="text-muted">Rating: {{ product.rating }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Mobile separator: 1 product per row -->
+                {% if forloop.counter|divisibleby:1 %}
+                <div class="col-12 d-sm-none mb-4">
+                    <hr>
+                </div>
+                {% endif %}
+
+                <!-- Small screens separator: 2 products per row -->
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-none d-sm-block d-lg-none mb-4">
+                    <hr>
+                </div>
+                {% endif %}
+
+                <!-- Large screens separator: 3 products per row -->
+                {% if forloop.counter|divisibleby:3 %}
+                <div class="col-12 d-none d-lg-block d-xl-none mb-4">
+                    <hr>
+                </div>
+                {% endif %}
+
+                <!-- Extra-large screens separator: 4 products per row -->
+                {% if forloop.counter|divisibleby:4 %}
+                <div class="col-12 d-none d-xl-block mb-4">
+                    <hr>
+                </div>
+                {% endif %}
+
+                {% empty %}
+                <div class="col-12 text-center mt-4">
+                    <p class="text-muted">No products available yet.</p>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
