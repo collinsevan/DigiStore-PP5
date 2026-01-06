@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Page overlay -->
+<div class="overlay"></div>
+
+<!-- Product detail -->
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Product image -->
+        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+
+            {% if product.image %}
+            <a href="{{ product.image.url }}" target="_blank">
+                <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
+            {% elif product.image_url %}
+            <a href="{{ product.image_url }}" target="_blank">
+                <img class="img-fluid" src="{{ product.image_url }}" alt="{{ product.name }}">
+            </a>
+            {% else %}
+            <div class="border p-3 text-center">
+                <p class="mb-0">No image available</p>
+            </div>
+            {% endif %}
+
+        </div>
+
+        <!-- Product info -->
+        <div class="col-12 col-md-6 col-lg-4">
+            <h3 class="mb-2">{{ product.name }}</h3>
+            <p class="lead mb-3 font-weight-bold">€{{ product.price }}</p>
+            <p class="mb-0">{{ product.description }}</p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

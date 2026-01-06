@@ -27,7 +27,7 @@ body {
 /* Header spacing */
 
 .header-container {
-  padding-top: 164px;
+  padding-top: 116px;
 }
 
 /* Icon styling */
@@ -143,6 +143,6 @@ header {
   }
 
   .header-container {
-    padding-top: 164px;
+    padding-top: 116px;
   }
 }
