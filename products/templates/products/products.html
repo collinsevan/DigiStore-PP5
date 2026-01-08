@@ -8,7 +8,51 @@
     <div class="row">
         <div class="col text-center mt-3">
             <h2 class="logo-font">Products</h2>
+            {% if current_categories %}
+            <p class="text-muted mb-1">
+                {% for c in current_categories %}
+                {{ c.friendly_name|default:c.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+
+            </p>
+            {% endif %}
+
+            {% if search_term %}
+            <p class="text-muted mb-0">Search: "{{ search_term }}"</p>
+            {% endif %}
+            {% if search_term or current_categories %}
+            <p class="mt-2 mb-0">
+                <a href="{% url 'products' %}" class="text-muted">Clear filters</a>
+            </p>
+            {% endif %}
+
             <hr class="w-50 mb-4">
+            <form method="get" action="{% url 'products' %}" class="mt-3">
+
+                {% if search_term %}
+                <input type="hidden" name="q" value="{{ search_term }}">
+                {% endif %}
+
+                {% if current_categories %}
+                {% for c in current_categories %}
+                <input type="hidden" name="category" value="{{ c.slug }}">
+                {% endfor %}
+                {% endif %}
+
+                <div class="form-group mb-0 d-inline-block">
+                    <select name="sort" class="custom-select custom-select-sm w-auto" onchange="this.form.submit()">
+                        <option value=""
+                            {% if not current_sorting or current_sorting == "None_None" %}selected{% endif %}>Sort by
+                        </option>
+                        <option value="price" {% if "price" in current_sorting %}selected{% endif %}>Price</option>
+                        <option value="name" {% if "name" in current_sorting %}selected{% endif %}>Name</option>
+                    </select>
+                </div>
+
+                <input type="hidden" name="direction"
+                    value="{% if current_sorting and 'desc' in current_sorting %}desc{% else %}asc{% endif %}">
+            </form>
+
         </div>
     </div>
 

@@ -2,8 +2,8 @@
 
 <!-- Mobile search toggle -->
 <li class="list-inline-item dropdown d-block d-lg-none">
-    <a class="nav-link text-inverse" href="#" id="mobile-search-toggle"
-       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link text-inverse" href="#" id="mobile-search-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
         <div class="text-center">
             <i class="fas fa-search fa-lg"></i>
             <p class="my-0">Search</p>
@@ -11,18 +11,14 @@
     </a>
 
     <div class="dropdown-menu border-0 p-3 w-100" aria-labelledby="mobile-search-toggle">
-        <form method="GET">
+        <form method="GET" action="{% url 'products' %}">
             <div class="input-group w-100">
-                <input
-                    class="form-control border border-black rounded-0"
-                    type="text"
-                    name="q"
+                <input class="form-control border border-black rounded-0" type="text" name="q"
                     placeholder="Search DigiStore">
                 <div class="input-group-append">
                     <button
                         class="btn btn-black border border-black rounded-0 d-flex align-items-center justify-content-center"
-                        type="submit"
-                        aria-label="Search">
+                        type="submit" aria-label="Search">
                         <i class="fas fa-search text-inverse"></i>
                     </button>
                 </div>
@@ -33,8 +29,8 @@
 
 <!-- Mobile account toggle -->
 <li class="list-inline-item dropdown d-block d-lg-none">
-    <a class="nav-link text-inverse" href="#" id="mobile-account-toggle"
-       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link text-inverse" href="#" id="mobile-account-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
         <div class="text-center">
             <i class="fas fa-user fa-lg"></i>
             <p class="my-0">Account</p>
@@ -43,10 +39,10 @@
 
     <div class="dropdown-menu border-0" aria-labelledby="mobile-account-toggle">
         {% if request.user.is_authenticated %}
-            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
         {% else %}
-            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
         {% endif %}
     </div>
 </li>
