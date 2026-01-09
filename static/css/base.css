@@ -23,7 +23,6 @@ body {
   z-index: 0;
 }
 
-
 /* Header spacing */
 
 .header-container {
@@ -94,6 +93,17 @@ body {
   color: #000;
 }
 
+/* Header dropdown menus: force readable dropdown-item text on light dropdown background */
+header .dropdown-menu .dropdown-item {
+  color: #000 !important;
+}
+
+header .dropdown-menu .dropdown-item:hover,
+header .dropdown-menu .dropdown-item:focus {
+  color: #fff !important;
+  background-color: #343a40;
+}
+
 /* Utility classes */
 .border-black {
   border: 1px solid black !important;
@@ -145,4 +155,10 @@ header {
   .header-container {
     padding-top: 116px;
   }
+}
+
+/* Category filter badges (products page) */
+.category-badge:hover {
+  background-color: #343a40;
+  color: #fff !important;
 }
