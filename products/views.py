@@ -26,10 +26,12 @@ def all_products(request):
             query = request.GET.get("q")
 
             if not query:
-                messages.error(request, "You didn't enter any search criteria.")
+                messages.error(
+                    request, "You didn't enter any search criteria.")
                 return redirect(reverse("products"))
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(name__icontains=query) | Q(
+                description__icontains=query)
             products = products.filter(queries)
 
         if "category" in request.GET:
@@ -44,6 +46,9 @@ def all_products(request):
             if sortkey == "name":
                 products = products.annotate(lower_name=Lower("name"))
                 sortkey = "lower_name"
+
+            if sortkey == "category":
+                sortkey = "category__name"
 
             if "direction" in request.GET:
                 direction = request.GET.get("direction")
