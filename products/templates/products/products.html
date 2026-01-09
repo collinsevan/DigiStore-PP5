@@ -40,18 +40,42 @@
                 {% endif %}
 
                 <div class="form-group mb-0 d-inline-block">
-                    <select name="sort" class="custom-select custom-select-sm w-auto" onchange="this.form.submit()">
-                        <option value=""
-                            {% if not current_sorting or current_sorting == "None_None" %}selected{% endif %}>Sort by
-                        </option>
-                        <option value="price" {% if "price" in current_sorting %}selected{% endif %}>Price</option>
-                        <option value="name" {% if "name" in current_sorting %}selected{% endif %}>Name</option>
+                    <select id="sort-selector" class="custom-select custom-select-sm w-auto">
+                        <option value="" selected>Sort by</option>
+                        <option value="price_asc">Price (low to high)</option>
+                        <option value="category_asc">Category (A–Z)</option>
+                        <option value="name_asc">Name (A–Z)</option>
                     </select>
                 </div>
 
-                <input type="hidden" name="direction"
-                    value="{% if current_sorting and 'desc' in current_sorting %}desc{% else %}asc{% endif %}">
+                <input type="hidden" name="sort" id="sort-field">
+                <input type="hidden" name="direction" id="direction-field">
             </form>
+
+        <!-- Handles product sorting dropdown by updating URL query parameters -->
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const form = document.querySelector('form[action="{% url "products" %}"]');
+                    const selector = document.getElementById("sort-selector");
+                    const sortField = document.getElementById("sort-field");
+                    const directionField = document.getElementById("direction-field");
+
+                    const currentSorting = "{{ current_sorting }}";
+                    if (currentSorting && currentSorting !== "None_None") {
+                        selector.value = currentSorting;
+                    }
+
+                    selector.addEventListener("change", function () {
+                        if (!this.value) return;
+
+                        const parts = this.value.split("_");
+                        sortField.value = parts[0];
+                        directionField.value = parts[1];
+
+                        form.submit();
+                    });
+                });
+            </script>
 
         </div>
     </div>
