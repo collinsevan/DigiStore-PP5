@@ -24,12 +24,9 @@ body {
 }
 
 /* Header spacing */
-
 .header-container {
   padding-top: 116px;
 }
-
-/* Icon styling */
 
 /* from Bulma */
 .icon {
@@ -41,7 +38,6 @@ body {
 }
 
 /* Branding */
-
 .logo-font {
   text-transform: uppercase;
 }
@@ -51,7 +47,6 @@ body {
 }
 
 /* Button styling */
-
 .shop-now-button {
   background: #1f1f1f;
   color: #fff;
@@ -109,8 +104,23 @@ header .dropdown-menu .dropdown-item:focus {
   border: 1px solid black !important;
 }
 
-/* Header & navigation blending */
+/* Back to top button */
+.btt-button {
+  height: 42px;
+  width: 42px;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  cursor: pointer;
+  z-index: 999;
+}
 
+.btt-link {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Header & navigation blending */
 header {
   background: rgba(2, 6, 23, 0.85);
 }
@@ -128,7 +138,6 @@ header {
 }
 
 /* Header search button alignment */
-
 .input-group-append .btn {
   height: 100%;
 }
