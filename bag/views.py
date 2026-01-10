@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.http import HttpResponse
 
 
 def view_bag(request):
@@ -41,10 +42,14 @@ def adjust_bag(request, item_id):
 
 
 def remove_from_bag(request, item_id):
-    """Remove the specified product from the bag."""
-    bag = request.session.get("bag", {})
-    item_id = str(item_id)
+    """Remove the specified product from the bag (AJAX endpoint)."""
+    try:
+        bag = request.session.get("bag", {})
+        item_id = str(item_id)
 
-    bag.pop(item_id, None)
-    request.session["bag"] = bag
-    return redirect("view_bag")
+        bag.pop(item_id, None)
+        request.session["bag"] = bag
+
+        return HttpResponse(status=200)
+    except Exception:
+        return HttpResponse(status=500)
