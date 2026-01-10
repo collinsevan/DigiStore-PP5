@@ -1,8 +1,6 @@
-from django.shortcuts import render
-from django.shortcuts import redirect
-from django.http import HttpResponse
 from django.contrib import messages
-from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render
 
 from products.models import Product
 
@@ -24,12 +22,17 @@ def add_to_bag(request, item_id):
 
     if item_id in bag:
         bag[item_id] += quantity
+        messages.success(
+            request,
+            f"Updated {product.name} quantity to {bag[item_id]}."
+        )
     else:
         bag[item_id] = quantity
+        messages.success(request, f"Added {product.name} to your bag.")
 
+    # IMPORTANT: save bag back into the session
     request.session["bag"] = bag
 
-    messages.success(request, f"Added {product.name} to your bag.")
     return redirect(redirect_url)
 
 
@@ -66,5 +69,7 @@ def remove_from_bag(request, item_id):
 
         messages.success(request, f"Removed {product.name} from your bag.")
         return HttpResponse(status=200)
-    except Exception:
+
+    except Exception as e:
+        messages.error(request, f"Error removing item: {e}")
         return HttpResponse(status=500)
