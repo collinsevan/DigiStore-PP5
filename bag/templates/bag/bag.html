@@ -19,6 +19,7 @@
             {% if bag_items %}
             <div class="table-responsive rounded">
                 <table class="table table-sm table-borderless">
+                    <!-- Bag table header -->
                     <thead class="text-black">
                         <tr>
                             <th scope="col">Product</th>
@@ -29,9 +30,11 @@
                         </tr>
                     </thead>
 
+                    <!-- Bag table body -->
                     <tbody>
                         {% for item in bag_items %}
                         <tr>
+                            <!-- Product image -->
                             <td class="p-3 w-25">
                                 {% if item.product.image %}
                                 <img class="img-fluid rounded" src="{{ item.product.image.url }}"
@@ -42,6 +45,7 @@
                                 {% endif %}
                             </td>
 
+                            <!-- Product info + remove -->
                             <td class="py-3">
                                 <p class="my-0"><strong>{{ item.product.name }}</strong></p>
 
@@ -57,17 +61,37 @@
                                 </form>
                             </td>
 
+                            <!-- Per-item price -->
                             <td class="py-3">
                                 <p class="my-0">€{{ item.product.price }}</p>
                             </td>
 
+                            <!-- Quantity controls -->
                             <td class="py-3">
                                 <form action="{% url 'adjust_bag' item.item_id %}" method="POST" class="form">
                                     {% csrf_token %}
                                     <div class="input-group input-group-sm">
-                                        <input class="form-control" type="number" name="quantity"
-                                            value="{{ item.quantity }}" min="1" max="99">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="decrement-qty btn btn-black rounded-0"
+                                                data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                                                <span class="icon">
+                                                    <i class="fas fa-minus"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+
+                                        <input class="form-control qty_input" type="number" name="quantity"
+                                            value="{{ item.quantity }}" min="1" max="99"
+                                            data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+
                                         <div class="input-group-append">
+                                            <button type="button" class="increment-qty btn btn-black rounded-0"
+                                                data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                                                <span class="icon">
+                                                    <i class="fas fa-plus"></i>
+                                                </span>
+                                            </button>
+
                                             <button type="submit" class="btn btn-black rounded-0 text-uppercase">
                                                 Update
                                             </button>
@@ -76,12 +100,14 @@
                                 </form>
                             </td>
 
+                            <!-- Line subtotal -->
                             <td class="py-3">
                                 <p class="my-0">€{{ item.line_total|floatformat:2 }}</p>
                             </td>
                         </tr>
                         {% endfor %}
 
+                        <!-- Totals summary -->
                         <tr>
                             <td colspan="5" class="pt-5 text-right">
                                 <p class="lead mb-1 text-black font-weight-bold">
@@ -108,9 +134,10 @@
                         </tr>
                     </tbody>
                 </table>
-
             </div>
+
             {% else %}
+            <!-- Empty state -->
             <p class="lead mb-5">Your bag is empty.</p>
             <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
                 <span class="icon">
@@ -122,4 +149,9 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+{% include 'products/includes/quantity_input_script.html' %}
 {% endblock %}
