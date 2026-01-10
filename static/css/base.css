@@ -59,6 +59,20 @@ body {
   color: white;
 }
 
+.btn-outline-black {
+  background: white;
+  color: black;
+  border: 1px solid black;
+}
+
+.btn-outline-black:hover,
+.btn-outline-black:active,
+.btn-outline-black:focus {
+  background: #2b2b2b;
+  color: #fff;
+  border: 1px solid #2b2b2b;
+}
+
 .shop-now-button:hover,
 .shop-now-button:active,
 .shop-now-button:focus,
