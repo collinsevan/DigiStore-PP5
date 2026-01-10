@@ -156,6 +156,11 @@ header {
   height: 100%;
 }
 
+.update-link,
+.remove-item {
+  cursor: pointer;
+}
+
 /* Media Queries */
 
 /* Slightly larger container on xl screens */

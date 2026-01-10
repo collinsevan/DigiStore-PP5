@@ -45,20 +45,13 @@
                                 {% endif %}
                             </td>
 
-                            <!-- Product info + remove -->
+                            <!-- Product info -->
                             <td class="py-3">
                                 <p class="my-0"><strong>{{ item.product.name }}</strong></p>
 
                                 {% if item.product.sku %}
                                 <p class="my-0 small text-muted">SKU: {{ item.product.sku }}</p>
                                 {% endif %}
-
-                                <form action="{% url 'remove_from_bag' item.item_id %}" method="POST" class="mt-2">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-sm btn-outline-black rounded-0 text-uppercase">
-                                        Remove
-                                    </button>
-                                </form>
                             </td>
 
                             <!-- Per-item price -->
@@ -68,36 +61,44 @@
 
                             <!-- Quantity controls -->
                             <td class="py-3">
-                                <form action="{% url 'adjust_bag' item.item_id %}" method="POST" class="form">
+                                <form action="{% url 'adjust_bag' item.item_id %}" method="POST" class="update-form">
                                     {% csrf_token %}
                                     <div class="input-group input-group-sm">
                                         <div class="input-group-prepend">
-                                            <button type="button" class="decrement-qty btn btn-black rounded-0"
+                                            <button type="button"
+                                                class="decrement-qty btn btn-black rounded-0 btn-sm px-2"
                                                 data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
-                                                <span class="icon">
-                                                    <i class="fas fa-minus"></i>
+                                                <span>
+                                                    <i class="fas fa-minus fa-sm"></i>
                                                 </span>
                                             </button>
                                         </div>
 
-                                        <input class="form-control qty_input" type="number" name="quantity"
-                                            value="{{ item.quantity }}" min="1" max="99"
+                                        <input class="form-control form-control-sm qty_input" type="number"
+                                            name="quantity" value="{{ item.quantity }}" min="1" max="99"
                                             data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
 
                                         <div class="input-group-append">
-                                            <button type="button" class="increment-qty btn btn-black rounded-0"
+                                            <button type="button"
+                                                class="increment-qty btn btn-black rounded-0 btn-sm px-2"
                                                 data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
-                                                <span class="icon">
-                                                    <i class="fas fa-plus"></i>
+                                                <span>
+                                                    <i class="fas fa-plus fa-sm"></i>
                                                 </span>
                                             </button>
-
-                                            <button type="submit" class="btn btn-black rounded-0 text-uppercase">
-                                                Update
-                                            </button>
                                         </div>
+
+                                        <!-- hidden submit target (submitted by JS) -->
+                                        <button type="submit" class="d-none">Update</button>
                                     </div>
                                 </form>
+
+                                <a class="update-link text-info small mr-3">Update</a>
+
+                                <a class="remove-item text-danger small" id="remove_{{ item.item_id }}"
+                                    data-url="{% url 'remove_from_bag' item.item_id %}">
+                                    Remove
+                                </a>
                             </td>
 
                             <!-- Line subtotal -->
@@ -120,27 +121,27 @@
                         <tr>
                             <td colspan="5" class="text-right">
                                 <a href="{% url 'products' %}"
-                                    class="btn btn-outline-black rounded-0 text-uppercase mt-3">
-                                    <span class="icon">
+                                    class="btn btn-outline-black rounded-0 text-uppercase mr-2">
+                                    <span>
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="text-uppercase">Keep Shopping</span>
                                 </a>
-
-                                <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 text-uppercase mt-3 ml-2">
+                                <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 text-uppercase">
                                     <span class="text-uppercase">Secure Checkout</span>
+                                    <span>
+                                        <i class="fas fa-lock"></i>
+                                    </span>
                                 </a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
             {% else %}
-            <!-- Empty state -->
             <p class="lead mb-5">Your bag is empty.</p>
-            <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
-                <span class="icon">
+            <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 text-uppercase btn-lg">
+                <span>
                     <i class="fas fa-chevron-left"></i>
                 </span>
                 <span class="text-uppercase">Keep Shopping</span>
@@ -154,4 +155,28 @@
 {% block extra_js %}
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
+
+<script>
+    // Submit the closest update form when "Update" is clicked
+    $('.update-link').click(function (e) {
+        e.preventDefault();
+        var form = $(this).prevAll('.update-form').first();
+        form.submit();
+    });
+
+    // Remove item via AJAX then reload
+    $('.remove-item').click(function (e) {
+        e.preventDefault();
+
+        var csrfToken = "{{ csrf_token }}";
+        var url = $(this).data('url');
+        var data = {
+            'csrfmiddlewaretoken': csrfToken
+        };
+
+        $.post(url, data).done(function () {
+            location.reload();
+        });
+    });
+</script>
 {% endblock %}
