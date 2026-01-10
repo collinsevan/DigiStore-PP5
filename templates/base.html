@@ -128,13 +128,35 @@
         {% endblock %}
     </main>
 
+    {% if messages %}
+    <div class="message-container">
+        {% for message in messages %}
+        {% if message.level_tag == 'success' %}
+        {% include 'includes/toasts/toast_success.html' %}
+        {% elif message.level_tag == 'error' %}
+        {% include 'includes/toasts/toast_error.html' %}
+        {% elif message.level_tag == 'warning' %}
+        {% include 'includes/toasts/toast_warning.html' %}
+        {% else %}
+        {% include 'includes/toasts/toast_info.html' %}
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+
     {% block corejs %}
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     {% endblock %}
 
-    {% block extra_js %}{% endblock %}
+    {% block extra_js %}
+    <script>
+        $('.toast').toast('show');
+    </script>
+    {% endblock %}
+
 
 </body>
 
