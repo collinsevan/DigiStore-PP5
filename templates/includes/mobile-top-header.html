@@ -49,10 +49,10 @@
 
 <!-- Mobile bag -->
 <li class="list-inline-item d-block d-lg-none">
-    <a class="nav-link text-inverse" href="#">
+    <a class="nav-link text-inverse" href="{% url 'view_bag' %}">
         <div class="text-center">
             <i class="fas fa-shopping-bag fa-lg"></i>
-            <p class="my-0">Bag</p>
+            <p class="my-0">€{{ grand_total|floatformat:2 }}</p>
         </div>
     </a>
 </li>

@@ -23,8 +23,10 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('', include('marketing.urls')),
     path('accounts/', include('allauth.urls')),
+    path('bag/', include('bag.urls')),
 ]
 
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
