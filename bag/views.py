@@ -22,7 +22,4 @@ def add_to_bag(request, item_id):
 
     request.session["bag"] = bag
 
-    # Temporary test like the transcript (remove later)
-    print("BAG:", request.session.get("bag"))
-
     return redirect(redirect_url)

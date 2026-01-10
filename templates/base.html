@@ -85,11 +85,18 @@
                     <li class="list-inline-item">
                         <a class="nav-link text-inverse" href="{% url 'view_bag' %}">
                             <div class="text-center">
-                                <i class="fas fa-shopping-bag fa-lg"></i>
-                                <p class="my-0">€{{ grand_total|floatformat:2 }}</p>
+                                <i class="fas fa-shopping-bag fa-lg {% if grand_total %}text-warning{% endif %}"></i>
+                                <p class="my-0">
+                                    {% if grand_total %}
+                                    €{{ grand_total|floatformat:2 }}
+                                    {% else %}
+                                    €0.00
+                                    {% endif %}
+                                </p>
                             </div>
                         </a>
                     </li>
+
 
                 </ul>
             </div>
