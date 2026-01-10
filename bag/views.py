@@ -23,3 +23,28 @@ def add_to_bag(request, item_id):
     request.session["bag"] = bag
 
     return redirect(redirect_url)
+
+
+def adjust_bag(request, item_id):
+    """Adjust the quantity of the specified product in the bag."""
+    quantity = int(request.POST.get("quantity"))
+    bag = request.session.get("bag", {})
+    item_id = str(item_id)
+
+    if quantity > 0:
+        bag[item_id] = quantity
+    else:
+        bag.pop(item_id, None)
+
+    request.session["bag"] = bag
+    return redirect("view_bag")
+
+
+def remove_from_bag(request, item_id):
+    """Remove the specified product from the bag."""
+    bag = request.session.get("bag", {})
+    item_id = str(item_id)
+
+    bag.pop(item_id, None)
+    request.session["bag"] = bag
+    return redirect("view_bag")
