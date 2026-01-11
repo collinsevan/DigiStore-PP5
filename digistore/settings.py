@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'users',
     'marketing',
     'bag',
-    'checkout',
+    'checkout.apps.CheckoutConfig',
 ]
 
 
