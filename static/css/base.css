@@ -179,6 +179,43 @@ header {
   height: 4px;
 }
 
+/* Toast arrow (CSS-Tricks style) */
+
+.arrow-up {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 10px solid #fff;
+  position: absolute;
+  top: -10px;
+  right: 36px;
+}
+
+/* Match Bootstrap contextual colours */
+.arrow-success {
+  border-bottom-color: #28a745 !important;
+}
+
+.arrow-danger {
+  border-bottom-color: #dc3545 !important;
+}
+
+.arrow-warning {
+  border-bottom-color: #ffc107 !important;
+}
+
+.arrow-info {
+  border-bottom-color: #17a2b8 !important;
+}
+
+/* Bag preview inside success toast */
+.bag-notification-wrapper {
+  max-height: 100px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 /* Media Queries */
 
 /* Slightly larger container on xl screens */
