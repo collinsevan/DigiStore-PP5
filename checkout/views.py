@@ -33,7 +33,7 @@ def checkout(request):
                     quantity=int(quantity),
                 )
 
-            return redirect(reverse("checkout:checkout_success", args=[order.reference]))
+            return redirect(reverse("checkout_success", args=[order.reference]))
 
     order_form = OrderForm()
     context = bag_contents(request)
