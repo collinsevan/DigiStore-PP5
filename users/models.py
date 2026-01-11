@@ -1,3 +1,15 @@
+from django.conf import settings
 from django.db import models
 
-# Create your models here.
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="profile",
+    )
+    default_full_name = models.CharField(max_length=80, blank=True)
+    default_email = models.EmailField(max_length=254, blank=True)
+
+    def __str__(self):
+        return self.user.username

@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'products',
     'orders',
-    'users',
+    'users.apps.UsersConfig',
     'marketing',
     'bag',
     'checkout.apps.CheckoutConfig',
@@ -175,7 +175,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
