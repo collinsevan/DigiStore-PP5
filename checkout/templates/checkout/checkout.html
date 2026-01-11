@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+
+
 {% load static %}
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
@@ -16,51 +18,126 @@
             <hr>
 
             <div class="row">
-                <div class="col-12 col-lg-6">
+
+                <div class="col-12 col-lg-6 order-lg-last">
                     <h5 class="text-muted">Order summary</h5>
 
+                    <div class="row text-muted small mb-2">
+                        <div class="col-8">Item</div>
+                        <div class="col-4 text-end">Subtotal</div>
+                    </div>
+
                     {% for item in bag_items %}
-                    <div class="d-flex justify-content-between border-bottom py-2">
-                        <div class="me-2">
-                            <p class="mb-0"><strong>{{ item.product.name }}</strong></p>
-                            <p class="mb-0 small text-muted">Qty: {{ item.quantity }}</p>
+                    <div class="row align-items-center border-top py-2">
+                        <div class="col-8">
+                            <div class="d-flex align-items-center">
+                                {% if item.product.image %}
+                                <img class="img-fluid rounded me-2" style="max-width: 48px;"
+                                    src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                                {% elif item.product.image_url %}
+                                <img class="img-fluid rounded me-2" style="max-width: 48px;"
+                                    src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+                                {% endif %}
+
+                                <div>
+                                    <p class="mb-0"><strong>{{ item.product.name }}</strong></p>
+                                    <p class="mb-0 small text-muted">Qty: {{ item.quantity }}</p>
+                                </div>
+                            </div>
                         </div>
-                        <p class="mb-0">€{{ item.line_total|floatformat:2 }}</p>
+
+                        <div class="col-4 text-end">
+                            <p class="mb-0">€{{ item.line_total|floatformat:2 }}</p>
+                        </div>
                     </div>
                     {% empty %}
                     <p class="text-muted mb-0">Your bag is empty.</p>
                     {% endfor %}
 
-                    <div class="d-flex justify-content-between pt-3">
+                    <hr class="my-2">
+
+                    <div class="d-flex justify-content-between pt-1">
                         <p class="mb-0"><strong>Total</strong></p>
                         <p class="mb-0"><strong>€{{ grand_total|floatformat:2 }}</strong></p>
                     </div>
                 </div>
 
+
                 <div class="col-12 col-lg-6 mt-4 mt-lg-0">
-                    <form method="post" class="mt-3">
+                    <p class="text-muted mb-3">
+                        Please fill out the form below to complete your order.
+                    </p>
+
+                    <form action="{% url 'checkout' %}" method="POST" id="payment-form" class="mt-3">
                         {% csrf_token %}
 
                         <fieldset class="rounded p-3 border">
-                            <legend class="small px-2 w-auto mb-0">Customer details</legend>
+                            <legend class="small px-2 w-auto mb-0">Details</legend>
 
                             <div class="mb-3">
-                                {{ order_form.full_name }}
+                                {{ order_form.full_name|as_crispy_field }}
                             </div>
 
                             <div class="mb-3">
-                                {{ order_form.email }}
+                                {{ order_form.email|as_crispy_field }}
                             </div>
                         </fieldset>
 
-                        <button type="submit" class="btn btn-black rounded-0 mt-3">
-                            Continue
-                        </button>
+
+                        <fieldset class="rounded p-3 border mt-3">
+                            <legend class="small px-2 w-auto mb-0">Preferences</legend>
+
+                            {% if request.user.is_authenticated %}
+                            <div class="form-check form-check-inline mb-0">
+                                <input class="form-check-input" type="checkbox" id="id-save-info" name="save_info">
+                                <label class="form-check-label small" for="id-save-info">
+                                    Save this information for next time
+                                </label>
+                            </div>
+                            {% else %}
+                            <p class="small mb-0">
+                                <a href="{% url 'account_login' %}">Log in</a> or
+                                <a href="{% url 'account_signup' %}">register</a>
+                                to save your details for next time.
+                            </p>
+                            {% endif %}
+                        </fieldset>
+
+
+                        <fieldset class="rounded p-3 border mt-3">
+                            <legend class="small px-2 w-auto mb-0">Payment</legend>
+
+                            <div class="mb-3" id="card-element"></div>
+                            <div class="text-danger small" id="card-errors" role="alert"></div>
+                        </fieldset>
+
+
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mt-3">
+                            <a href="{% url 'view_bag' %}" class="btn btn-outline-black rounded-0 mb-2 mb-sm-0">
+                                Adjust bag
+                            </a>
+
+                            <button id="submit-button" type="submit" class="btn btn-black rounded-0">
+                                Complete order
+                            </button>
+                        </div>
+
+                        <p class="small text-muted mt-2 mb-0">
+                            Your card will be charged <strong>€{{ grand_total|floatformat:2 }}</strong>.
+                        </p>
+
+                        <input type="hidden" id="id_stripe_public_key" value="{{ stripe_public_key }}">
+                        <input type="hidden" id="id_client_secret" name="client_secret" value="{{ client_secret }}">
+
                     </form>
                 </div>
+
             </div>
 
         </div>
     </div>
 </div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}

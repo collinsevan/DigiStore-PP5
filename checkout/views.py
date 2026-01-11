@@ -1,5 +1,8 @@
 import json
+from decimal import Decimal
 
+import stripe
+from django.conf import settings
 from django.contrib import messages
 from django.shortcuts import redirect, render, reverse
 
@@ -11,7 +14,7 @@ from .models import OrderLineItem
 
 
 def checkout(request):
-    """Create an order from bag contents and render checkout."""
+    """Create an order after payment confirmation and render checkout."""
     bag = request.session.get("bag", {})
 
     if not bag:
@@ -19,9 +22,19 @@ def checkout(request):
         return redirect(reverse("bag:view_bag"))
 
     if request.method == "POST":
+        client_secret = request.POST.get("client_secret", "")
+
+        if not client_secret:
+            messages.error(
+                request, "Payment was not confirmed. Please try again.")
+            return redirect(reverse("checkout"))
+
+        pid = client_secret.split("_secret")[0]
+
         order_form = OrderForm(request.POST)
         if order_form.is_valid():
             order = order_form.save(commit=False)
+            order.payment_intent_id = pid
             order.bag_snapshot = json.dumps(bag)
             order.save()
 
@@ -37,7 +50,18 @@ def checkout(request):
 
     order_form = OrderForm()
     context = bag_contents(request)
+    grand_total = context.get("grand_total", Decimal("0.00"))
+
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    intent = stripe.PaymentIntent.create(
+        amount=int(grand_total * 100),
+        currency=settings.STRIPE_CURRENCY,
+    )
+
     context["order_form"] = order_form
+    context["stripe_public_key"] = settings.STRIPE_PUBLIC_KEY
+    context["client_secret"] = intent.client_secret
+
     return render(request, "checkout/checkout.html", context)
 
 
