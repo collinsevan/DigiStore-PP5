@@ -1,20 +1,34 @@
 from django import forms
+
 from .models import Order
 
 
 class OrderForm(forms.ModelForm):
-    """Collects customer details for an order."""
+    """Checkout form for customer details."""
 
     class Meta:
         model = Order
-        fields = ("full_name", "email")
+        fields = (
+            "full_name",
+            "email",
+        )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields["full_name"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Full name"}
-        )
-        self.fields["email"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Email address"}
-        )
+        placeholders = {
+            "full_name": "Full name",
+            "email": "Email address",
+        }
+
+        self.fields["full_name"].widget.attrs["autofocus"] = True
+
+        for field_name, field in self.fields.items():
+            placeholder = placeholders.get(field_name, "")
+
+            if field.required and placeholder:
+                placeholder = f"{placeholder} *"
+
+            field.widget.attrs["placeholder"] = placeholder
+            field.widget.attrs["class"] = "stripe-style-input"
+            field.label = False
