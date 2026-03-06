@@ -41,7 +41,7 @@
   "fields": {
     "category": 1,
     "sku": "AB-001",
-    "name": "Atomic Habits – Audio Edition",
+    "name": "Atomic Habits - Audio Edition",
     "slug": "1984-audio",
     "description": "Classic dystopian audiobook exploring surveillance, control, and individual freedom.",
     "price": "9.99",
@@ -58,7 +58,7 @@
   "fields": {
     "category": 1,
     "sku": "AB-002",
-    "name": "Brave New World – Audio Edition",
+    "name": "Brave New World - Audio Edition",
     "slug": "brave-new-world-audio",
     "description": "Science fiction audiobook depicting a future shaped by technology and social conditioning.",
     "price": "9.99",
@@ -75,7 +75,7 @@
   "fields": {
     "category": 1,
     "sku": "AB-003",
-    "name": "The Hobbit – Audiobook",
+    "name": "The Hobbit - Audiobook",
     "slug": "the-hobbit-audio",
     "description": "Fantasy audiobook following Bilbo Baggins on an unexpected adventure.",
     "price": "12.99",
@@ -92,7 +92,7 @@
   "fields": {
     "category": 1,
     "sku": "AB-004",
-    "name": "Dune – Audio Edition",
+    "name": "Dune - Audio Edition",
     "slug": "dune-audio",
     "description": "Epic science fiction audiobook set on a desert planet rich in political intrigue.",
     "price": "14.99",
@@ -177,7 +177,7 @@
   "fields": {
     "category": 1,
     "sku": "AB-009",
-    "name": "Dracula – Audio Edition",
+    "name": "Dracula - Audio Edition",
     "slug": "dracula-audio",
     "description": "Gothic horror classic presented in audiobook format.",
     "price": "8.99",
