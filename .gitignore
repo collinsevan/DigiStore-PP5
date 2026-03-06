@@ -11,3 +11,5 @@ cloudinary_python.txt
 .env
 *.sqlite3
 /staticfiles/
+db_backup.json
+db_heroku_seed.json

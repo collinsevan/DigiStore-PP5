@@ -1,0 +1,480 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "audio_books",
+    "friendly_name": "Audio Books",
+    "slug": "audio-books"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "software",
+    "friendly_name": "Software",
+    "slug": "software"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "digital_art",
+    "friendly_name": "Digital Art",
+    "slug": "digital-art"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "productivity",
+    "friendly_name": "Productivity",
+    "slug": "productivity"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "sku": "AB-001",
+    "name": "Atomic Habits – Audio Edition",
+    "slug": "1984-audio",
+    "description": "Classic dystopian audiobook exploring surveillance, control, and individual freedom.",
+    "price": "9.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "sku": "AB-002",
+    "name": "Brave New World – Audio Edition",
+    "slug": "brave-new-world-audio",
+    "description": "Science fiction audiobook depicting a future shaped by technology and social conditioning.",
+    "price": "9.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "sku": "AB-003",
+    "name": "The Hobbit – Audiobook",
+    "slug": "the-hobbit-audio",
+    "description": "Fantasy audiobook following Bilbo Baggins on an unexpected adventure.",
+    "price": "12.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "sku": "AB-004",
+    "name": "Dune – Audio Edition",
+    "slug": "dune-audio",
+    "description": "Epic science fiction audiobook set on a desert planet rich in political intrigue.",
+    "price": "14.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "category": 1,
+    "sku": "AB-005",
+    "name": "Sherlock Holmes: The Complete Collection",
+    "slug": "sherlock-holmes-audio",
+    "description": "Collection of classic detective stories narrated in audio book format.",
+    "price": "16.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "category": 1,
+    "sku": "AB-006",
+    "name": "The Art of War",
+    "slug": "art-of-war-audio",
+    "description": "Classic strategic text presented as a modern audio book narration.",
+    "price": "7.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "category": 1,
+    "sku": "AB-007",
+    "name": "World War Z",
+    "slug": "world-war-z-audio",
+    "description": "Post-apocalyptic audiobook told through a series of global survivor accounts.",
+    "price": "13.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "category": 1,
+    "sku": "AB-008",
+    "name": "The Martian",
+    "slug": "the-martian-audio",
+    "description": "Science fiction audiobook following an astronaut stranded on Mars.",
+    "price": "12.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "category": 1,
+    "sku": "AB-009",
+    "name": "Dracula – Audio Edition",
+    "slug": "dracula-audio",
+    "description": "Gothic horror classic presented in audiobook format.",
+    "price": "8.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 10,
+  "fields": {
+    "category": 1,
+    "sku": "AB-010",
+    "name": "The Call of the Wild",
+    "slug": "call-of-the-wild-audio",
+    "description": "Classic adventure audiobook exploring survival and instinct in the wild.",
+    "price": "6.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "category": 2,
+    "sku": "SW-001",
+    "name": "Password Manager Pro",
+    "slug": "password-manager-pro",
+    "description": "Secure password manager with encrypted vault and cross-device sync for personal",
+    "price": "29.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "category": 2,
+    "sku": "SW-002",
+    "name": "PDF Editor & Converter",
+    "slug": "pdf-editor-converter",
+    "description": "Desktop tool for editing, converting, and signing PDF documents.",
+    "price": "19.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 13,
+  "fields": {
+    "category": 2,
+    "sku": "SW-003",
+    "name": "Code Editor Pro",
+    "slug": "code-editor-pro",
+    "description": "Professional code editor with advanced debugging and project management tools.",
+    "price": "49.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 14,
+  "fields": {
+    "category": 2,
+    "sku": "SW-004",
+    "name": "Accounting & Invoicing Software",
+    "slug": "accounting-invoicing-software",
+    "description": "Software for managing invoices, expenses, and basic financial reporting for businesses.",
+    "price": "39.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "commercial",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 15,
+  "fields": {
+    "category": 2,
+    "sku": "SW-005",
+    "name": "System Optimisation Utility",
+    "slug": "system-optimisation-utility",
+    "description": "Utility tool designed to clean, optimise, and improve system performance.",
+    "price": "14.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 16,
+  "fields": {
+    "category": 2,
+    "sku": "SW-006",
+    "name": "Cloud Backup Tool",
+    "slug": "cloud-backup-tool",
+    "description": "Secure cloud backup software for protecting files and folders across devices.",
+    "price": "34.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "commercial",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 17,
+  "fields": {
+    "category": 2,
+    "sku": "SW-007",
+    "name": "Team Project Management Suite",
+    "slug": "team-project-management-suite",
+    "description": "Advanced project management software designed for teams and agencies.",
+    "price": "79.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "extended",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 18,
+  "fields": {
+    "category": 2,
+    "sku": "SW-008",
+    "name": "Website Analytics Platform",
+    "slug": "website-analytics-platform",
+    "description": "Analytics platform providing traffic insights, reporting, and performance metrics.",
+    "price": "89.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "extended",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 19,
+  "fields": {
+    "category": 4,
+    "sku": "PR-001",
+    "name": "Daily Planner PDF",
+    "slug": "daily-planner-pdf",
+    "description": "Printable daily planner designed to help organise tasks, priorities, and schedules.",
+    "price": "4.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 20,
+  "fields": {
+    "category": 4,
+    "sku": "PR-002",
+    "name": "Weekly Goal Tracker",
+    "slug": "weekly-goal-tracker",
+    "description": "Digital template for tracking weekly goals, habits, and progress.",
+    "price": "5.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 21,
+  "fields": {
+    "category": 4,
+    "sku": "PR-003",
+    "name": "Notion Productivity Dashboard",
+    "slug": "notion-productivity-dashboard",
+    "description": "All-in-one Notion template for task management, planning, and personal productivity.",
+    "price": "7.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 22,
+  "fields": {
+    "category": 4,
+    "sku": "PR-004",
+    "name": "Freelancer Invoice Template Pack",
+    "slug": "freelancer-invoice-template-pack",
+    "description": "Editable invoice templates designed for freelancers and independent professionals.",
+    "price": "9.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "commercial",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 23,
+  "fields": {
+    "category": 4,
+    "sku": "PR-005",
+    "name": "Business Expense Tracker",
+    "slug": "business-expense-tracker",
+    "description": "Spreadsheet-based tool for tracking business expenses and monthly spending.",
+    "price": "8.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "commercial",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 24,
+  "fields": {
+    "category": 4,
+    "sku": "PR-006",
+    "name": "Study Planner & Revision Tracker",
+    "slug": "study-planner-revision-tracker",
+    "description": "Digital planner designed to organise study schedules and revision sessions.",
+    "price": "6.49",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 25,
+  "fields": {
+    "category": 4,
+    "sku": "PR-007",
+    "name": "Client Project Tracker",
+    "slug": "client-project-tracker",
+    "description": "Project tracking template for managing client tasks, deadlines, and deliverables.",
+    "price": "11.99",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "commercial",
+    "image_url": null,
+    "image": ""
+  }
+},
+{
+  "model": "products.product",
+  "pk": 26,
+  "fields": {
+    "category": 4,
+    "sku": "PR-008",
+    "name": "Habit Tracking Workbook",
+    "slug": "habit-tracking-workbook",
+    "description": "Digital workbook for building and maintaining positive daily habits.",
+    "price": "5.49",
+    "rating": null,
+    "is_digital": true,
+    "license_type": "personal",
+    "image_url": null,
+    "image": ""
+  }
+}
+]
