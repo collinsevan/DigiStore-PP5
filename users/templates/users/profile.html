@@ -5,6 +5,8 @@
 
 <div class="container mt-3">
     <div class="row">
+
+        <!-- Profile update form -->
         <div class="col-12 col-lg-6">
             <h2 class="logo-font">My Profile</h2>
             <hr>
@@ -12,33 +14,74 @@
             <form method="post" class="mt-3">
                 {% csrf_token %}
 
+                <!-- Default full name field -->
                 <div class="form-group">
                     <label for="id_default_full_name">Full name</label>
-                    <input
-                        type="text"
-                        name="default_full_name"
-                        id="id_default_full_name"
-                        class="form-control rounded-0"
-                        value="{{ profile.default_full_name }}"
-                    >
+                    <input type="text" name="default_full_name" id="id_default_full_name" class="form-control rounded-0"
+                        value="{{ profile.default_full_name }}">
                 </div>
 
+                <!-- Default email field -->
                 <div class="form-group">
                     <label for="id_default_email">Email</label>
-                    <input
-                        type="email"
-                        name="default_email"
-                        id="id_default_email"
-                        class="form-control rounded-0"
-                        value="{{ profile.default_email }}"
-                    >
+                    <input type="email" name="default_email" id="id_default_email" class="form-control rounded-0"
+                        value="{{ profile.default_email }}">
                 </div>
 
+                <!-- Submit button -->
                 <button class="btn btn-black rounded-0 text-uppercase" type="submit">
                     Update
                 </button>
+
             </form>
         </div>
+
+
+        <!-- Order history section -->
+        <div class="col-12 col-lg-6">
+            <h2 class="logo-font">Order History</h2>
+            <hr>
+
+            <!-- Display previous orders belonging to this user -->
+            {% if profile.orders.all %}
+
+            <table class="table table-sm table-borderless">
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <!-- Loop through user's orders -->
+                    {% for order in profile.orders.all %}
+                    <tr>
+
+                        <td>
+                            {{ order.reference }}
+                        </td>
+
+                        <td class="text-muted small">
+                            {{ order.id }}
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+            {% else %}
+
+            <!-- Message shown if no orders exist -->
+            <p class="text-muted">You have no previous orders.</p>
+
+            {% endif %}
+
+        </div>
+
     </div>
 </div>
 {% endblock %}

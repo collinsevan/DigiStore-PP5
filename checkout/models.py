@@ -6,10 +6,19 @@ from django.db.models import Sum
 from django.utils import timezone
 
 from products.models import Product
+from users.models import UserProfile
 
 
 class Order(models.Model):
     """Stores a completed checkout order."""
+
+    user_profile = models.ForeignKey(
+        UserProfile,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="orders"
+    )
 
     class Status(models.TextChoices):
         CREATED = "CREATED", "Created"
@@ -29,8 +38,15 @@ class Order(models.Model):
     )
 
     payment_intent_id = models.CharField(
-        max_length=255, blank=True, default="")
-    bag_snapshot = models.TextField(blank=True, default="")
+        max_length=255,
+        blank=True,
+        default=""
+    )
+
+    bag_snapshot = models.TextField(
+        blank=True,
+        default=""
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -41,6 +57,7 @@ class Order(models.Model):
         default=0,
         editable=False,
     )
+
     grand_total = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -62,35 +79,57 @@ class Order(models.Model):
             self.lineitems.aggregate(Sum("line_total"))["line_total__sum"]
             or Decimal("0.00")
         )
+
         self.grand_total = self.order_total
-        self.save(update_fields=["order_total", "grand_total", "updated_at"])
+
+        self.save(
+            update_fields=[
+                "order_total",
+                "grand_total",
+                "updated_at"
+            ]
+        )
 
     def save(self, *args, **kwargs):
         """Set reference once and keep it stable."""
         if not self.reference:
             ref = self._generate_reference()
+
             while Order.objects.filter(reference=ref).exists():
                 ref = self._generate_reference()
+
             self.reference = ref
+
         super().save(*args, **kwargs)
 
     def __str__(self):
+        """Return readable order reference."""
         return self.reference
 
 
 class OrderLineItem(models.Model):
-    """A purchased product within an order (price/licence snapshot)."""
+    """A purchased product within an order."""
 
     order = models.ForeignKey(
         Order,
         related_name="lineitems",
         on_delete=models.CASCADE,
     )
+
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
-    product_name = models.CharField(max_length=254, editable=False)
-    sku = models.CharField(max_length=254, blank=True,
-                           default="", editable=False)
+    product_name = models.CharField(
+        max_length=254,
+        editable=False
+    )
+
+    sku = models.CharField(
+        max_length=254,
+        blank=True,
+        default="",
+        editable=False
+    )
+
     purchased_license_type = models.CharField(
         max_length=20,
         blank=True,
@@ -106,6 +145,7 @@ class OrderLineItem(models.Model):
         editable=False,
         default=0,
     )
+
     line_total = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -116,7 +156,7 @@ class OrderLineItem(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        """Snapshot product fields and compute totals for this line."""
+        """Snapshot product data and compute line totals."""
         self.product_name = self.product.name
         self.sku = self.product.sku or ""
         self.purchased_license_type = self.product.license_type
@@ -125,7 +165,12 @@ class OrderLineItem(models.Model):
         self.line_total = self.unit_price * self.quantity
 
         super().save(*args, **kwargs)
+
         self.order.update_totals()
 
     def __str__(self):
-        return f"{self.quantity} x {self.product_name} ({self.order.reference})"
+        """Return readable order line description."""
+        return (
+            f"{self.quantity} x {self.product_name} "
+            f"({self.order.reference})"
+        )
