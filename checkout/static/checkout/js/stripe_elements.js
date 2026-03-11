@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("payment-form");
     const submitButton = document.getElementById("submit-button");
     const cardErrors = document.getElementById("card-errors");
+    const loadingOverlay = document.getElementById("loading-overlay");
+    const paymentForm = document.getElementById("payment-form");
 
     // Display Stripe validation errors as the user types
     card.addEventListener("change", function (event) {
@@ -41,6 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
         submitButton.disabled = true;
         card.update({ disabled: true });
         cardErrors.textContent = "";
+        loadingOverlay.style.display = "block";
+        paymentForm.classList.add("opacity-50");
 
         const fullName = document.getElementById("id_full_name");
         const email = document.getElementById("id_email");
@@ -60,6 +64,8 @@ document.addEventListener("DOMContentLoaded", function () {
             cardErrors.textContent = result.error.message;
             submitButton.disabled = false;
             card.update({ disabled: false });
+            loadingOverlay.style.display = "none";
+            paymentForm.classList.remove("opacity-50");
             return;
         }
 
@@ -72,5 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cardErrors.textContent = "Payment was not successful. Please try again.";
         submitButton.disabled = false;
         card.update({ disabled: false });
+        loadingOverlay.style.display = "none";
+        paymentForm.classList.remove("opacity-50");
     });
 });

@@ -19,6 +19,7 @@
 
             <div class="row">
 
+                <!-- Order summary -->
                 <div class="col-12 col-lg-6 order-lg-last">
                     <h5 class="text-muted">Order summary</h5>
 
@@ -63,6 +64,7 @@
                 </div>
 
 
+                <!-- Checkout form -->
                 <div class="col-12 col-lg-6 mt-4 mt-lg-0">
                     <p class="text-muted mb-3">
                         Please fill out the form below to complete your order.
@@ -71,6 +73,7 @@
                     <form action="{% url 'checkout' %}" method="POST" id="payment-form" class="mt-3">
                         {% csrf_token %}
 
+                        <!-- Customer details -->
                         <fieldset class="rounded p-3 border">
                             <legend class="small px-2 w-auto mb-0">Details</legend>
 
@@ -84,6 +87,7 @@
                         </fieldset>
 
 
+                        <!-- Checkout preferences -->
                         <fieldset class="rounded p-3 border mt-3">
                             <legend class="small px-2 w-auto mb-0">Preferences</legend>
 
@@ -104,6 +108,7 @@
                         </fieldset>
 
 
+                        <!-- Stripe payment element -->
                         <fieldset class="rounded p-3 border mt-3">
                             <legend class="small px-2 w-auto mb-0">Payment</legend>
 
@@ -112,6 +117,7 @@
                         </fieldset>
 
 
+                        <!-- Checkout actions -->
                         <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mt-3">
                             <a href="{% url 'view_bag' %}" class="btn btn-outline-black rounded-0 mb-2 mb-sm-0">
                                 Adjust bag
@@ -136,6 +142,15 @@
 
         </div>
     </div>
+</div>
+
+<!-- Loading overlay -->
+<div id="loading-overlay">
+    <h1 class="text-light logo-font loading-spinner">
+        <span class="icon">
+            <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+        </span>
+    </h1>
 </div>
 
 <script src="https://js.stripe.com/v3/"></script>
