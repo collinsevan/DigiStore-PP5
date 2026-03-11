@@ -4,14 +4,14 @@ from decimal import Decimal
 import stripe
 from django.conf import settings
 from django.contrib import messages
-from django.shortcuts import redirect, render, reverse
+from django.shortcuts import get_object_or_404, redirect, render, reverse
 
 from bag.contexts import bag_contents
 from products.models import Product
 from users.models import UserProfile
 
 from .forms import OrderForm
-from .models import OrderLineItem
+from .models import Order, OrderLineItem
 
 
 def checkout(request):
@@ -54,14 +54,26 @@ def checkout(request):
 
             order.save()
 
+            """Store save_info choice in the session."""
+            request.session["save_info"] = "save_info" in request.POST
+
             """Create line items for each product stored in bag."""
             for item_id, quantity in bag.items():
-                product = Product.objects.get(pk=item_id)
-                OrderLineItem.objects.create(
-                    order=order,
-                    product=product,
-                    quantity=int(quantity),
-                )
+                try:
+                    product = Product.objects.get(pk=item_id)
+                    OrderLineItem.objects.create(
+                        order=order,
+                        product=product,
+                        quantity=int(quantity),
+                    )
+                except Product.DoesNotExist:
+                    """Delete incomplete order if a product is missing."""
+                    messages.error(
+                        request,
+                        "One of the products in your bag was not found."
+                    )
+                    order.delete()
+                    return redirect(reverse("bag:view_bag"))
 
             return redirect(
                 reverse(
@@ -69,6 +81,12 @@ def checkout(request):
                     args=[order.reference]
                 )
             )
+
+        """Show an error if the submitted order form is invalid."""
+        messages.error(
+            request,
+            "There was an error with your form. Please check your details."
+        )
 
     """Prepare order form and totals for checkout page."""
     order_form = OrderForm()
@@ -82,6 +100,13 @@ def checkout(request):
         currency=settings.STRIPE_CURRENCY,
     )
 
+    """Warn if the Stripe public key is missing."""
+    if not settings.STRIPE_PUBLIC_KEY:
+        messages.warning(
+            request,
+            "Stripe public key is missing. Did you forget to set it?"
+        )
+
     """Add form and Stripe keys to template context."""
     context["order_form"] = order_form
     context["stripe_public_key"] = settings.STRIPE_PUBLIC_KEY
@@ -92,14 +117,25 @@ def checkout(request):
 
 def checkout_success(request, reference):
     """Display confirmation page and clear the bag."""
+
+    """Get the saved profile preference from the session."""
+    save_info = request.session.get("save_info")
+
+    """Retrieve the completed order by its reference."""
+    order = get_object_or_404(Order, reference=reference)
+
     messages.success(
         request,
-        f"Order successfully created: {reference}"
+        f"Order successfully created: {reference}. "
+        f"A confirmation will be sent to {order.email}."
     )
     request.session.pop("bag", None)
 
     return render(
         request,
         "checkout/checkout_success.html",
-        {"reference": reference},
+        {
+            "order": order,
+            "save_info": save_info,
+        },
     )

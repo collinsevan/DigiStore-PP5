@@ -6,10 +6,17 @@
 <div class="container mt-3">
     <div class="row">
         <div class="col">
+            <!-- Order confirmation summary -->
             <h2 class="logo-font">Order confirmed</h2>
             <hr>
+            <p class="mb-2">
+                Thank you for your order.
+            </p>
             <p class="mb-0">
-                Reference: <strong>{{ reference }}</strong>
+                Reference: <strong>{{ order.reference }}</strong>
+            </p>
+            <p class="mb-0">
+                Confirmation email: <strong>{{ order.email }}</strong>
             </p>
         </div>
     </div>
