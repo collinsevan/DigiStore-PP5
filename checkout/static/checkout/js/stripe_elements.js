@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const submitButton = document.getElementById("submit-button");
     const cardErrors = document.getElementById("card-errors");
 
+    // Display Stripe validation errors as the user types
     card.addEventListener("change", function (event) {
         if (event.error) {
             cardErrors.textContent = event.error.message;
@@ -36,7 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", async function (e) {
         e.preventDefault();
 
+        // Prevent duplicate submissions during payment processing
         submitButton.disabled = true;
+        card.update({ disabled: true });
         cardErrors.textContent = "";
 
         const fullName = document.getElementById("id_full_name");
@@ -52,12 +55,15 @@ document.addEventListener("DOMContentLoaded", function () {
             },
         });
 
+        // Re-enable the form if Stripe returns an error
         if (result.error) {
             cardErrors.textContent = result.error.message;
             submitButton.disabled = false;
+            card.update({ disabled: false });
             return;
         }
 
+        // Submit the Django form after successful payment confirmation
         if (result.paymentIntent && result.paymentIntent.status === "succeeded") {
             form.submit();
             return;
@@ -65,5 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         cardErrors.textContent = "Payment was not successful. Please try again.";
         submitButton.disabled = false;
+        card.update({ disabled: false });
     });
 });
