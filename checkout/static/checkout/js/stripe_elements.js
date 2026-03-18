@@ -48,37 +48,59 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const fullName = document.getElementById("id_full_name");
         const email = document.getElementById("id_email");
+        const saveInfo = document.getElementById("id-save-info");
+        const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
 
-        const result = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: card,
-                billing_details: {
-                    name: fullName ? fullName.value : "",
-                    email: email ? email.value : "",
+        try {
+            await fetch("/checkout/cache_checkout_data/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrfToken,
                 },
-            },
-        });
+                body: JSON.stringify({
+                    client_secret: clientSecret,
+                    save_info: saveInfo ? saveInfo.checked : false,
+                }),
+            });
 
-        // Re-enable the form if Stripe returns an error
-        if (result.error) {
-            cardErrors.textContent = result.error.message;
+            const result = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: fullName ? fullName.value.trim() : "",
+                        email: email ? email.value.trim() : "",
+                    },
+                },
+            });
+
+            // Re-enable the form if Stripe returns an error
+            if (result.error) {
+                cardErrors.textContent = result.error.message;
+                submitButton.disabled = false;
+                card.update({ disabled: false });
+                loadingOverlay.style.display = "none";
+                paymentForm.classList.remove("opacity-50");
+                return;
+            }
+
+            // Submit the Django form after successful payment confirmation
+            if (result.paymentIntent && result.paymentIntent.status === "succeeded") {
+                form.submit();
+                return;
+            }
+
+            cardErrors.textContent = "Payment was not successful. Please try again.";
             submitButton.disabled = false;
             card.update({ disabled: false });
             loadingOverlay.style.display = "none";
             paymentForm.classList.remove("opacity-50");
-            return;
+        } catch (error) {
+            cardErrors.textContent = "There was a problem processing your payment. Please try again.";
+            submitButton.disabled = false;
+            card.update({ disabled: false });
+            loadingOverlay.style.display = "none";
+            paymentForm.classList.remove("opacity-50");
         }
-
-        // Submit the Django form after successful payment confirmation
-        if (result.paymentIntent && result.paymentIntent.status === "succeeded") {
-            form.submit();
-            return;
-        }
-
-        cardErrors.textContent = "Payment was not successful. Please try again.";
-        submitButton.disabled = false;
-        card.update({ disabled: false });
-        loadingOverlay.style.display = "none";
-        paymentForm.classList.remove("opacity-50");
     });
 });
