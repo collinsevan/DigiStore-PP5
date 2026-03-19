@@ -1,6 +1,8 @@
 import json
 import time
+from decimal import Decimal
 
+import stripe
 from django.http import HttpResponse
 
 from products.models import Product
@@ -24,36 +26,54 @@ class StripeWH_Handler:
         )
 
     def handle_payment_intent_succeeded(self, event):
-        """Handle the payment_intent.succeeded webhook."""
+        """
+        Create the order from Stripe metadata if it does not already exist,
+        then verify Stripe's charged total matches the order total.
+        """
         intent = event.data.object
         pid = intent.id
 
-        bag = json.loads(intent.metadata.get("bag", "{}"))
+        bag_data = intent.metadata.get("bag")
+        if not bag_data:
+            return HttpResponse(
+                content="Webhook error: bag metadata missing",
+                status=500,
+            )
+
+        bag = json.loads(bag_data)
+        bag_snapshot = json.dumps(bag)
+        save_info = intent.metadata.get("save_info", "False")
         username = intent.metadata.get("username", "AnonymousUser")
+
+        stripe_charge = stripe.Charge.retrieve(
+            intent.latest_charge
+        )
+
+        billing_details = stripe_charge.billing_details
+        grand_total = Decimal(str(stripe_charge.amount / 100))
 
         order_exists = False
         attempt = 1
 
         while attempt <= 5:
             try:
-                Order.objects.get(payment_intent_id=pid)
+                order = Order.objects.get(
+                    full_name__iexact=billing_details.name,
+                    email__iexact=billing_details.email,
+                    payment_intent_id=pid,
+                    bag_snapshot=bag_snapshot,
+                )
                 order_exists = True
                 break
+
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
 
         if order_exists:
             return HttpResponse(
-                content=f"Webhook received: {event['type']} | SUCCESS",
-                status=200,
-            )
-
-        if not bag:
-            return HttpResponse(
                 content=(
-                    f"Webhook received: {event['type']} | "
-                    "No bag metadata found"
+                    f"Webhook verified order already exists: {event['type']}"
                 ),
                 status=200,
             )
@@ -67,11 +87,11 @@ class StripeWH_Handler:
 
         try:
             order = Order.objects.create(
-                full_name="Webhook Customer",
-                email="webhook@example.com",
-                payment_intent_id=pid,
-                bag_snapshot=json.dumps(bag),
                 user_profile=profile,
+                full_name=billing_details.name,
+                email=billing_details.email,
+                payment_intent_id=pid,
+                bag_snapshot=bag_snapshot,
             )
 
             for item_id, quantity in bag.items():
@@ -81,6 +101,17 @@ class StripeWH_Handler:
                     product=product,
                     quantity=quantity,
                 )
+
+            if order.grand_total != grand_total:
+                raise ValueError(
+                    f"Grand total mismatch: order={order.grand_total} "
+                    f"stripe={grand_total}"
+                )
+
+            if save_info == "True" and profile:
+                profile.default_full_name = billing_details.name
+                profile.default_email = billing_details.email
+                profile.save()
 
         except Exception as e:
             if order:
