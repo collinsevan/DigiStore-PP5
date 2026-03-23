@@ -125,7 +125,26 @@ def checkout(request):
         )
 
     """Prepare order form and totals for checkout page."""
-    order_form = OrderForm()
+    if request.user.is_authenticated:
+        profile, _ = UserProfile.objects.get_or_create(
+            user=request.user
+        )
+
+        order_form = OrderForm(
+            initial={
+                "full_name": (
+                    profile.default_full_name
+                    or request.user.get_full_name()
+                ),
+                "email": (
+                    profile.default_email
+                    or request.user.email
+                ),
+            }
+        )
+    else:
+        order_form = OrderForm()
+
     context = bag_contents(request)
     grand_total = context.get("grand_total", Decimal("0.00"))
 
@@ -159,6 +178,20 @@ def checkout_success(request, reference):
 
     """Retrieve the completed order by its reference."""
     order = get_object_or_404(Order, reference=reference)
+
+    """Attach the order to the authenticated user's profile."""
+    if request.user.is_authenticated:
+        profile, _ = UserProfile.objects.get_or_create(
+            user=request.user
+        )
+        order.user_profile = profile
+        order.save()
+
+        """Save profile defaults when the user selected save_info."""
+        if save_info:
+            profile.default_full_name = order.full_name
+            profile.default_email = order.email
+            profile.save()
 
     messages.success(
         request,

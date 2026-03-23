@@ -29,6 +29,7 @@ class OrderAdmin(admin.ModelAdmin):
 
     readonly_fields = (
         "reference",
+        "user_profile",
         "payment_intent_id",
         "bag_snapshot",
         "created_at",
@@ -40,6 +41,7 @@ class OrderAdmin(admin.ModelAdmin):
 
     fields = (
         "reference",
+        "user_profile",
         "status",
         "full_name",
         "email",
@@ -55,6 +57,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = (
         "reference",
         "created_at",
+        "user_profile",
         "full_name",
         "email",
         "status",
@@ -63,4 +66,10 @@ class OrderAdmin(admin.ModelAdmin):
     )
 
     ordering = ("-created_at",)
-    search_fields = ("reference", "full_name", "email", "payment_intent_id")
+    search_fields = (
+        "reference",
+        "full_name",
+        "email",
+        "payment_intent_id",
+        "user_profile__user__username",
+    )
