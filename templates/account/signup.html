@@ -1,0 +1,64 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+
+{% block inner_content %}
+
+<!-- Sign up heading -->
+<h2 class="logo-font mb-4 text-black text-center">Create Account</h2>
+<hr>
+
+<!-- Sign in prompt for existing users -->
+<p class="text-muted text-center">
+    Already have an account?
+    <a href="{% url 'account_login' %}">Sign in</a> instead.
+</p>
+
+<!-- Signup form -->
+<form method="POST" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+
+    <!-- Username field -->
+    <div class="form-group">
+        <label for="id_username">Username</label>
+        <input class="form-control rounded-0" type="text" name="username" placeholder="Username"
+            autocomplete="username" minlength="4" required id="id_username">
+    </div>
+
+    <!-- Email field -->
+    <div class="form-group">
+        <label for="id_email">Email</label>
+        <input class="form-control rounded-0" type="email" name="email" placeholder="Email address"
+            autocomplete="email" required id="id_email">
+    </div>
+
+    <!-- Password field -->
+    <div class="form-group">
+        <label for="id_password1">Password</label>
+        <input class="form-control rounded-0" type="password" name="password1" placeholder="Password"
+            autocomplete="new-password" required id="id_password1">
+    </div>
+
+    <!-- Confirm password field -->
+    <div class="form-group">
+        <label for="id_password2">Confirm Password</label>
+        <input class="form-control rounded-0" type="password" name="password2" placeholder="Confirm Password"
+            autocomplete="new-password" required id="id_password2">
+    </div>
+
+    <!-- Redirect user after successful signup -->
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+    {% endif %}
+
+    <!-- Account actions -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap mt-4">
+        <a href="{% url 'home' %}" class="btn btn-outline-black rounded-0 text-uppercase mb-2 mb-sm-0">
+            Home
+        </a>
+
+        <button class="btn btn-black rounded-0 text-uppercase mb-2 mb-sm-0" type="submit">
+            Create Account
+        </button>
+    </div>
+</form>
+{% endblock %}
