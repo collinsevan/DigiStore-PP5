@@ -37,35 +37,54 @@
             <!-- Display previous orders belonging to this user -->
             {% if orders %}
 
-            <table class="table table-sm table-borderless">
-                <thead>
-                    <tr>
-                        <th>Order Reference</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
+            <div class="table-responsive order-history">
+                <table class="table table-sm table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Order Reference</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
+                    <tbody>
+                        {% for order in orders %}
+                        <tr>
 
-                    <!-- Loop through user's orders -->
-                    {% for order in orders %}
-                    <tr>
+                            <!-- Order reference -->
+                            <td>
+                                <a href="{% url 'order_history' order.reference %}" title="{{ order.reference }}">
+                                    {{ order.reference|truncatechars:6 }}
+                                </a>
+                            </td>
 
-                        <td>
-                            <a href="{% url 'checkout_success' order.reference %}" title="{{ order.reference }}">
-                                {{ order.reference|truncatechars:12 }}
-                            </a>
-                        </td>
+                            <!-- Date -->
+                            <td class="text-muted small">
+                                {{ order.created_at|date:"d M Y" }}
+                            </td>
 
-                        <td class="text-muted small">
-                            {{ order.created_at|date:"d M Y" }}
-                        </td>
+                            <!-- Items -->
+                            <td class="small">
+                                <ul class="list-unstyled mb-0">
+                                    {% for item in order.lineitems.all %}
+                                    <li>
+                                        {{ item.product_name }} x{{ item.quantity }}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
 
-                    </tr>
-                    {% endfor %}
+                            <!-- Total -->
+                            <td class="small">
+                                €{{ order.grand_total|floatformat:2 }}
+                            </td>
 
-                </tbody>
-            </table>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
             {% else %}
 

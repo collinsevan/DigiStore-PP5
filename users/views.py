@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-
+from django.shortcuts import render, get_object_or_404
+from checkout.models import Order
 from .forms import UserProfileForm
 from .models import UserProfile
 
@@ -31,3 +31,28 @@ def profile(request):
         "on_profile_page": True,
     }
     return render(request, "users/profile.html", context)
+
+
+@login_required
+def order_history(request, reference):
+    """Display a past order confirmation from the user's profile."""
+    order = get_object_or_404(Order, reference=reference)
+
+    messages.info(
+        request,
+        (
+            f"This is a past confirmation for order {reference}. "
+            "A confirmation email was sent on the order date."
+        ),
+    )
+
+    context = {
+        "order": order,
+        "from_profile": True,
+    }
+
+    return render(
+        request,
+        "checkout/checkout_success.html",
+        context,
+    )

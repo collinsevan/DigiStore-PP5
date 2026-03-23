@@ -12,12 +12,21 @@
     <!-- Checkout success -->
     <div class="row">
         <div class="col">
+            {% if from_profile %}
+            <h2 class="logo-font">Order history</h2>
+            <hr>
+            <p class="text-muted mb-0">
+                This is a previous order confirmation for
+                <strong>{{ order.reference }}</strong>.
+            </p>
+            {% else %}
             <h2 class="logo-font">Thank you</h2>
             <hr>
             <p class="text-muted mb-0">
                 Your order has been successfully processed. A confirmation email
                 will be sent to <strong>{{ order.email }}</strong>.
             </p>
+            {% endif %}
         </div>
     </div>
 
@@ -39,9 +48,15 @@
             </div>
 
             <div class="mt-3">
+                {% if from_profile %}
+                <a href="{% url 'profile' %}" class="btn btn-black rounded-0">
+                    Back to profile
+                </a>
+                {% else %}
                 <a href="{% url 'products' %}" class="btn btn-black rounded-0">
                     View latest deals
                 </a>
+                {% endif %}
             </div>
         </div>
 
