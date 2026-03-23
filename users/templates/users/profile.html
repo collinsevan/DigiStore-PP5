@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="content-backdrop"></div>
@@ -36,7 +41,6 @@
             </form>
         </div>
 
-
         <!-- Order history section -->
         <div class="col-12 col-lg-6">
             <h2 class="logo-font">Order History</h2>
@@ -48,7 +52,7 @@
             <table class="table table-sm table-borderless">
                 <thead>
                     <tr>
-                        <th>Order</th>
+                        <th>Order Number</th>
                         <th>Date</th>
                     </tr>
                 </thead>
@@ -60,11 +64,11 @@
                     <tr>
 
                         <td>
-                            {{ order.reference }}
+                            {{ order.order_number|truncatechars:10 }}
                         </td>
 
                         <td class="text-muted small">
-                            {{ order.id }}
+                            {{ order.date|date:"d M Y" }}
                         </td>
 
                     </tr>

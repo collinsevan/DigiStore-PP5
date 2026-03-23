@@ -7,7 +7,7 @@ from .models import UserProfile
 
 @login_required
 def profile(request):
-    """Profile page."""
+    """Display and update the logged-in user's profile."""
     user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == "POST":

@@ -15,3 +15,5 @@ db_backup.json
 db_heroku_seed.json
 db_fixed.json
 backup_after_recovery.json
+db_backup_profile_step.json
+db.sqlite3.backup
