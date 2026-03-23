@@ -8,10 +8,7 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = (
-            "default_full_name",
-            "default_email",
-        )
+        exclude = ("user",)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -21,7 +18,11 @@ class UserProfileForm(forms.ModelForm):
             "default_email": "Email address",
         }
 
+        self.fields["default_full_name"].widget.attrs["autofocus"] = True
+
         for field_name, field in self.fields.items():
-            field.widget.attrs["placeholder"] = placeholders[field_name]
+            field.widget.attrs["placeholder"] = placeholders.get(
+                field_name, ""
+            )
             field.widget.attrs["class"] = "form-control rounded-0"
-            field.label = field.label
+            field.label = False

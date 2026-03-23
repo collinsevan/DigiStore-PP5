@@ -10,6 +10,7 @@ from .models import UserProfile
 def profile(request):
     """Display and update the logged-in user's profile."""
     user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
+    orders = user_profile.orders.all()
 
     if request.method == "POST":
         form = UserProfileForm(request.POST, instance=user_profile)
@@ -26,6 +27,6 @@ def profile(request):
 
     context = {
         "form": form,
-        "profile": user_profile,
+        "orders": orders,
     }
     return render(request, "users/profile.html", context)

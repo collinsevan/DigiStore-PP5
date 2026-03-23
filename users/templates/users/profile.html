@@ -16,7 +16,7 @@
             <h2 class="logo-font">My Profile</h2>
             <hr>
 
-            <form method="post" class="mt-3">
+            <form method="post" action="{% url 'profile' %}" id="profile-update-form" class="mt-3">
                 {% csrf_token %}
 
                 {{ form|crispy }}
@@ -35,12 +35,12 @@
             <hr>
 
             <!-- Display previous orders belonging to this user -->
-            {% if profile.orders.exists %}
+            {% if orders %}
 
             <table class="table table-sm table-borderless">
                 <thead>
                     <tr>
-                        <th>Order Number</th>
+                        <th>Order Reference</th>
                         <th>Date</th>
                     </tr>
                 </thead>
@@ -48,7 +48,7 @@
                 <tbody>
 
                     <!-- Loop through user's orders -->
-                    {% for order in profile.orders.all %}
+                    {% for order in orders %}
                     <tr>
 
                         <td>
