@@ -19,19 +19,7 @@
             <form method="post" class="mt-3">
                 {% csrf_token %}
 
-                <!-- Default full name field -->
-                <div class="form-group">
-                    <label for="id_default_full_name">Full name</label>
-                    <input type="text" name="default_full_name" id="id_default_full_name" class="form-control rounded-0"
-                        value="{{ profile.default_full_name }}">
-                </div>
-
-                <!-- Default email field -->
-                <div class="form-group">
-                    <label for="id_default_email">Email</label>
-                    <input type="email" name="default_email" id="id_default_email" class="form-control rounded-0"
-                        value="{{ profile.default_email }}">
-                </div>
+                {{ form|crispy }}
 
                 <!-- Submit button -->
                 <button class="btn btn-black rounded-0 text-uppercase" type="submit">
@@ -47,7 +35,7 @@
             <hr>
 
             <!-- Display previous orders belonging to this user -->
-            {% if profile.orders.all %}
+            {% if profile.orders.exists %}
 
             <table class="table table-sm table-borderless">
                 <thead>
@@ -64,11 +52,13 @@
                     <tr>
 
                         <td>
-                            {{ order.order_number|truncatechars:10 }}
+                            <a href="{% url 'checkout_success' order.reference %}" title="{{ order.reference }}">
+                                {{ order.reference|truncatechars:12 }}
+                            </a>
                         </td>
 
                         <td class="text-muted small">
-                            {{ order.date|date:"d M Y" }}
+                            {{ order.created_at|date:"d M Y" }}
                         </td>
 
                     </tr>

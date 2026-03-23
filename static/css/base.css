@@ -216,6 +216,50 @@ header {
   overflow-y: auto;
 }
 
+/* =========================
+   Allauth Forms Styling
+========================= */
+
+/* Paragraph spacing + colour */
+.allauth-form-inner-content p {
+  margin-top: 1.5rem;
+  color: #6c757d; /* Bootstrap text-secondary */
+}
+
+/* Inputs */
+.allauth-form-inner-content input {
+  border: 1px solid #000;
+  border-radius: 0;
+}
+
+/* Hide labels (except checkbox) */
+.allauth-form-inner-content label:not([for="id_remember"]) {
+  display: none;
+}
+
+/* Placeholder styling */
+.allauth-form-inner-content input::placeholder {
+  color: #6c757d;
+}
+
+/* Buttons */
+.allauth-form-inner-content .btn {
+  border-radius: 0;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #000;
+}
+
+.allauth-form-inner-content .btn:hover {
+  background-color: #2b2b2b;
+  border-color: #2b2b2b;
+}
+
+/* Links */
+.allauth-form-inner-content a {
+  color: #17a2b8; /* Bootstrap text-info */
+}
+
 /* Media Queries */
 
 /* Slightly larger container on xl screens */

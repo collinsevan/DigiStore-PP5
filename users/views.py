@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
+from .forms import UserProfileForm
 from .models import UserProfile
 
 
@@ -11,12 +12,20 @@ def profile(request):
     user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
-        user_profile.default_full_name = request.POST.get(
-            "default_full_name", ""
-        )
-        user_profile.default_email = request.POST.get("default_email", "")
-        user_profile.save()
-        messages.success(request, "Profile updated.")
+        form = UserProfileForm(request.POST, instance=user_profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile updated.")
+        else:
+            messages.error(
+                request,
+                "Update failed. Please check the form and try again."
+            )
+    else:
+        form = UserProfileForm(instance=user_profile)
 
-    context = {"profile": user_profile}
+    context = {
+        "form": form,
+        "profile": user_profile,
+    }
     return render(request, "users/profile.html", context)
