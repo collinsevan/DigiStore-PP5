@@ -1,0 +1,15 @@
+Hello {{ order.full_name }},
+
+Thank you for your order!
+
+Order Reference: {{ order.reference }}
+Order Date: {{ order.created_at }}
+Order Total: €{{ order.order_total }}
+Grand Total: €{{ order.grand_total }}
+
+We will send your digital product shortly.
+
+If you have any questions, contact us at {{ contact_email }}.
+
+Thanks,
+DigiStore
