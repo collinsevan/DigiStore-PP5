@@ -78,10 +78,19 @@ class StripeWH_Handler:
                 status=200,
             )
 
+        profile = None
+
         if username != "AnonymousUser":
-            profile = UserProfile.objects.get(user__username=username)
-        else:
-            profile = None
+            try:
+                profile = UserProfile.objects.get(user__username=username)
+
+                if save_info.lower() == "true":
+                    profile.default_full_name = billing_details.name or ""
+                    profile.default_email = billing_details.email or ""
+                    profile.save()
+
+            except UserProfile.DoesNotExist:
+                profile = None
 
         order = None
 
@@ -107,11 +116,6 @@ class StripeWH_Handler:
                     f"Grand total mismatch: order={order.grand_total} "
                     f"stripe={grand_total}"
                 )
-
-            if save_info == "True" and profile:
-                profile.default_full_name = billing_details.name
-                profile.default_email = billing_details.email
-                profile.save()
 
         except Exception as e:
             if order:
