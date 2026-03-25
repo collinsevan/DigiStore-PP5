@@ -24,7 +24,7 @@
     {% block extra_css %}{% endblock %}
 </head>
 
-<body>
+<body class="{% block body_class %}{% endblock %}">
 
     <header class="container-fluid fixed-top-desktop-only text-inverse">
 
@@ -71,9 +71,7 @@
                         <div class="dropdown-menu border-0" aria-labelledby="user-options">
                             {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                            <a href="{% url 'add_product' %}" class="dropdown-item">
-                                Product Management
-                            </a>
+                            <a href="#" class="dropdown-item">Product Management</a>
                             {% endif %}
                             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
@@ -114,7 +112,8 @@
                     ☰
                 </button>
 
-                <ul class="list-inline list-unstyled text-center my-0 d-lg-none">
+                <ul
+                    class="list-inline list-unstyled text-center my-0 d-lg-none d-flex flex-nowrap align-items-center justify-content-end w-100 pl-0">
                     {% include 'includes/mobile-top-header.html' %}
                 </ul>
 

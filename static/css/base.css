@@ -260,7 +260,27 @@ header {
   color: #17a2b8; /* Bootstrap text-info */
 }
 
+/* Category filter badges (products page) */
+.category-badge:hover {
+  background-color: #343a40;
+  color: #fff !important;
+}
+
 /* Media Queries */
+
+/* Home hero image positioning on smaller screens */
+@media (max-width: 767px) {
+  body.home-page {
+    background-position: 70% top;
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 480px) {
+  body.home-page {
+    background-position: 78% top;
+  }
+}
 
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
@@ -284,8 +304,46 @@ header {
   }
 }
 
-/* Category filter badges (products page) */
-.category-badge:hover {
-  background-color: #343a40;
-  color: #fff !important;
+/* Keep mobile header above page content */
+@media (max-width: 991px) {
+  header {
+    position: relative;
+    z-index: 1050;
+  }
+}
+
+/* Mobile header spacing refinements */
+@media (max-width: 414px) {
+  .list-inline.d-lg-none {
+    padding-right: 0.5rem;
+  }
+
+  .list-inline.d-lg-none .list-inline-item {
+    margin-right: 0;
+  }
+
+  .list-inline.d-lg-none .nav-link {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+
+  .list-inline.d-lg-none .text-center p {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .list-inline.d-lg-none {
+    padding-right: 0.35rem;
+  }
+
+  .list-inline.d-lg-none .nav-link {
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
+  }
+
+  .list-inline.d-lg-none .text-center p {
+    font-size: 0.75rem;
+  }
 }

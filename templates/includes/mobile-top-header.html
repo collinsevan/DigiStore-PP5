@@ -1,16 +1,16 @@
 <!-- Mobile header actions (visible on small screens only) -->
 
 <!-- Mobile search toggle -->
-<li class="list-inline-item dropdown d-block d-lg-none">
-    <a class="nav-link text-inverse" href="#" id="mobile-search-toggle" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
+<li class="list-inline-item dropdown d-block d-lg-none mb-0 ml-2">
+    <a class="nav-link text-inverse px-1 py-0" href="#" id="mobile-search-toggle" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <i class="fas fa-search fa-lg"></i>
             <p class="my-0">Search</p>
         </div>
     </a>
 
-    <div class="dropdown-menu border-0 p-3 w-100" aria-labelledby="mobile-search-toggle">
+    <div class="dropdown-menu dropdown-menu-right border-0 p-3" aria-labelledby="mobile-search-toggle">
         <form method="GET" action="{% url 'products' %}">
             <div class="input-group w-100">
                 <input class="form-control border border-black rounded-0" type="text" name="q"
@@ -28,17 +28,21 @@
 </li>
 
 <!-- Mobile account toggle -->
-<li class="list-inline-item dropdown d-block d-lg-none">
-    <a class="nav-link text-inverse" href="#" id="mobile-account-toggle" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
+<li class="list-inline-item dropdown d-block d-lg-none mb-0 ml-2">
+    <a class="nav-link text-inverse px-1 py-0" href="#" id="mobile-account-toggle" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
         <div class="text-center">
             <i class="fas fa-user fa-lg"></i>
             <p class="my-0">Account</p>
         </div>
     </a>
 
-    <div class="dropdown-menu border-0" aria-labelledby="mobile-account-toggle">
+    <div class="dropdown-menu dropdown-menu-right border-0" aria-labelledby="mobile-account-toggle">
         {% if request.user.is_authenticated %}
+        {% if request.user.is_superuser %}
+        <a href="#" class="dropdown-item">Product Management</a>
+        {% endif %}
+        <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
         <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
         {% else %}
         <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
@@ -48,8 +52,8 @@
 </li>
 
 <!-- Mobile bag -->
-<li class="list-inline-item d-block d-lg-none">
-    <a class="nav-link text-inverse" href="{% url 'view_bag' %}">
+<li class="list-inline-item d-block d-lg-none mb-0 ml-2">
+    <a class="nav-link text-inverse px-1 py-0" href="{% url 'view_bag' %}">
         <div class="text-center">
             <i class="fas fa-shopping-bag fa-lg"></i>
             <p class="my-0">€{{ grand_total|floatformat:2 }}</p>
