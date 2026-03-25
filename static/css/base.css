@@ -266,7 +266,19 @@ header {
   color: #fff !important;
 }
 
+.product-form-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 /* Media Queries */
+
+
+@media (max-width: 767px) {
+  .product-form-wrapper {
+    max-width: 100%;
+  }
+}
 
 /* Home hero image positioning on smaller screens */
 @media (max-width: 767px) {
