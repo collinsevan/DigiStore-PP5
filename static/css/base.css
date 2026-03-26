@@ -266,22 +266,31 @@ header {
   color: #fff !important;
 }
 
+/* Product styling */
 .product-form-wrapper {
   max-width: 700px;
   margin: 0 auto;
 }
 
+.product-detail-image {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 /* Media Queries */
-
-
 @media (max-width: 767px) {
   .product-form-wrapper {
     max-width: 100%;
   }
-}
 
-/* Home hero image positioning on smaller screens */
-@media (max-width: 767px) {
+  .product-detail-image {
+    max-width: 150px;
+  }
+
+  /* Home hero image positioning on smaller screens */
   body.home-page {
     background-position: 70% top;
     background-attachment: scroll;
@@ -301,7 +310,7 @@ header {
   }
 }
 
-/* fixed top navbar only on medium and up */
+/* Fixed top navbar only on large screens */
 @media (min-width: 992px) {
   .fixed-top-desktop-only {
     position: fixed;
