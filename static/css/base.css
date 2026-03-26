@@ -328,6 +328,27 @@ header {
   .header-container {
     padding-top: 164px;
   }
+
+  #main-nav {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  #main-nav > .navbar-nav.mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #main-nav > .navbar-nav.ml-auto {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0 !important;
+  }
 }
 
 /* Keep mobile header above page content */
