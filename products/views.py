@@ -86,6 +86,21 @@ def product_detail(request, product_id):
 
 
 @login_required
+def product_management(request):
+    """
+    Display product management options for store owners.
+    """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            "Sorry, only store owners can do that."
+        )
+        return redirect(reverse("home"))
+
+    return render(request, "products/product_management.html")
+
+
+@login_required
 def add_product(request):
     """
     Add a product to the store.

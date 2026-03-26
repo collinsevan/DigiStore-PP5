@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container header-container">
+    <div class="row">
+        <div class="col text-center mt-3">
+            <h2 class="logo-font">Product Management</h2>
+            <hr class="w-50 mb-4">
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 text-center">
+
+            <!-- Add product section -->
+            <h4 class="mb-2">Add Product</h4>
+            <p class="text-muted">
+                Create a new digital product for your store.
+            </p>
+            <a href="{% url 'add_product' %}" class="btn btn-black mb-4">
+                Add Product
+            </a>
+
+            <!-- Edit product section -->
+            <h4 class="mb-2">Edit Products</h4>
+            <p class="text-muted">
+                Update existing products in your store.
+            </p>
+            <a href="#" class="btn btn-outline-black mb-4 disabled">
+                Edit Products
+            </a>
+
+            <!-- Delete product section -->
+            <h4 class="mb-2">Delete Product</h4>
+            <p class="text-muted">
+                Remove products from your store.
+            </p>
+            <a href="{% url 'delete_product_list' %}" class="btn btn-danger">
+                Delete Product
+            </a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
