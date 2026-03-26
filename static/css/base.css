@@ -5,11 +5,16 @@ html {
 }
 
 body {
-  background: url("/media/home/hero.jpg") no-repeat center center fixed;
-  background-size: cover;
+  background: #fff;
   height: calc(100vh - 164px);
   color: #555;
   font-family: "Lato", sans-serif;
+}
+
+/* Hero background for homepage only */
+body.hero-page {
+  background: url("/media/home/hero.jpg") no-repeat center center fixed;
+  background-size: cover;
 }
 
 /* Page content background */
@@ -25,7 +30,7 @@ body {
 
 /* Header spacing */
 .header-container {
-  padding-top: 116px;
+  padding-top: 164px;
 }
 
 /* from Bulma */
@@ -291,14 +296,14 @@ header {
   }
 
   /* Home hero image positioning on smaller screens */
-  body.home-page {
+  body.hero-page {
     background-position: 70% top;
     background-attachment: scroll;
   }
 }
 
 @media (max-width: 480px) {
-  body.home-page {
+  body.hero-page {
     background-position: 78% top;
   }
 }
@@ -321,7 +326,7 @@ header {
   }
 
   .header-container {
-    padding-top: 116px;
+    padding-top: 164px;
   }
 }
 
