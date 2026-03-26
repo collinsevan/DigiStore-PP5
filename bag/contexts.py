@@ -1,5 +1,4 @@
 from decimal import Decimal
-from django.shortcuts import get_object_or_404
 
 from products.models import Product
 
@@ -13,9 +12,12 @@ def bag_contents(request):
     bag = request.session.get("bag", {})
 
     for item_id, quantity in bag.items():
-        product = get_object_or_404(Product, pk=item_id)
-        quantity = int(quantity)
+        product = Product.objects.filter(pk=item_id).first()
 
+        if not product:
+            continue
+
+        quantity = int(quantity)
         line_total = quantity * product.price
         total += line_total
         product_count += quantity

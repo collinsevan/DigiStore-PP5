@@ -29,6 +29,16 @@
         <div class="col-12 col-md-7 col-lg-5">
             <h3 class="mb-2">{{ product.name }}</h3>
             <p class="lead mb-3 font-weight-bold">€{{ product.price }}</p>
+
+            {% if request.user.is_superuser %}
+            <p class="mb-2">
+                <small>
+                    <a href="{% url 'edit_product' product.id %}">Edit</a> |
+                    <a href="{% url 'delete_product' product.id %}">Delete</a>
+                </small>
+            </p>
+            {% endif %}
+
             <p class="mb-0">{{ product.description }}</p>
 
             <!-- Add to bag -->

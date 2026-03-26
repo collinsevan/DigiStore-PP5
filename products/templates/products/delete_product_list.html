@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="content-backdrop"></div>
+
+<div class="container header-container">
+    <div class="row">
+        <div class="col">
+            <div class="product-form-wrapper">
+                <h2 class="logo-font">Product Management</h2>
+                <h5 class="text-muted">Select a product to delete</h5>
+                <hr>
+
+                <form method="POST" action="{% url 'delete_product_list' %}">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="product_id">Choose a product</label>
+                        <select class="form-control rounded-0" id="product_id" name="product_id" required>
+                            <option value="">Select a product...</option>
+                            {% for product in products %}
+                            <option value="{{ product.id }}">
+                                {{ product.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="text-right">
+                        <a class="btn btn-outline-black rounded-0" href="{% url 'products' %}">
+                            Cancel
+                        </a>
+                        <button class="btn btn-black rounded-0" type="submit">
+                            Review Delete
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

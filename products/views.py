@@ -161,3 +161,59 @@ def edit_product(request, product_id):
     }
 
     return render(request, "products/edit_product.html", context)
+
+
+@login_required
+def delete_product_list(request):
+    """
+    Display a list of products to choose from before deleting.
+    """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            "Sorry, only store owners can do that."
+        )
+        return redirect(reverse("home"))
+
+    if request.method == "POST":
+        product_id = request.POST.get("product_id")
+
+        if not product_id:
+            messages.error(request, "Please select a product to delete.")
+            return redirect(reverse("delete_product_list"))
+
+        return redirect(reverse("delete_product", args=[product_id]))
+
+    products = Product.objects.all().order_by("name")
+
+    context = {
+        "products": products,
+    }
+
+    return render(request, "products/delete_product_list.html", context)
+
+
+@login_required
+def delete_product(request, product_id):
+    """
+    Delete a product from the store.
+    """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            "Sorry, only store owners can do that."
+        )
+        return redirect(reverse("home"))
+
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == "POST":
+        product.delete()
+        messages.success(request, "Product deleted successfully.")
+        return redirect(reverse("products"))
+
+    context = {
+        "product": product,
+    }
+
+    return render(request, "products/delete_product.html", context)
