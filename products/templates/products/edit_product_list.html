@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="content-backdrop"></div>
+
+<div class="container header-container">
+    <div class="row">
+        <div class="col">
+            <div class="product-form-wrapper">
+                <!-- Page heading -->
+                <h2 class="logo-font">Product Management</h2>
+                <h5 class="text-muted">Select a product to edit</h5>
+                <hr>
+
+                <!-- Product selection form -->
+                <form method="POST" action="{% url 'edit_product_list' %}">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="product_id">Choose a product</label>
+                        <select class="form-control rounded-0" id="product_id" name="product_id" required>
+                            <option value="">Select a product...</option>
+                            {% for product in products %}
+                            <option value="{{ product.id }}">
+                                {{ product.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Form actions -->
+                    <div class="text-right">
+                        <a class="btn btn-outline-black rounded-0" href="{% url 'product_management' %}">
+                            Cancel
+                        </a>
+                        <button class="btn btn-black rounded-0" type="submit">
+                            Edit Product
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -29,11 +29,13 @@ def all_products(request):
 
             if not query:
                 messages.error(
-                    request, "You didn't enter any search criteria.")
+                    request, "You didn't enter any search criteria."
+                )
                 return redirect(reverse("products"))
 
             queries = Q(name__icontains=query) | Q(
-                description__icontains=query)
+                description__icontains=query
+            )
             products = products.filter(queries)
 
         if "category" in request.GET:
@@ -135,6 +137,36 @@ def add_product(request):
     }
 
     return render(request, "products/add_product.html", context)
+
+
+@login_required
+def edit_product_list(request):
+    """
+    Display a list of products to choose from before editing.
+    """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            "Sorry, only store owners can do that."
+        )
+        return redirect(reverse("home"))
+
+    if request.method == "POST":
+        product_id = request.POST.get("product_id")
+
+        if not product_id:
+            messages.error(request, "Please select a product to edit.")
+            return redirect(reverse("edit_product_list"))
+
+        return redirect(reverse("edit_product", args=[product_id]))
+
+    products = Product.objects.all().order_by("name")
+
+    context = {
+        "products": products,
+    }
+
+    return render(request, "products/edit_product_list.html", context)
 
 
 @login_required
