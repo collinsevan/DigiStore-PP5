@@ -187,6 +187,16 @@ header {
   margin-bottom: 0;
 }
 
+/* Custom checkbox styling */
+.custom-checkbox .custom-control-label::before {
+  border-radius: 0;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
 /* Toasts */
 
 .message-container {
