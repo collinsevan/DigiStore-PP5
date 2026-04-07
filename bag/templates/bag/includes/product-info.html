@@ -1,0 +1,8 @@
+<!-- Bag item details -->
+<div class="col-12 col-sm-6 mb-2">
+    <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+
+    {% if item.product.sku %}
+    <p class="my-0 small text-muted">SKU: {{ item.product.sku }}</p>
+    {% endif %}
+</div>

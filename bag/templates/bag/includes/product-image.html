@@ -1,0 +1,8 @@
+<!-- Bag item image -->
+<div class="col-12 col-sm-6 mb-2">
+    {% if item.product.image %}
+    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+    {% elif item.product.image_url %}
+    <img class="img-fluid rounded" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+    {% endif %}
+</div>
