@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content-backdrop"></div>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6">
+            <h1 class="display-4 logo-font text-black">
+                Sign in required
+            </h1>
+            <p class="lead text-muted">
+                You need to sign in to access this page.
+            </p>
+            <div class="mt-4">
+                <a href="{% url 'account_login' %}"
+                    class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">
+                    Sign in
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

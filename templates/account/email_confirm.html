@@ -1,0 +1,38 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+<div class="content-backdrop"></div>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6">
+            <h1 class="logo-font mb-4">Confirm Email Address</h1>
+
+            {% if confirmation %}
+            <p class="text-muted">
+                Please confirm that
+                <strong>{{ confirmation.email_address.email }}</strong>
+                is the email address for this account.
+            </p>
+
+            <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                {% csrf_token %}
+                <button type="submit" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">
+                    Confirm email
+                </button>
+            </form>
+            {% else %}
+            <p class="text-muted">
+                This email confirmation link is invalid or has expired.
+            </p>
+
+            <a href="{% url 'account_login' %}" class="btn btn-outline-black rounded-0 text-uppercase">
+                Sign in
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -18,6 +18,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from . import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/', include('products.urls')),
@@ -26,6 +28,7 @@ urlpatterns = [
     path('bag/', include('bag.urls')),
     path('checkout/', include('checkout.urls')),
     path("users/", include("users.urls")),
+    path("errors/401/", views.custom_401, name="error_401"),
 ]
 
 
