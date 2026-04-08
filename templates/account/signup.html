@@ -17,18 +17,35 @@
 <form method="POST" action="{% url 'account_signup' %}">
     {% csrf_token %}
 
+    <!-- Form errors -->
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger rounded-0">
+        {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+
     <!-- Username field -->
     <div class="form-group">
         <label for="id_username">Username</label>
-        <input class="form-control rounded-0" type="text" name="username" placeholder="Username"
-            autocomplete="username" minlength="4" required id="id_username">
+        <input class="form-control rounded-0" type="text" name="username" placeholder="Username" autocomplete="username"
+            minlength="4" required id="id_username" value="{{ form.username.value|default_if_none:'' }}">
+        {% if form.username.errors %}
+        <div class="text-danger small mt-1">
+            {{ form.username.errors }}
+        </div>
+        {% endif %}
     </div>
 
     <!-- Email field -->
     <div class="form-group">
         <label for="id_email">Email</label>
-        <input class="form-control rounded-0" type="email" name="email" placeholder="Email address"
-            autocomplete="email" required id="id_email">
+        <input class="form-control rounded-0" type="email" name="email" placeholder="Email address" autocomplete="email"
+            required id="id_email" value="{{ form.email.value|default_if_none:'' }}">
+        {% if form.email.errors %}
+        <div class="text-danger small mt-1">
+            {{ form.email.errors }}
+        </div>
+        {% endif %}
     </div>
 
     <!-- Password field -->
@@ -36,6 +53,11 @@
         <label for="id_password1">Password</label>
         <input class="form-control rounded-0" type="password" name="password1" placeholder="Password"
             autocomplete="new-password" required id="id_password1">
+        {% if form.password1.errors %}
+        <div class="text-danger small mt-1">
+            {{ form.password1.errors }}
+        </div>
+        {% endif %}
     </div>
 
     <!-- Confirm password field -->
@@ -43,6 +65,11 @@
         <label for="id_password2">Confirm Password</label>
         <input class="form-control rounded-0" type="password" name="password2" placeholder="Confirm Password"
             autocomplete="new-password" required id="id_password2">
+        {% if form.password2.errors %}
+        <div class="text-danger small mt-1">
+            {{ form.password2.errors }}
+        </div>
+        {% endif %}
     </div>
 
     <!-- Redirect user after successful signup -->
