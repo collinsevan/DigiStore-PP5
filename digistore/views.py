@@ -6,6 +6,31 @@ def custom_401(request):
     return render(request, "errors/401.html", status=401)
 
 
+def custom_405(request):
+    """Render custom 405 page."""
+    return render(request, "errors/405.html", status=405)
+
+
+def custom_408(request):
+    """Render custom 408 page."""
+    return render(request, "errors/408.html", status=408)
+
+
+def custom_429(request):
+    """Render custom 429 page."""
+    return render(request, "errors/429.html", status=429)
+
+
+def custom_502(request):
+    """Render custom 502 page."""
+    return render(request, "errors/502.html", status=502)
+
+
+def custom_503(request):
+    """Render custom 503 page."""
+    return render(request, "errors/503.html", status=503)
+
+
 def handler400(request, exception):
     """Render custom 400 page."""
     return render(request, "errors/400.html", status=400)
