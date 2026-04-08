@@ -31,6 +31,8 @@ urlpatterns = [
 
     # Manual preview routes for custom error pages
     path("401/", views.custom_401, name="custom_401"),
+    path("403/", views.custom_403, name="custom_403"),
+    path("404/", views.custom_404, name="custom_404"),
     path("405/", views.custom_405, name="custom_405"),
     path("408/", views.custom_408, name="custom_408"),
     path("429/", views.custom_429, name="custom_429"),

@@ -6,6 +6,16 @@ def custom_401(request):
     return render(request, "errors/401.html", status=401)
 
 
+def custom_403(request):
+    """Render custom 403 page."""
+    return render(request, "errors/403.html", status=403)
+
+
+def custom_404(request):
+    """Render custom 404 page."""
+    return render(request, "errors/404.html", status=404)
+
+
 def custom_405(request):
     """Render custom 405 page."""
     return render(request, "errors/405.html", status=405)
