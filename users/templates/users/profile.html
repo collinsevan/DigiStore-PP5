@@ -21,10 +21,17 @@
 
                 {{ form|crispy }}
 
-                <!-- Submit button -->
-                <button class="btn btn-black rounded-0 text-uppercase" type="submit">
-                    Update
-                </button>
+                <!-- Profile actions -->
+                <div class="d-flex flex-wrap align-items-center mt-3">
+                    <button class="btn btn-black rounded-0 text-uppercase mr-2 mb-2" type="submit">
+                        Update
+                    </button>
+
+                    <a href="{% url 'account_change_password' %}"
+                        class="btn btn-outline-black rounded-0 text-uppercase mb-2">
+                        Change Password
+                    </a>
+                </div>
 
             </form>
         </div>
