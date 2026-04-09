@@ -7,9 +7,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description"
+        content="{% block meta_description %}Shop digital products at DigiStore, including software, productivity tools, digital art, and audio books.{% endblock %}">
+    <meta name="keywords"
+        content="{% block meta_keywords %}digital products, software, productivity tools, digital art, audio books, DigiStore{% endblock %}">
     {% endblock %}
 
     <title>DigiStore {% block extratitle %}{% endblock %}</title>
+
+    {% block canonical %}
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    {% endblock %}
+
+    {% block extra_meta %}{% endblock %}
 
     {% block corecss %}
     <link rel="preconnect" href="https://fonts.gstatic.com">

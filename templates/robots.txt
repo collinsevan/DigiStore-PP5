@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://digi-store-pp5-4acfa738d458.herokuapp.com/sitemap.xml

@@ -1,10 +1,11 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 
 
 class Category(models.Model):
     """
-    Product category used for grouping and navigation.
+    Stores product categories used for filtering and navigation.
     """
 
     name = models.CharField(max_length=254, unique=True)
@@ -28,7 +29,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     """
-    Digital product available for purchase.
+    Stores digital products available to browse and purchase.
     """
 
     LICENSE_PERSONAL = "personal"
@@ -74,6 +75,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("product_detail", args=[self.id])
 
     def save(self, *args, **kwargs):
         if not self.slug:

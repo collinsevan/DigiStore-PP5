@@ -16,9 +16,17 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
+from django.views.generic import TemplateView
 
 from . import views
+from .sitemaps import ProductSitemap, StaticViewSitemap
+
+sitemaps = {
+    "static": StaticViewSitemap,
+    "products": ProductSitemap,
+}
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,8 +36,21 @@ urlpatterns = [
     path("bag/", include("bag.urls")),
     path("checkout/", include("checkout.urls")),
     path("users/", include("users.urls")),
+    path(
+        "robots.txt",
+        TemplateView.as_view(
+            template_name="robots.txt",
+            content_type="text/plain"
+        ),
+    ),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
 
-    # Manual preview routes for custom error pages
+    # Preview routes for testing custom error page templates
     path("401/", views.custom_401, name="custom_401"),
     path("403/", views.custom_403, name="custom_403"),
     path("404/", views.custom_404, name="custom_404"),

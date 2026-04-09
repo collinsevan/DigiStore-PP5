@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    'django.contrib.sitemaps',
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -65,7 +66,7 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
-SITE_ID = 1
+SITE_ID = int(os.getenv("SITE_ID", 1))
 
 
 MIDDLEWARE = [
