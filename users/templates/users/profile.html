@@ -20,6 +20,7 @@
                 {% csrf_token %}
 
                 {{ form|crispy }}
+                <input type="hidden" name="update_profile" value="1">
 
                 <!-- Profile actions -->
                 <div class="d-flex flex-wrap align-items-center mt-3">
@@ -100,6 +101,102 @@
 
             {% endif %}
 
+        </div>
+
+    </div>
+
+    <div class="row mt-4">
+
+        <!-- Product suggestion form -->
+        <div class="col-12 col-lg-6">
+            <h2 class="logo-font">Suggest a Product</h2>
+            <hr>
+
+            <p class="text-muted">
+                Have an idea for a digital product you would like to see in DigiStore?
+                Send us your suggestion below.
+            </p>
+
+            <form method="post" action="{% url 'profile' %}" class="mt-3">
+                {% csrf_token %}
+
+                {{ suggestion_form|crispy }}
+                <input type="hidden" name="add_suggestion" value="1">
+
+                <button class="btn btn-black rounded-0 text-uppercase" type="submit">
+                    Submit Suggestion
+                </button>
+            </form>
+        </div>
+
+        <!-- Product suggestions list -->
+        <div class="col-12 col-lg-6 mt-4 mt-lg-0">
+            <h2 class="logo-font">My Product Suggestions</h2>
+            <hr>
+
+            {% if suggestions %}
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Status</th>
+                            <th>Submitted</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for suggestion in suggestions %}
+                        <tr>
+                            <td>
+                                <strong>{{ suggestion.suggested_name }}</strong>
+                                {% if suggestion.suggested_category %}
+                                <div class="small text-muted">
+                                    {{ suggestion.suggested_category }}
+                                </div>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span class="small">
+                                    {{ suggestion.get_status_display }}
+                                </span>
+                            </td>
+                            <td class="small text-muted">
+                                {{ suggestion.created_on|date:"d M Y" }}
+                            </td>
+                            <td class="text-right small">
+                                <a href="{% url 'edit_product_suggestion' suggestion.id %}">Edit</a> |
+                                <a href="{% url 'delete_product_suggestion' suggestion.id %}">Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="small text-muted pt-0">
+                                {{ suggestion.description|truncatechars:140 }}
+                            </td>
+                        </tr>
+                        {% if suggestion.reason %}
+                        <tr>
+                            <td colspan="4" class="small text-muted pt-0">
+                                <strong>Reason:</strong> {{ suggestion.reason|truncatechars:140 }}
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% if suggestion.admin_notes %}
+                        <tr>
+                            <td colspan="4" class="small pt-0">
+                                <strong>Admin Notes:</strong> {{ suggestion.admin_notes }}
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="text-muted">
+                You have not submitted any product suggestions yet.
+            </p>
+            {% endif %}
         </div>
 
     </div>

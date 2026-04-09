@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="overlay"></div>
+<div class="content-backdrop"></div>
+
 <div class="container header-container">
     <div class="row">
         <div class="col text-center mt-3">
@@ -36,10 +37,120 @@
             <p class="text-muted">
                 Remove products from your store.
             </p>
-            <a href="{% url 'delete_product_list' %}" class="btn btn-danger">
+            <a href="{% url 'delete_product_list' %}" class="btn btn-danger mb-4">
                 Delete Product
             </a>
 
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <h3 class="logo-font">Product Suggestions</h3>
+            <p class="text-muted">
+                Review product ideas submitted by users and create products
+                from approved suggestions.
+            </p>
+            <hr>
+
+            {% if suggestions %}
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Suggested Product</th>
+                            <th>Submitted By</th>
+                            <th>Status</th>
+                            <th>Submitted</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for suggestion in suggestions %}
+                        <tr>
+                            <td>
+                                <strong>{{ suggestion.suggested_name }}</strong>
+                                {% if suggestion.suggested_category %}
+                                <div class="small text-muted">
+                                    {{ suggestion.suggested_category }}
+                                </div>
+                                {% endif %}
+                            </td>
+                            <td class="small">
+                                {{ suggestion.user.username }}
+                            </td>
+                            <td class="small">
+                                {{ suggestion.get_status_display }}
+                            </td>
+                            <td class="small text-muted">
+                                {{ suggestion.created_on|date:"d M Y" }}
+                            </td>
+                            <td class="text-right small">
+                                <a href="{% url 'edit_product_suggestion_admin' suggestion.id %}">
+                                    Edit
+                                </a>
+                                |
+                                <a href="{% url 'delete_product_suggestion_admin' suggestion.id %}">
+                                    Delete
+                                </a>
+                                |
+                                <a href="{% url 'add_product' %}?suggestion_id={{ suggestion.id }}">
+                                    Create Product
+                                </a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="5" class="small text-muted pt-0">
+                                <strong>Description:</strong>
+                                {{ suggestion.description|truncatechars:180 }}
+                            </td>
+                        </tr>
+
+                        {% if suggestion.reason %}
+                        <tr>
+                            <td colspan="5" class="small text-muted pt-0">
+                                <strong>Reason:</strong>
+                                {{ suggestion.reason|truncatechars:180 }}
+                            </td>
+                        </tr>
+                        {% endif %}
+
+                        {% if suggestion.reference_url %}
+                        <tr>
+                            <td colspan="5" class="small pt-0">
+                                <strong>Reference:</strong>
+                                <a href="{{ suggestion.reference_url }}" target="_blank" rel="noopener noreferrer">
+                                    {{ suggestion.reference_url|truncatechars:90 }}
+                                </a>
+                            </td>
+                        </tr>
+                        {% endif %}
+
+                        {% if suggestion.admin_notes %}
+                        <tr>
+                            <td colspan="5" class="small pt-0">
+                                <strong>Admin Notes:</strong>
+                                {{ suggestion.admin_notes }}
+                            </td>
+                        </tr>
+                        {% endif %}
+
+                        <tr>
+                            <td colspan="5">
+                                <hr class="my-2">
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p class="text-muted">
+                No product suggestions have been submitted yet.
+            </p>
+            {% endif %}
         </div>
     </div>
 </div>

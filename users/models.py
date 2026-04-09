@@ -27,6 +27,66 @@ class UserProfile(models.Model):
         return self.user.username
 
 
+class ProductSuggestion(models.Model):
+    """Store product suggestions submitted by authenticated users."""
+
+    STATUS_PENDING = "pending"
+    STATUS_UNDER_REVIEW = "under_review"
+    STATUS_APPROVED = "approved"
+    STATUS_DECLINED = "declined"
+
+    STATUS_CHOICES = [
+        (STATUS_PENDING, "Pending"),
+        (STATUS_UNDER_REVIEW, "Under Review"),
+        (STATUS_APPROVED, "Approved"),
+        (STATUS_DECLINED, "Declined"),
+    ]
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="product_suggestions",
+    )
+    suggested_name = models.CharField(
+        max_length=254,
+    )
+    suggested_category = models.CharField(
+        max_length=254,
+        blank=True,
+    )
+    description = models.TextField()
+    reason = models.TextField(
+        blank=True,
+    )
+    reference_url = models.URLField(
+        max_length=1024,
+        blank=True,
+    )
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default=STATUS_PENDING,
+    )
+    admin_notes = models.TextField(
+        blank=True,
+    )
+    created_on = models.DateTimeField(
+        auto_now_add=True,
+    )
+    updated_on = models.DateTimeField(
+        auto_now=True,
+    )
+
+    class Meta:
+        ordering = ["-created_on"]
+        verbose_name = "Product Suggestion"
+        verbose_name_plural = "Product Suggestions"
+
+    def __str__(self):
+        """Return a readable product suggestion label."""
+        return f"{self.suggested_name} ({self.user.username})"
+
+
 @receiver(post_save, sender=get_user_model())
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """Create or update the user's profile after save."""
