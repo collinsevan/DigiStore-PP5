@@ -1,6 +1,22 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% block extratitle %}
+{% if from_profile %}- Order History{% else %}- Order Confirmed{% endif %}
+{% endblock %}
+
+{% block meta_description %}
+{% if from_profile %}
+View a previous DigiStore order confirmation.
+{% else %}
+Your DigiStore order has been successfully processed.
+{% endif %}
+{% endblock %}
+
+{% block meta_keywords %}
+order confirmation, order history, DigiStore
+{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
@@ -13,14 +29,14 @@
     <div class="row">
         <div class="col">
             {% if from_profile %}
-            <h2 class="logo-font">Order history</h2>
+            <h1 class="logo-font">Order History</h1>
             <hr>
             <p class="text-muted mb-0">
                 This is a previous order confirmation for
                 <strong>{{ order.reference }}</strong>.
             </p>
             {% else %}
-            <h2 class="logo-font">Thank you</h2>
+            <h1 class="logo-font">Thank You</h1>
             <hr>
             <p class="text-muted mb-0">
                 Your order has been successfully processed. A confirmation email
@@ -34,7 +50,7 @@
         <div class="col-12 col-lg-7">
             <!-- Order confirmation summary -->
             <div class="rounded border p-3">
-                <h5 class="text-muted mb-3">Order details</h5>
+                <h2 class="h5 text-muted mb-3">Order details</h2>
 
                 <p class="mb-1">
                     <strong>Order reference:</strong> {{ order.reference }}
@@ -63,7 +79,7 @@
         <div class="col-12 col-lg-5 mt-4 mt-lg-0">
             <!-- Order total summary -->
             <div class="rounded border p-3">
-                <h5 class="text-muted mb-3">Order summary</h5>
+                <h2 class="h5 text-muted mb-3">Order summary</h2>
 
                 {% for item in order.lineitems.all %}
                 <div class="row align-items-center border-top py-2">

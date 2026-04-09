@@ -6,7 +6,7 @@ from products.models import Product
 
 class StaticViewSitemap(Sitemap):
     """
-    Stores sitemap entries for the main static site pages.
+    Stores sitemap entries for the main public site pages.
     """
 
     priority = 0.8
@@ -16,8 +16,6 @@ class StaticViewSitemap(Sitemap):
         return [
             "home",
             "products",
-            "view_bag",
-            "checkout",
         ]
 
     def location(self, item):

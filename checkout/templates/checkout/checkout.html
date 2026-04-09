@@ -1,11 +1,19 @@
 {% extends "base.html" %}
 
-
 {% load static %}
+{% block extratitle %}- Checkout{% endblock %}
+
+{% block meta_description %}
+Complete your order securely at DigiStore checkout.
+{% endblock %}
+
+{% block meta_keywords %}
+checkout, secure checkout, DigiStore
+{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
-
 
 {% block content %}
 <div class="content-backdrop"></div>
@@ -14,14 +22,14 @@
     <!-- Checkout -->
     <div class="row">
         <div class="col">
-            <h2 class="logo-font">Checkout</h2>
+            <h1 class="logo-font">Checkout</h1>
             <hr>
 
             <div class="row">
 
                 <!-- Order summary -->
                 <div class="col-12 col-lg-6 order-lg-last">
-                    <h5 class="text-muted">Order summary</h5>
+                    <h2 class="h5 text-muted">Order summary</h2>
 
                     <div class="row text-muted small mb-2">
                         <div class="col-8">Item</div>
@@ -63,7 +71,6 @@
                     </div>
                 </div>
 
-
                 <!-- Checkout form -->
                 <div class="col-12 col-lg-6 mt-4 mt-lg-0">
                     <p class="text-muted mb-3">
@@ -86,7 +93,6 @@
                             </div>
                         </fieldset>
 
-
                         <!-- Checkout preferences -->
                         <fieldset class="rounded p-3 border mt-3">
                             <legend class="small px-2 w-auto mb-0">Preferences</legend>
@@ -107,7 +113,6 @@
                             {% endif %}
                         </fieldset>
 
-
                         <!-- Stripe payment element -->
                         <fieldset class="rounded p-3 border mt-3">
                             <legend class="small px-2 w-auto mb-0">Payment</legend>
@@ -115,7 +120,6 @@
                             <div class="mb-3" id="card-element"></div>
                             <div class="text-danger small" id="card-errors" role="alert"></div>
                         </fieldset>
-
 
                         <!-- Checkout actions -->
                         <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center mt-3">

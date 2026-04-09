@@ -1,13 +1,27 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta_description %}
+Browse DigiStore for digital products, digital downloads, software, productivity tools, digital art, and audio books.
+{% endblock %}
+
+{% block meta_keywords %}
+digital products, digital downloads, software, productivity tools, digital art, audio books, buy digital products online, downloadable software, digital productivity tools, online store for digital downloads, software and digital products store, commercial digital products
+{% endblock %}
+
+{% block extratitle %}| Digital Products and Downloads{% endblock %}
+
 {% block content %}
 <div class="content-backdrop"></div>
 
 <div class="container-fluid">
     <div class="row">
         <div class="col text-center mt-3">
-            <h2 class="logo-font">Products</h2>
+            <h1 class="logo-font">Digital Products and Downloads</h1>
+            <p class="text-muted mb-0">
+                Browse software, productivity tools, digital art,
+                and audio books at DigiStore.
+            </p>
 
             {% if current_categories %}
             <div class="mt-2">
