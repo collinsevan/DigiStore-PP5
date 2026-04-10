@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class="content-backdrop"></div>
@@ -45,6 +46,30 @@
     </div>
 
     <div class="row mt-4">
+        <div class="col-12">
+            <h3 class="logo-font">Add Product Suggestion</h3>
+            <p class="text-muted">
+                Create a new product suggestion from the product
+                management area.
+            </p>
+            <hr>
+
+            <div class="product-form-wrapper">
+                <form method="POST" action="{% url 'product_management' %}" class="form mb-4">
+                    {% csrf_token %}
+                    {{ suggestion_form|crispy }}
+
+                    <div class="text-right">
+                        <button class="btn btn-black rounded-0" type="submit">
+                            Add Suggestion
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
         <div class="col-12">
             <h3 class="logo-font">Product Suggestions</h3>
             <p class="text-muted">

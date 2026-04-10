@@ -122,11 +122,40 @@ def product_management(request):
         )
         return redirect(reverse("home"))
 
+    if request.method == "POST":
+        suggestion_form = AdminProductSuggestionForm(request.POST)
+
+        if suggestion_form.is_valid():
+            suggestion = suggestion_form.save(commit=False)
+            suggestion.user = request.user
+            suggestion.save()
+            messages.success(
+                request,
+                "Product suggestion added successfully."
+            )
+            return redirect(reverse("product_management"))
+
+        messages.error(
+            request,
+            (
+                "Failed to add product suggestion. "
+                "Please ensure the form is valid."
+            ),
+        )
+
+    else:
+        suggestion_form = AdminProductSuggestionForm(
+            initial={
+                "status": ProductSuggestion.STATUS_PENDING,
+            }
+        )
+
     suggestions = ProductSuggestion.objects.select_related(
         "user"
     ).order_by("-created_on")
 
     context = {
+        "suggestion_form": suggestion_form,
         "suggestions": suggestions,
     }
 
