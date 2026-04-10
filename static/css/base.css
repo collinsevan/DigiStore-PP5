@@ -2,7 +2,6 @@
 
 html {
   height: 100%;
-  overflow-x: hidden;
 }
 
 body {
@@ -10,7 +9,6 @@ body {
   height: calc(100vh - 164px);
   color: #555;
   font-family: "Lato", sans-serif;
-  overflow-x: hidden;
 }
 
 /* Hero background for homepage only */
