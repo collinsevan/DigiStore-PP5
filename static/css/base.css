@@ -350,13 +350,28 @@ body.hero-page header {
   margin-bottom: 0;
 }
 
+.social-links {
+  gap: 0.75rem;
+}
+
 .social-links a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin: 0 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 0.35rem;
   font-size: 1.25rem;
   text-decoration: none;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.social-links a i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .social-links a:hover,
@@ -364,27 +379,7 @@ body.hero-page header {
   color: #93c5fd !important;
 }
 
-.footer-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-}
-
-.footer-main {
-  flex: 1;
-}
-
-.footer-top-wrap {
-  flex-shrink: 0;
-  display: flex;
-  justify-content: flex-end;
-}
-
 .footer-top-link {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
   color: #fff !important;
   text-decoration: none;
   font-weight: 700;
@@ -398,11 +393,26 @@ body.hero-page header {
   height: 42px;
   margin-bottom: 0.35rem;
   border: 1px solid #fff;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.footer-top-icon i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.footer-top-icon i {
+  line-height: 1;
 }
 
 .footer-top-text {
+  display: block;
   font-size: 0.9rem;
   line-height: 1.2;
+  text-align: center;
 }
 
 .footer-top-link:hover,
@@ -416,20 +426,24 @@ body.hero-page header {
 }
 
 @media (max-width: 767px) {
-  .footer-content {
-    flex-direction: column-reverse;
-    align-items: center;
-    text-align: center;
+  .site-footer .row {
+    row-gap: 1rem;
   }
 
-  .footer-main {
-    width: 100%;
-  }
-
-  .footer-top-wrap {
+  .social-links {
     justify-content: center;
-    width: 100%;
-    margin-bottom: 0.5rem;
+  }
+
+  .footer-top-link {
+    margin: 0 auto;
+  }
+
+    .site-footer .col-12.col-md-3.order-1.order-md-3 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .site-footer .col-12.col-md-6.order-2.order-md-2 {
+    margin-top: 0 !important;
   }
 }
 
