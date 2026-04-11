@@ -14,26 +14,6 @@ body {
   flex-direction: column;
 }
 
-/* Hero background for homepage only */
-body.hero-page {
-  background: url("/media/home/hero.jpg") no-repeat center center fixed;
-  background-size: cover;
-}
-
-body.hero-page main.container-fluid.header-container {
-  padding-bottom: 0;
-}
-
-body.hero-page .site-footer {
-  margin-top: 0;
-}
-
-.home-hero {
-  min-height: calc(100vh - 164px + 80px);
-  display: flex;
-  align-items: center;
-}
-
 /* Page content background */
 .content-backdrop {
   position: fixed;
@@ -54,6 +34,35 @@ main.container-fluid.header-container {
   flex: 1 0 auto;
   position: relative;
   z-index: 1;
+}
+
+/* Hero background for homepage only */
+body.hero-page {
+  background-color: #1f2937;
+  background-image: url("/media/home/hero.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+body.hero-page main.container-fluid.header-container {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
+body.hero-page .site-footer {
+  margin-top: 0;
+}
+
+.home-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 164px;
+  padding-bottom: 3rem;
 }
 
 /* from Bulma */
@@ -112,7 +121,6 @@ main.container-fluid.header-container {
 }
 
 /* Inverse colour scheme (for dark backgrounds) */
-
 .text-inverse,
 .text-inverse a,
 .text-inverse p,
@@ -233,7 +241,6 @@ body.hero-page header.header-scrolled {
 }
 
 /* Toasts */
-
 .message-container {
   position: fixed;
   top: 90px;
@@ -251,7 +258,6 @@ body.hero-page header.header-scrolled {
 }
 
 /* Toast arrow (CSS-Tricks style) */
-
 .arrow-up {
   width: 0;
   height: 0;
@@ -360,6 +366,7 @@ body.hero-page header.header-scrolled {
   padding: 0.7rem;
 }
 
+/* Footer */
 .site-footer {
   background: #1f2937;
   margin-top: 3rem;
@@ -426,10 +433,6 @@ body.hero-page header.header-scrolled {
   line-height: 1;
 }
 
-.footer-top-icon i {
-  line-height: 1;
-}
-
 .footer-top-text {
   display: block;
   font-size: 0.9rem;
@@ -445,62 +448,6 @@ body.hero-page header.header-scrolled {
 .footer-top-link:hover .footer-top-icon,
 .footer-top-link:focus .footer-top-icon {
   border-color: #93c5fd;
-}
-
-@media (max-width: 767px) {
-  .site-footer .row {
-    row-gap: 1rem;
-  }
-
-  .social-links {
-    justify-content: center;
-  }
-
-  .footer-top-link {
-    margin: 0 auto;
-  }
-
-  .site-footer .col-12.col-md-3.order-1.order-md-3 {
-    margin-bottom: 0.75rem !important;
-  }
-
-  .site-footer .col-12.col-md-6.order-2.order-md-2 {
-    margin-top: 0 !important;
-  }
-}
-
-/* Media Queries */
-@media (max-width: 991px) {
-  .home-hero {
-    min-height: calc(100vh - 116px + 80px);
-  }
-}
-
-@media (max-width: 767px) {
-  .product-form-wrapper {
-    max-width: 100%;
-  }
-
-  .product-detail-image {
-    max-width: 150px;
-  }
-
-  .home-hero {
-    align-items: flex-start;
-    padding-top: 2rem;
-  }
-
-  /* Home hero image positioning on smaller screens */
-  body.hero-page {
-    background-position: 70% top;
-    background-attachment: scroll;
-  }
-}
-
-@media (max-width: 480px) {
-  body.hero-page {
-    background-position: 78% top;
-  }
 }
 
 /* Slightly larger container on xl screens */
@@ -546,16 +493,28 @@ body.hero-page header.header-scrolled {
   }
 }
 
-/* Keep mobile header above page content */
+/* Tablet and smaller */
 @media (max-width: 991px) {
   header {
     position: relative;
     z-index: 1050;
   }
 
-  /* Small screen layout refinements */
   .header-container {
     padding-top: 116px;
+  }
+
+  body.hero-page {
+    background-position: 72% top;
+    background-attachment: scroll;
+    background-size: auto 100.5%;
+  }
+
+  .home-hero {
+    min-height: calc(100vh - 116px);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    align-items: center;
   }
 
   .display-4.logo-font {
@@ -587,6 +546,49 @@ body.hero-page header.header-scrolled {
   .decrement-qty {
     padding: 0.25rem 0.5rem !important;
     font-size: 0.875rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .product-form-wrapper {
+    max-width: 100%;
+  }
+
+  .product-detail-image {
+    max-width: 150px;
+  }
+
+  .home-hero {
+    align-items: flex-start;
+    padding-top: 3rem;
+  }
+
+  .site-footer .row {
+    row-gap: 1rem;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .footer-top-link {
+    margin: 0 auto;
+  }
+
+  .site-footer .col-12.col-md-3.order-1.order-md-3 {
+    margin-bottom: 0.75rem !important;
+  }
+
+  .site-footer .col-12.col-md-6.order-2.order-md-2 {
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  body.hero-page {
+    background-position: 79% top;
+    background-size: auto 100.5%;
   }
 }
 
