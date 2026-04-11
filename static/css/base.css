@@ -20,6 +20,15 @@ body.hero-page {
   background-size: cover;
 }
 
+body.hero-page main.container-fluid.header-container {
+  min-height: 100vh;
+  padding-bottom: 0;
+}
+
+body.hero-page .site-footer {
+  margin-top: 0;
+}
+
 /* Page content background */
 .content-backdrop {
   position: fixed;
@@ -339,7 +348,7 @@ body.hero-page header {
 }
 
 .site-footer {
-  background: #111827;
+  background: #1f2937;
   margin-top: 3rem;
   flex-shrink: 0;
   position: relative;
@@ -438,7 +447,7 @@ body.hero-page header {
     margin: 0 auto;
   }
 
-    .site-footer .col-12.col-md-3.order-1.order-md-3 {
+  .site-footer .col-12.col-md-3.order-1.order-md-3 {
     margin-bottom: 0.75rem !important;
   }
 

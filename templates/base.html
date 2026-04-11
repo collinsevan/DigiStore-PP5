@@ -96,6 +96,7 @@
         {% endblock %}
     </main>
 
+    <!-- Footer -->
     <footer class="site-footer text-inverse">
         <div class="container py-4">
             <div class="row align-items-center">
@@ -129,6 +130,7 @@
                 </div>
 
                 <div class="col-12 col-md-3 order-1 order-md-3 text-center text-md-right mb-3 mb-md-0">
+                    {% if request.resolver_match.url_name != 'home' %}
                     <a href="#" class="footer-top-link btt-link d-inline-flex flex-column align-items-center"
                         aria-label="Back to top">
                         <span class="footer-top-icon">
@@ -136,6 +138,7 @@
                         </span>
                         <span class="footer-top-text">Back to top</span>
                     </a>
+                    {% endif %}
                 </div>
 
             </div>
