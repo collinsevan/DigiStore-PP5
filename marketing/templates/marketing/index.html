@@ -16,30 +16,32 @@ online, downloadable software, digital productivity tools
 
 {% block content %}
 <!-- Hero section -->
-<div class="container h-100">
-    <div class="row h-100">
+<section class="home-hero">
+    <div class="container">
+        <div class="row">
 
-        <!-- Hero text -->
-        <div class="col-12 col-md-6 col-lg-5 my-auto text-white text-center text-md-left">
-            <h1 class="logo-font mb-3">
-                Digital products and downloads
-            </h1>
+            <!-- Hero text -->
+            <div class="col-12 col-md-6 col-lg-5 my-auto text-white text-center text-md-left">
+                <h1 class="logo-font mb-3">
+                    Digital products and downloads
+                </h1>
 
-            <p class="lead mb-4">
-                Shop software, productivity tools, digital art,
-                and audio books online at DigiStore.
-            </p>
+                <p class="lead mb-4">
+                    Shop software, productivity tools, digital art,
+                    and audio books online at DigiStore.
+                </p>
 
-            <!-- CTA -->
-            <div class="my-5">
-                <h4>
-                    <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">
-                        Shop Now
-                    </a>
-                </h4>
+                <!-- CTA -->
+                <div class="my-5">
+                    <h4>
+                        <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">
+                            Shop Now
+                        </a>
+                    </h4>
+                </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
+</section>
 {% endblock %}
