@@ -366,6 +366,110 @@ body.hero-page header.header-scrolled {
   padding: 0.7rem;
 }
 
+/* FAQ page */
+.faq-reveal-ready {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.faq-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#faq-accordion .card {
+  border-radius: 0;
+}
+
+#faq-accordion .card-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+#faq-accordion .btn-link {
+  position: relative;
+  text-decoration: none;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  padding-right: 3.5rem;
+}
+
+#faq-accordion .btn-link::after {
+  content: "+";
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#faq-accordion .btn-link[aria-expanded="true"]::after {
+  content: "−";
+}
+
+#faq-accordion .btn-link:hover,
+#faq-accordion .btn-link:focus {
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+
+#faq-accordion .btn-link:focus,
+#faq-accordion .btn-link:focus-visible,
+#contact-support .btn:focus,
+#contact-support .btn:focus-visible,
+.faq-reveal .btn:focus,
+.faq-reveal .btn:focus-visible {
+  outline: 3px solid #0d6efd;
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.faq-reveal .btn {
+  min-height: 48px;
+  padding: 0.7rem 1.2rem;
+  font-weight: 700;
+}
+
+.faq-reveal .btn-outline-black {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.faq-reveal .btn-outline-black:hover,
+.faq-reveal .btn-outline-black:active,
+.faq-reveal .btn-outline-black:focus {
+  background-color: #f8f9fa;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.faq-reveal .btn-black {
+  background-color: #000;
+  color: #fff;
+  border: 2px solid #000;
+}
+
+.faq-reveal .btn-black:hover,
+.faq-reveal .btn-black:active,
+.faq-reveal .btn-black:focus {
+  background-color: #2b2b2b;
+  color: #fff;
+  border: 2px solid #2b2b2b;
+}
+
+#contact-support,
+#contact-support .p-4 {
+  scroll-margin-top: 190px;
+}
+
 /* Footer */
 .site-footer {
   background: #1f2937;
@@ -515,6 +619,11 @@ body.hero-page header.header-scrolled {
     padding-top: 2rem;
     padding-bottom: 2rem;
     align-items: center;
+  }
+
+  #contact-support,
+  #contact-support .p-4 {
+    scroll-margin-top: 130px;
   }
 
   .display-4.logo-font {

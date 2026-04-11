@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block meta_description %}
+Read the DigiStore FAQ for help with digital products, downloads, completed orders, and customer support queries.
+{% endblock %}
+
+{% block meta_keywords %}
+DigiStore FAQ, digital product help, digital downloads help, order support, customer support, contact DigiStore
+{% endblock %}
+
+{% block extratitle %}| FAQs and Support{% endblock %}
+
+{% block content %}
+<div class="content-backdrop"></div>
+
+<div class="container header-container">
+    <div class="row">
+        <div class="col-12 text-center mt-3 faq-reveal">
+            <h1 class="logo-font">FAQs and Support</h1>
+            <p class="text-muted mb-0">
+                Find answers to common questions about DigiStore,
+                digital downloads, and completed orders.
+            </p>
+            <hr class="w-50 mb-4">
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+
+            <!-- FAQ intro -->
+            <div class="mb-4 faq-reveal">
+                <div class="p-4 border bg-white">
+                    <p class="mb-0">
+                        We want DigiStore to be clear, easy to use, and helpful
+                        before and after purchase. Browse the frequently asked
+                        questions below or jump to the support section if you
+                        need help with an order.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quick links -->
+            <div class="mb-4 faq-reveal">
+                <div class="d-flex flex-wrap justify-content-center">
+                    <a href="#faq-accordion" class="btn btn-outline-black rounded-0 m-1">
+                        View FAQs
+                    </a>
+                    <a href="#contact-support" class="btn btn-black rounded-0 m-1">
+                        Contact Support
+                    </a>
+                    <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 m-1">
+                        Browse Products
+                    </a>
+                </div>
+            </div>
+
+            <!-- Frequently asked questions -->
+            <div class="mb-4 faq-reveal">
+                <h2 class="h4">Frequently Asked Questions</h2>
+                <hr>
+
+                <div class="accordion" id="faq-accordion">
+
+                    <div class="card border-black mb-2">
+                        <div class="card-header bg-white p-0" id="headingOne">
+                            <h3 class="mb-0">
+                                <button class="btn btn-link btn-block text-left text-dark font-weight-bold py-3 px-4"
+                                    type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    What does DigiStore sell?
+                                </button>
+                            </h3>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                            data-parent="#faq-accordion">
+                            <div class="card-body">
+                                DigiStore sells digital products and downloads,
+                                including software, productivity tools, digital
+                                art, and audio books.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-black mb-2">
+                        <div class="card-header bg-white p-0" id="headingTwo">
+                            <h3 class="mb-0">
+                                <button class="btn btn-link btn-block text-left text-dark font-weight-bold py-3 px-4"
+                                    type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                    aria-expanded="false" aria-controls="collapseTwo">
+                                    How do digital products work?
+                                </button>
+                            </h3>
+                        </div>
+
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                            data-parent="#faq-accordion">
+                            <div class="card-body">
+                                Digital products are purchased online and are
+                                intended for digital access or use. Product
+                                details on each listing help explain what is
+                                included before purchase.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-black mb-2">
+                        <div class="card-header bg-white p-0" id="headingThree">
+                            <h3 class="mb-0">
+                                <button class="btn btn-link btn-block text-left text-dark font-weight-bold py-3 px-4"
+                                    type="button" data-toggle="collapse" data-target="#collapseThree"
+                                    aria-expanded="false" aria-controls="collapseThree">
+                                    Do I need an account to place an order?
+                                </button>
+                            </h3>
+                        </div>
+
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            data-parent="#faq-accordion">
+                            <div class="card-body">
+                                You can browse products at any time. Creating an
+                                account is helpful because it gives you access
+                                to your profile and order history in one place.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-black mb-2">
+                        <div class="card-header bg-white p-0" id="headingFour">
+                            <h3 class="mb-0">
+                                <button class="btn btn-link btn-block text-left text-dark font-weight-bold py-3 px-4"
+                                    type="button" data-toggle="collapse" data-target="#collapseFour"
+                                    aria-expanded="false" aria-controls="collapseFour">
+                                    Where can I view my completed orders?
+                                </button>
+                            </h3>
+                        </div>
+
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                            data-parent="#faq-accordion">
+                            <div class="card-body">
+                                If you have an account and have placed an order,
+                                you can view completed orders in your profile
+                                order history.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-black mb-2">
+                        <div class="card-header bg-white p-0" id="headingFive">
+                            <h3 class="mb-0">
+                                <button class="btn btn-link btn-block text-left text-dark font-weight-bold py-3 px-4"
+                                    type="button" data-toggle="collapse" data-target="#collapseFive"
+                                    aria-expanded="false" aria-controls="collapseFive">
+                                    What should I do if my order is not
+                                    received?
+                                </button>
+                            </h3>
+                        </div>
+
+                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                            data-parent="#faq-accordion">
+                            <div class="card-body">
+                                If you believe your completed order has not been
+                                received, please go to the support section below
+                                and contact us with your order reference and the
+                                email linked to your order so we can review it.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-black mb-2">
+                        <div class="card-header bg-white p-0" id="headingSix">
+                            <h3 class="mb-0">
+                                <button class="btn btn-link btn-block text-left text-dark font-weight-bold py-3 px-4"
+                                    type="button" data-toggle="collapse" data-target="#collapseSix"
+                                    aria-expanded="false" aria-controls="collapseSix">
+                                    What should I do if I have a question before
+                                    buying?
+                                </button>
+                            </h3>
+                        </div>
+
+                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+                            data-parent="#faq-accordion">
+                            <div class="card-body">
+                                If you have a question about a product, a
+                                completed order, or a general store query,
+                                please use the contact details in the support
+                                section below.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Contact support section -->
+            <div id="contact-support" class="mb-4 faq-reveal">
+                <div class="p-4 border bg-white">
+                    <h2 class="h4">Contact Support</h2>
+                    <hr>
+
+                    <p>
+                        Need help with an order or have a general question?
+                        Please reach out to us and include as much detail as
+                        possible so we can assist you.
+                    </p>
+
+                    <p class="mb-2">
+                        For support with a completed order, please include:
+                    </p>
+                    <ul class="mb-3">
+                        <li>Your order reference</li>
+                        <li>The email address linked to the order</li>
+                        <li>A short description of the issue</li>
+                    </ul>
+
+                    <p class="mb-2">
+                        You can contact us at:
+                        <strong>support@digistore.com</strong>
+                    </p>
+
+                </div>
+            </div>
+
+            <!-- Helpful links -->
+            <div class="mb-4 faq-reveal">
+                <div class="p-4 border bg-white text-center">
+                    <h2 class="h4">Helpful Links</h2>
+                    <hr>
+
+                    <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 m-1">
+                        Browse All Products
+                    </a>
+                    <a href="{% url 'home' %}" class="btn btn-outline-black rounded-0 m-1">
+                        Return Home
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

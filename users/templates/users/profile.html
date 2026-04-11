@@ -53,6 +53,7 @@
                             <th>Date</th>
                             <th>Items</th>
                             <th>Total</th>
+                            <th>Support</th>
                         </tr>
                     </thead>
 
@@ -86,6 +87,18 @@
                             <!-- Total -->
                             <td class="small">
                                 €{{ order.grand_total|floatformat:2 }}
+                            </td>
+
+                            <!-- Support link for completed orders -->
+                            <td class="small">
+                                {% if order.status == "PAID" %}
+                                <a href="{% url 'faq' %}#contact-support"
+                                    class="btn btn-outline-black rounded-0 btn-sm">
+                                    Contact Us
+                                </a>
+                                {% else %}
+                                <span class="text-muted">—</span>
+                                {% endif %}
                             </td>
 
                         </tr>

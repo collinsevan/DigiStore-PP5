@@ -2,5 +2,10 @@ from django.shortcuts import render
 
 
 def index(request):
-    """ A view to return the index page """
-    return render(request, 'marketing/index.html')
+    """Return the home page."""
+    return render(request, "marketing/index.html")
+
+
+def faq(request):
+    """Return the FAQ page."""
+    return render(request, "marketing/faq.html")
