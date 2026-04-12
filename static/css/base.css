@@ -226,8 +226,21 @@ body.hero-page header.header-scrolled {
 }
 
 #filename {
-  margin-top: 0.5rem;
+  display: none;
+  margin-top: 0.75rem;
   margin-bottom: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #28a745;
+  font-weight: 700;
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.image-feedback-success {
+  display: block;
 }
 
 /* Custom checkbox styling */

@@ -39,6 +39,24 @@ $(document).ready(function () {
         }, 300);
     });
 
+    /* Product image filename feedback */
+    $("#new-image").change(function () {
+        var file = $("#new-image")[0].files[0];
+        var filenameDisplay = $("#filename");
+
+        if (file) {
+            filenameDisplay
+                .text("Image loaded: " + file.name)
+                .addClass("image-feedback-success")
+                .show();
+        } else {
+            filenameDisplay
+                .text("")
+                .removeClass("image-feedback-success")
+                .hide();
+        }
+    });
+
     /* FAQ page setup */
     if ($(".faq-reveal").length) {
         $(".faq-reveal").each(function () {
