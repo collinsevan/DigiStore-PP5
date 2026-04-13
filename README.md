@@ -12,7 +12,7 @@ DigiStore is a full stack Django e-commerce application built for users to brows
 The site was designed to provide a consistent shopping experience across desktop, tablet, and mobile devices. Responsive layout decisions were applied throughout the project to ensure that navigation, product browsing, product detail pages, bag functionality, and checkout remain clear and usable on different screen sizes.
 
 <p align="center">
-  <img src="assets/readme/Screenshot%202026-04-13%20215101.png" alt="Digi Store responsive mockup" width="700">
+  <img src="assets/readme/responsive-mockup.png" alt="Digi Store responsive mockup" width="700">
 </p>
 
 ---
@@ -56,7 +56,7 @@ From the business side, DigiStore also provides product management features for 
 The project was developed as Portfolio Project 5 for the Code Institute Full Stack Software Development Diploma and was designed to demonstrate full stack development skills, relational database design, CRUD functionality, responsive design, payment integration, and e-commerce best practices.
 
 <p align="center">
-  <img src="assets/readme/Screenshot%202026-04-13%20224218.png" alt="DigiStore homepage overview" width="700">
+  <img src="assets/readme/homepage-overview.png" alt="DigiStore homepage overview" width="700">
 </p>
 
 ### Strategy
@@ -68,7 +68,7 @@ A key part of the project strategy was to organise the store around clear digita
 Another strategic goal was to support both customer and store-owner needs within the same application. Customers can browse and purchase products, while the store owner can manage the catalogue and review product suggestions through dedicated product management views.
 
 <p align="center">
-  <img src="assets/readme/Screenshot%202026-04-13%20224320.png" alt="DigiStore products overview" width="700">
+  <img src="assets/readme/products-overview.png" alt="DigiStore products overview" width="700">
 </p>
 
 ### Target Audience
@@ -94,13 +94,13 @@ The main user goals for DigiStore were:
 Users can achieve these goals through a clear product detail page, a familiar shopping bag layout, and a secure checkout process.
 
 <p align="center">
-  <img src="assets/readme/Screenshot%202026-04-13%20224416.png" alt="DigiStore product detail page" width="31%">
-  <img src="assets/readme/Screenshot%202026-04-13%20224429.png" alt="DigiStore shopping bag page" width="31%">
-  <img src="assets/readme/Screenshot%202026-04-13%20224448.png" alt="DigiStore checkout page" width="31%">
+  <img src="assets/readme/product-detail.png" alt="DigiStore product detail page" width="31%">
+  <img src="assets/readme/shopping-bag.png" alt="DigiStore shopping bag page" width="31%">
+  <img src="assets/readme/checkout-page.png" alt="DigiStore checkout page" width="31%">
 </p>
 
 <p align="center">
-  <img src="assets/readme/Screenshot%202026-04-13%20224613.png" alt="DigiStore product suggestion form in profile" width="700">
+  <img src="assets/readme/product-suggestion-form.png" alt="DigiStore product suggestion form in profile" width="700">
 </p>
 
 ### Site Owner Goals
@@ -112,13 +112,13 @@ These goals included allowing the store owner to add new products, update existi
 The product management area was designed to act as a central hub for these actions, making it easier for the store owner to maintain the site without relying only on the Django admin panel.
 
 <p align="center">
-  <img src="assets/readme/Screenshot%202026-04-13%20224504.png" alt="DigiStore product management page" width="31%">
-  <img src="assets/readme/Screenshot%202026-04-13%20224522.png" alt="DigiStore add product page" width="31%">
-  <img src="assets/readme/Screenshot%202026-04-13%20224541.png" alt="DigiStore edit product selection page" width="31%">
+  <img src="assets/readme/product-management.png" alt="DigiStore product management page" width="31%">
+  <img src="assets/readme/add-product.png" alt="DigiStore add product page" width="31%">
+  <img src="assets/readme/edit-product-select.png" alt="DigiStore edit product selection page" width="31%">
 </p>
 
 <p align="center">
-  <img src="assets/readme/Screenshot%202026-04-13%20224638.png" alt="DigiStore admin product suggestions area" width="700">
+  <img src="assets/readme/admin-product-suggestions.png" alt="DigiStore admin product suggestions area" width="700">
 </p>
 
 ### User Stories
@@ -128,7 +128,7 @@ The project was planned using GitHub Projects and user stories to guide developm
 The board below shows completed work such as user registration, login and logout, browsing products by category, checkout with Stripe, viewing product details, adding products to cart, product suggestions, and admin product management features.
 
 <p align="center">
-  <img src="assets/readme/Screenshot%202026-04-13%20230359.png" alt="DigiStore GitHub user stories board" width="700">
+  <img src="assets/readme/user-stories-board.png" alt="DigiStore GitHub user stories board" width="700">
 </p>
 
 ### Database Structure
@@ -148,8 +148,8 @@ The homepage uses a visually stronger hero section to immediately communicate th
 The overall design was kept simple so users could focus on browsing, selecting, and purchasing products without unnecessary distractions. Consistent button styles, spacing, and typography were used throughout the site to support a cohesive experience.
 
 <p align="center">
-  <img src="assets/readme/Screenshot%202026-04-13%20224218.png" alt="DigiStore homepage design" width="48%">
-  <img src="assets/readme/Screenshot%202026-04-13%20224320.png" alt="DigiStore catalogue design" width="48%">
+  <img src="assets/readme/homepage-overview.png" alt="DigiStore homepage design" width="48%">
+  <img src="assets/readme/products-overview.png" alt="DigiStore catalogue design" width="48%">
 </p>
 
 ---
