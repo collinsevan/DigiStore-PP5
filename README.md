@@ -156,6 +156,50 @@ The overall design was kept simple so users could focus on browsing, selecting, 
   <img src="assets/readme/products-overview.png" alt="DigiStore catalogue design" width="48%">
 </p>
 
+### Wireframes
+
+Low-fidelity wireframes were used to plan the main layout patterns of DigiStore before and during development. The aim was to keep the structure clear and user-focused, with familiar e-commerce conventions such as a consistent header, visible navigation, product-first content areas, and a simple purchase flow.
+
+The homepage wireframe focused on introducing the store clearly, using a strong hero area, a call to action, and supporting sections to guide users into browsing the catalogue.
+
+<p align="center">
+  <img src="assets/readme/digistore_wireframe_homepage.png" alt="DigiStore homepage wireframe" width="700">
+</p>
+
+The products page wireframe was designed around a clear browsing experience, with category context, sorting controls, and a responsive product card grid that allows users to scan multiple items quickly.
+
+<p align="center">
+  <img src="assets/readme/digistore_wireframe_products.png" alt="DigiStore products page wireframe" width="700">
+</p>
+
+The product detail and management wireframe shows the clean single-page structure used for product information and action-focused layouts. This same pattern also supports store owner flows such as add product, edit product, and suggestion review pages.
+
+<p align="center">
+  <img src="assets/readme/digistore_wireframe_detail.png" alt="DigiStore product detail and admin wireframe" width="700">
+</p>
+
+### Colour Scheme
+
+The DigiStore colour scheme was designed to create a clean and professional e-commerce experience with strong contrast between key layout areas.
+
+A dark header and footer are used to frame the site and strengthen branding, while light content backgrounds help product information, forms, and page content remain easy to read. This balance supports both visual clarity and a more polished storefront appearance.
+
+Neutral tones are used throughout the main interface, with darker button styles for primary actions and lighter backgrounds for product cards, forms, and general content areas. Accent colours are used more sparingly for hover states, feedback styling, and interactive elements so that the interface remains clear without becoming visually cluttered.
+
+This approach was chosen to keep the focus on the digital products themselves while still giving the site a distinctive and consistent look across the homepage, product pages, profile area, and product management sections.
+
+The main colours used in the project include:
+
+- `#1F2937` for the main header background
+- `#111827` for the footer background
+- `#FFFFFF` for page backgrounds and card areas
+- `#2B2B2B` for hover states and darker button interactions
+- `#93C5FD` for accent hover highlights
+- `#6C757D` for muted text and supporting copy
+
+<p align="center">
+  <img src="assets/readme/colour-palette.png" alt="DigiStore colour palette" width="700">
+</p>
 ---
 
 ## SEO and Marketing
