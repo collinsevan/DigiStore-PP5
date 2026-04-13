@@ -25,7 +25,6 @@ DigiStore is a full stack Django e-commerce application built for users to brows
 - [Existing Features](#existing-features)
 - [Features Left to Implement](#features-left-to-implement)
 - [Languages, Technologies and Libraries](#languages-technologies-and-libraries)
-- [Credits](#credits)
 - [Deployment](#deployment)
 - [Acknowledgements](#acknowledgements)
 
