@@ -17,3 +17,4 @@ db_fixed.json
 backup_after_recovery.json
 db_backup_profile_step.json
 db.sqlite3.backup
+products_only.json
