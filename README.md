@@ -139,6 +139,10 @@ The database design includes models for products and categories, user profile in
 
 An ERD for the project will be included below.
 
+<p align="center">
+  <img src="assets/readme/digistore_erd_clear.png" alt="DigiStore Entity Relationship Diagram" width="800">
+</p>
+
 ### Design
 
 The design of DigiStore focuses on a clean, modern, and professional e-commerce layout. A dark header and footer are used to frame the site, while light content areas improve readability and make product information easier to scan.
