@@ -251,13 +251,286 @@ Newsletter marketing was also considered as part of the wider promotional strate
 
 ## Existing Features
 
+DigiStore includes a range of user-facing and store-owner features designed to create a complete digital e-commerce experience.
+
+### General Site Features
+
+- Responsive layout designed for desktop, tablet, and mobile browsing
+- Consistent header, navigation, and footer structure across the site
+- Homepage hero section with clear store messaging and a call to action
+- Product-focused layout designed to keep browsing and purchasing straightforward
+- Back to top functionality in the footer
+- Social media links in the footer
+- Clear visual hierarchy through consistent spacing, typography, and button styling
+
+### User Account Features
+
+- User registration through Django Allauth
+- User login and logout functionality
+- Profile area for authenticated users
+- Automatic user profile creation when a user account is created
+- Saved default user information through the user profile model
+- Order history available through the user profile section
+
+### Product Browsing Features
+
+- Dedicated products page displaying the full digital catalogue
+- Category-based browsing for:
+  - Audio Books
+  - Digital Art
+  - Productivity
+  - Software
+- Search functionality for product names and descriptions
+- Product sorting options, including:
+  - Price
+  - Category
+  - Name
+- Product detail pages with:
+  - Product image
+  - Product title
+  - Price
+  - Description
+  - Quantity selector
+  - Add to bag functionality
+  - Keep shopping action
+
+### Bag and Checkout Features
+
+- Shopping bag page showing selected items
+- Quantity adjustment controls inside the bag
+- Remove item functionality
+- Bag total calculation
+- Stripe checkout integration
+- Order summary shown during checkout
+- Save information option for returning authenticated users
+- Order creation and storage after successful payment
+- Order line item storage linked to products and orders
+- Unique order reference generation
+- Order totals calculated automatically from line items
+- Stripe webhook handling for successful and failed payments
+- Order confirmation email workflow
+
+### Product Suggestion Features
+
+- Authenticated users can submit product suggestions
+- Suggestion form allows users to provide:
+  - Suggested product name
+  - Suggested category
+  - Description
+  - Reason
+  - Optional reference URL
+- Users can view their own product suggestion area within the profile page
+- Suggestions provide a useful interaction feature beyond purchasing
+
+### Store Owner Features
+
+- Superuser-only product management access
+- Dedicated product management page for store owners
+- Add product form
+- Edit product selection page
+- Edit product form
+- Delete product selection page
+- Delete product confirmation page
+- Ability to create a product suggestion from the management area
+- Ability to review submitted product suggestions
+- Ability to edit product suggestions
+- Ability to delete product suggestions
+- Ability to create a product directly from an approved suggestion
+- Prefilled product creation flow from suggestions
+- Automatic suggestion status updates when a suggestion is used to create a product
+
+### Database Features
+
+- Interrelated relational database structure using Django models
+- Categories linked to products
+- User profiles linked to authenticated users
+- Orders linked to user profiles
+- Order line items linked to both orders and products
+- Product suggestions linked to authenticated users
+- Automatic profile creation and update through signals
+- Automatic order total recalculation when line items are created or removed
+
+### SEO Features
+
+- Reusable meta description block in the base template
+- Reusable meta keywords block in the base template
+- Canonical links added through the base template
+- SEO-focused homepage and product catalogue copy
+- Product-specific meta description and keyword support on product detail pages
+- Working `robots.txt`
+- Working `sitemap.xml`
+
+### Design and UX Features
+
+- Clean and consistent colour palette
+- Strong homepage hero section for first impressions
+- Product cards designed for easy scanning
+- Form layouts kept simple and readable
+- Consistent button styling throughout the site
+- Clear separation between customer-facing flows and store-owner management flows
+
 ---
 
 ## Features Left to Implement
 
+Although DigiStore includes the core functionality required for a digital e-commerce project, there are still several features that could be added in future development to expand the user experience and business value of the site.
+
+### Wishlist Functionality
+
+A wishlist feature would allow users to save products they are interested in without adding them to the shopping bag immediately. This would improve the browsing experience for returning users and create a stronger link between discovery and later purchase.
+
+### Product Reviews
+
+Customer reviews would provide social proof and help users make more informed purchasing decisions. Reviews could be restricted to verified purchasers in order to keep feedback relevant and reliable.
+
+### Promo Codes and Discounts
+
+A promotional code feature would allow the store owner to run seasonal promotions, encourage repeat purchases, and support marketing campaigns. This would also make the project feel even closer to a real-world e-commerce platform.
+
+### Gift Card or Store Credit Functionality
+
+A gift card or digital credit feature would expand the business model and create more flexibility for users. This could be especially useful in a digital store where purchases are quick and fulfilment is immediate.
+
+### Newsletter Signup Integration
+
+Newsletter marketing was considered as part of the wider marketing strategy, and a future version of the site could include a fully connected newsletter signup flow. This could support customer retention, product launches, and promotional campaigns.
+
+### Facebook Business Integration
+
+A stronger social media presence could be supported by expanding the current marketing assets into a fuller Facebook business strategy, including post examples, promotional content, and campaign planning.
+
+### Enhanced Filtering
+
+The site currently supports search, category browsing, and sorting, but could be extended with more advanced filtering options such as price range, rating, or licence type. This would improve usability as the catalogue grows.
+
+### Improved Product Suggestion Workflow
+
+The product suggestion system is already functional, but future improvements could include:
+- suggestion status filtering
+- richer moderation tools
+- suggestion approval notifications
+- clearer user feedback on suggestion outcomes
+
+### Digital Delivery Enhancements
+
+As DigiStore is a digital-only store, future development could introduce more advanced digital fulfilment features such as downloadable file delivery, secure access limits, or digital licence delivery workflows. These features were outside the current project scope but would be valuable in a production-ready version.
+
+### Enhanced Admin Reporting
+
+The store owner area could be expanded with reporting features such as:
+- best-selling products
+- recent orders overview
+- revenue summaries
+- product performance by category
+
+### Improved Customer Communication
+
+Future versions could include stronger customer communication features such as:
+- better order confirmation messaging
+- profile notifications
+- suggestion response messages
+- promotional email flows
+
+### Additional Accessibility Improvements
+
+The project was built with usability in mind, but accessibility could be improved further over time through expanded testing and refinement, including:
+- deeper keyboard navigation testing
+- more detailed screen reader checks
+- further accessibility audits across forms and interactive components
+
 ---
 
 ## Languages, Technologies and Libraries
+
+DigiStore was built using a range of languages, frameworks, libraries, and supporting tools to create a full stack Django e-commerce application.
+
+### Languages Used
+
+- **HTML5**  
+  Used to structure the site templates and page content.
+
+- **CSS3**  
+  Used to style the layout, components, responsive behaviour, colour scheme, and overall presentation of the site.
+
+- **JavaScript**  
+  Used for interactive front-end behaviour such as UI enhancements, sorting behaviour, image upload feedback, toast display, and back to top interaction.
+
+- **Python**  
+  Used for the server-side application logic, model definitions, views, forms, checkout workflow, and webhook handling.
+
+### Frameworks and Libraries
+
+- **Django**  
+  The main Python web framework used to build the project, manage routing, models, views, forms, templates, authentication, and admin functionality.
+
+- **Bootstrap 4**  
+  Used for responsive layout, grid structure, spacing utilities, buttons, forms, navigation, and general front-end styling support.
+
+- **jQuery**  
+  Used to support interactive UI behaviour such as sorting controls, back to top functionality, image upload filename display, and toast handling.
+
+- **Django Allauth**  
+  Used to manage user registration, login, logout, and account-related authentication flows.
+
+- **Django Crispy Forms**  
+  Used to render forms in a cleaner and more consistent way across the project.
+
+- **Font Awesome**  
+  Used for icons in the navigation, footer, account actions, search, bag, and other interface elements.
+
+- **Google Fonts**  
+  Used to load the Lato font family for the site’s typography.
+
+- **Stripe**  
+  Used for payment processing and checkout integration.
+
+### Database and Data Handling
+
+- **SQLite**  
+  Used as the local development database.
+
+- **PostgreSQL**  
+  Used for the deployed production database environment.
+
+### Storage, Deployment and Hosting
+
+- **Heroku**  
+  Used to deploy and host the live DigiStore application.
+
+- **AWS / cloud storage setup**  
+  Used for media and static asset handling in the deployed environment.
+
+### Development Tools
+
+- **Git**  
+  Used for version control throughout the project.
+
+- **GitHub**  
+  Used to host the repository, manage commits, track development progress, and document user stories through GitHub Projects.
+
+- **VS Code**  
+  Used as the main development environment.
+
+- **GitHub Projects / Kanban board**  
+  Used to plan and manage the project using user stories and task tracking.
+
+### Project Features Supported by These Technologies
+
+These technologies were used together to support:
+
+- user authentication
+- relational database modelling
+- digital product browsing
+- shopping bag functionality
+- Stripe checkout processing
+- order storage and history
+- product management CRUD functionality
+- product suggestion workflows
+- responsive design
+- SEO implementation
+- deployment and version control
+
+Overall, the chosen stack supported the creation of a practical digital e-commerce application while also demonstrating the full stack development skills required for the project.
 
 ---
 
