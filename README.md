@@ -598,7 +598,71 @@ Overall, the Lighthouse results showed that DigiStore performs well across the k
 
 ### Validation
 
-The project was also checked for general page behaviour and content presentation. This included confirming that templates rendered correctly, navigation links worked, forms displayed properly, and key user journeys could be completed without broken flow. Validation and code quality checks were used during development to support a cleaner final submission, alongside repeated browser-based testing of interactive features.
+The project was also checked for general page behaviour, content presentation, and core interactive elements. This included confirming that templates rendered correctly, navigation links worked, forms displayed properly, buttons performed the expected actions, and key user journeys could be completed without broken flow.
+
+Quick validation checks carried out included:
+
+- verifying that navigation links route to the correct pages
+- checking that buttons such as **Create Account**, **Return to Sign In**, **Add to Bag**, **View Bag**, **Secure Checkout**, **Update**, **Delete**, and **Back to Profile** behave correctly
+- confirming that forms display properly and accept valid input
+- checking that validation feedback and success messages appear after actions are completed
+- confirming that product search, sorting, and bag updates work without layout or functionality issues
+- checking that profile, order history, and product suggestion features render correctly for authenticated users
+- verifying that superuser product management forms and actions work correctly
+- confirming that pages load correctly on the deployed live site without broken layouts
+
+Existing testing screenshots were also reused as supporting validation evidence because they demonstrate working buttons, form rendering, submission feedback, authenticated views, and page structure across the application.
+
+#### Validation Evidence
+
+<p align="center">
+  <img src="assets/readme/homepage-overview.png" alt="Homepage rendering and navigation evidence" width="48%">
+  <img src="assets/readme/browseproducts.png" alt="Products page rendering and navigation evidence" width="48%">
+</p>
+
+<p align="center">
+  <img src="assets/readme/REGISTER-FORMTEST.png" alt="Registration form validation evidence" width="48%">
+  <img src="assets/readme/searchproducts.png" alt="Search form validation evidence" width="48%">
+</p>
+
+<p align="center">
+  <img src="assets/readme/add-product.png" alt="Add product form validation evidence" width="48%">
+  <img src="assets/readme/checkout-testsuccess.png" alt="Checkout flow and confirmation evidence" width="48%">
+</p>
+
+<p align="center">
+  <img src="assets/readme/addtobag.png" alt="Add to bag button and success message evidence" width="48%">
+  <img src="assets/readme/viewbag.png" alt="Shopping bag controls and button evidence" width="48%">
+</p>
+
+<p align="center">
+  <img src="assets/readme/myprofile.png" alt="Authenticated profile page validation evidence" width="48%">
+  <img src="assets/readme/orderhistory&prodsuggestions.png" alt="Authenticated order history and product suggestion evidence" width="48%">
+</p>
+
+<p align="center">
+  <img src="assets/readme/edit-product-suggestion-user-1.png" alt="Edit product suggestion form validation evidence" width="48%">
+  <img src="assets/readme/product-suggestion-updated-success-1.png" alt="Product suggestion success message evidence" width="48%">
+</p>
+
+<p align="center">
+  <img src="assets/readme/product-management.png" alt="Superuser product management validation evidence" width="48%">
+  <img src="assets/readme/edit-product.png" alt="Edit product form validation evidence" width="48%">
+</p>
+
+<p align="center">
+  <img src="assets/readme/delete-product-form.png" alt="Delete product confirmation validation evidence" width="48%">
+  <img src="assets/readme/delete-product.png" alt="Delete product success message validation evidence" width="48%">
+</p>
+
+| Element tested | Check carried out | Result |
+|---|---|---|
+| Navigation links | Opened key pages from navbar and account links | Passed |
+| Buttons | Checked account, bag, checkout, update, and delete buttons | Passed |
+| Forms | Entered valid data and confirmed successful submission | Passed |
+| Success messages | Confirmed feedback messages displayed after actions | Passed |
+| Authenticated pages | Checked profile, order history, and suggestion features | Passed |
+| Superuser pages | Checked product management CRUD pages | Passed |
 
 ### Bugs and Fixes During Testing
 
