@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product
+from .models import Category, Product, PromoCode
 
 
 @admin.register(Category)
@@ -30,3 +30,27 @@ class ProductAdmin(admin.ModelAdmin):
         "is_digital",
     )
     ordering = ("sku",)
+
+
+@admin.register(PromoCode)
+class PromoCodeAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for promo codes.
+    """
+    list_display = (
+        "code",
+        "discount_type",
+        "discount_value",
+        "is_active",
+        "valid_from",
+        "valid_to",
+    )
+    list_filter = (
+        "discount_type",
+        "is_active",
+    )
+    search_fields = (
+        "code",
+        "description",
+    )
+    ordering = ("code",)

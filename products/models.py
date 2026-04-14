@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.text import slugify
 
 
@@ -83,3 +84,57 @@ class Product(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
+
+
+class PromoCode(models.Model):
+    """
+    Stores promo codes that can be managed by the store owner.
+    """
+
+    DISCOUNT_PERCENTAGE = "percentage"
+
+    DISCOUNT_TYPE_CHOICES = [
+        (DISCOUNT_PERCENTAGE, "Percentage"),
+    ]
+
+    code = models.CharField(max_length=50, unique=True)
+    description = models.CharField(max_length=255, blank=True)
+    discount_type = models.CharField(
+        max_length=20,
+        choices=DISCOUNT_TYPE_CHOICES,
+        default=DISCOUNT_PERCENTAGE,
+    )
+    discount_value = models.DecimalField(max_digits=5, decimal_places=2)
+    is_active = models.BooleanField(default=True)
+    valid_from = models.DateTimeField(null=True, blank=True)
+    valid_to = models.DateTimeField(null=True, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["code"]
+
+    def __str__(self):
+        return self.code.upper()
+
+    def save(self, *args, **kwargs):
+        self.code = self.code.strip().upper()
+        super().save(*args, **kwargs)
+
+    def is_currently_valid(self):
+        """
+        Return True when the promo code is active and within
+        any optional date window.
+        """
+        now = timezone.now()
+
+        if not self.is_active:
+            return False
+
+        if self.valid_from and now < self.valid_from:
+            return False
+
+        if self.valid_to and now > self.valid_to:
+            return False
+
+        return True

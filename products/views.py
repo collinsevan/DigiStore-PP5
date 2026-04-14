@@ -12,8 +12,8 @@ from django.urls import reverse
 
 from users.models import ProductSuggestion
 
-from .forms import ProductForm
-from .models import Category, Product
+from .forms import ProductForm, PromoCodeForm
+from .models import Category, Product, PromoCode
 
 
 AdminProductSuggestionForm = modelform_factory(
@@ -112,8 +112,8 @@ def product_detail(request, product_id):
 @login_required
 def product_management(request):
     """
-    Display product management options and product suggestions
-    for store owners.
+    Display product management options, promo codes,
+    and product suggestions for store owners.
     """
     if not request.user.is_superuser:
         messages.error(
@@ -123,25 +123,53 @@ def product_management(request):
         return redirect(reverse("home"))
 
     if request.method == "POST":
-        suggestion_form = AdminProductSuggestionForm(request.POST)
+        form_type = request.POST.get("form_type")
 
-        if suggestion_form.is_valid():
-            suggestion = suggestion_form.save(commit=False)
-            suggestion.user = request.user
-            suggestion.save()
-            messages.success(
-                request,
-                "Product suggestion added successfully."
+        if form_type == "promo_code":
+            promo_code_form = PromoCodeForm(request.POST)
+            suggestion_form = AdminProductSuggestionForm(
+                initial={
+                    "status": ProductSuggestion.STATUS_PENDING,
+                }
             )
-            return redirect(reverse("product_management"))
 
-        messages.error(
-            request,
-            (
-                "Failed to add product suggestion. "
-                "Please ensure the form is valid."
-            ),
-        )
+            if promo_code_form.is_valid():
+                promo_code_form.save()
+                messages.success(
+                    request,
+                    "Promo code added successfully."
+                )
+                return redirect(reverse("product_management"))
+
+            messages.error(
+                request,
+                (
+                    "Failed to add promo code. "
+                    "Please ensure the form is valid."
+                ),
+            )
+
+        else:
+            suggestion_form = AdminProductSuggestionForm(request.POST)
+            promo_code_form = PromoCodeForm()
+
+            if suggestion_form.is_valid():
+                suggestion = suggestion_form.save(commit=False)
+                suggestion.user = request.user
+                suggestion.save()
+                messages.success(
+                    request,
+                    "Product suggestion added successfully."
+                )
+                return redirect(reverse("product_management"))
+
+            messages.error(
+                request,
+                (
+                    "Failed to add product suggestion. "
+                    "Please ensure the form is valid."
+                ),
+            )
 
     else:
         suggestion_form = AdminProductSuggestionForm(
@@ -149,14 +177,19 @@ def product_management(request):
                 "status": ProductSuggestion.STATUS_PENDING,
             }
         )
+        promo_code_form = PromoCodeForm()
 
     suggestions = ProductSuggestion.objects.select_related(
         "user"
     ).order_by("-created_on")
 
+    promo_codes = PromoCode.objects.all().order_by("code")
+
     context = {
         "suggestion_form": suggestion_form,
+        "promo_code_form": promo_code_form,
         "suggestions": suggestions,
+        "promo_codes": promo_codes,
     }
 
     return render(request, "products/product_management.html", context)
@@ -486,5 +519,90 @@ def delete_product_suggestion_admin(request, suggestion_id):
     return render(
         request,
         "products/delete_product_suggestion_admin.html",
+        context,
+    )
+
+
+@login_required
+def edit_promo_code(request, promo_code_id):
+    """
+    Allow a store owner to edit a promo code.
+    """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            "Sorry, only store owners can do that."
+        )
+        return redirect(reverse("home"))
+
+    promo_code = get_object_or_404(PromoCode, pk=promo_code_id)
+
+    if request.method == "POST":
+        form = PromoCodeForm(request.POST, instance=promo_code)
+
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request,
+                "Promo code updated successfully."
+            )
+            return redirect(reverse("product_management"))
+
+        messages.error(
+            request,
+            (
+                "Failed to update promo code. "
+                "Please ensure the form is valid."
+            ),
+        )
+
+    else:
+        form = PromoCodeForm(instance=promo_code)
+        messages.info(
+            request,
+            f"You are editing promo code {promo_code.code}."
+        )
+
+    context = {
+        "form": form,
+        "promo_code": promo_code,
+    }
+
+    return render(
+        request,
+        "products/edit_promo_code.html",
+        context,
+    )
+
+
+@login_required
+def delete_promo_code(request, promo_code_id):
+    """
+    Allow a store owner to delete a promo code.
+    """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            "Sorry, only store owners can do that."
+        )
+        return redirect(reverse("home"))
+
+    promo_code = get_object_or_404(PromoCode, pk=promo_code_id)
+
+    if request.method == "POST":
+        promo_code.delete()
+        messages.success(
+            request,
+            "Promo code deleted successfully."
+        )
+        return redirect(reverse("product_management"))
+
+    context = {
+        "promo_code": promo_code,
+    }
+
+    return render(
+        request,
+        "products/delete_promo_code.html",
         context,
     )

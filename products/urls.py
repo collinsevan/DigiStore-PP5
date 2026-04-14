@@ -7,6 +7,16 @@ urlpatterns = [
     path("management/", views.product_management, name="product_management"),
     path("add/", views.add_product, name="add_product"),
     path(
+        "promo-codes/<int:promo_code_id>/edit/",
+        views.edit_promo_code,
+        name="edit_promo_code",
+    ),
+    path(
+        "promo-codes/<int:promo_code_id>/delete/",
+        views.delete_promo_code,
+        name="delete_promo_code",
+    ),
+    path(
         "suggestions/<int:suggestion_id>/edit/",
         views.edit_product_suggestion_admin,
         name="edit_product_suggestion_admin",
