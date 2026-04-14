@@ -489,6 +489,113 @@ This was tested by accessing the product suggestion management area as a superus
   <img src="assets/readme/admin-product-suggestions.png" alt="Admin product suggestions area" width="700">
 </p>
 
+### Accessibility and Lighthouse Testing
+
+Accessibility and Lighthouse testing were carried out on the live deployed DigiStore application using Google Lighthouse in Chrome DevTools. The main customer-facing and store-owner pages were tested on the Heroku deployment to assess performance, accessibility, best practices, and SEO.
+
+The results showed strong accessibility, best practices, and SEO scores across the site, with performance varying depending on the page content and functionality being loaded at the time of testing. The screenshots below provide evidence of the Lighthouse results gathered from the live application.
+
+While the Lighthouse results were strong overall, a small number of pages returned slightly lower accessibility scores, falling just below 90 rather than achieving a full green result. These issues were minor rather than critical, and the tested pages still remained usable, responsive, and passed the main accessibility checks overall.
+
+Some pages also showed lower performance scores than others. This was influenced in part by the deployed environment and external asset loading, particularly the live hosting and cloud-based static/media setup through AWS, which can affect Lighthouse performance results compared with local testing. As a result, performance scores on certain pages were lower than the accessibility, best practices, and SEO scores.
+
+Due to project time constraints, I prioritised completing the core functionality, testing evidence, deployment, and pass criteria requirements rather than carrying out another full round of performance and accessibility refinement on the small number of pages that scored lower. Even so, the overall Lighthouse results were positive, with strong scores across the application and particularly high results in best practices and SEO.
+
+#### Home page — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/`
+
+<p align="center">
+  <img src="assets/readme/heroku-app.png" alt="Lighthouse test results for home page" width="700">
+</p>
+
+#### Products page — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/products/`
+
+<p align="center">
+  <img src="assets/readme/products-light.png" alt="Lighthouse test results for products page" width="700">
+</p>
+
+#### Product detail page — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/products/2/`
+
+<p align="center">
+  <img src="assets/readme/products-detail-light.png" alt="Lighthouse test results for product detail page" width="700">
+</p>
+
+#### Shopping bag page — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/bag/`
+
+<p align="center">
+  <img src="assets/readme/bag-lighthouse.png" alt="Lighthouse test results for shopping bag page" width="700">
+</p>
+
+#### Checkout page — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/checkout/`
+
+<p align="center">
+  <img src="assets/readme/checkout-lighthouse.png" alt="Lighthouse test results for checkout page" width="700">
+</p>
+
+#### Profile page — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/users/profile/`
+
+<p align="center">
+  <img src="assets/readme/USERSPROFILE-LIGHT.png" alt="Lighthouse test results for profile page" width="700">
+</p>
+
+#### Product management page — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/products/management/`
+
+<p align="center">
+  <img src="assets/readme/products-manage-light.png" alt="Lighthouse test results for product management page" width="700">
+</p>
+
+#### Add product page — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/products/add/`
+
+<p align="center">
+  <img src="assets/readme/PRODUCT-ADD-LIGHT.png" alt="Lighthouse test results for add product page" width="700">
+</p>
+
+#### Edit product selection page — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/products/edit/`
+
+<p align="center">
+  <img src="assets/readme/product-edit-select-light.png" alt="Lighthouse test results for edit product selection page" width="700">
+</p>
+
+#### Edit product page — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/products/edit/32/`
+
+<p align="center">
+  <img src="assets/readme/product-edit-32-light.png" alt="Lighthouse test results for edit product page" width="700">
+</p>
+
+#### Delete product selection page — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/products/delete/`
+
+<p align="center">
+  <img src="assets/readme/products-delete-light.png" alt="Lighthouse test results for delete product selection page" width="700">
+</p>
+
+#### Delete product page — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/products/delete/4/`
+
+<p align="center">
+  <img src="assets/readme/product-delete-4-light.png" alt="Lighthouse test results for delete product page" width="700">
+</p>
+
+#### Profile page with product suggestions — Passed  
+`https://digi-store-pp5-4acfa738d458.herokuapp.com/users/profile/`
+
+<p align="center">
+  <img src="assets/readme/profile-light.png" alt="Lighthouse test results for profile page with product suggestions" width="700">
+</p>
+
+Overall, the Lighthouse results showed that DigiStore performs well across the key live pages of the application, with especially strong scores in accessibility, best practices, and SEO. This supports the goal of delivering a responsive, usable, and accessible digital e-commerce experience for both customers and store owners.
+
+---
+
 ### Validation
 
 The project was also checked for general page behaviour and content presentation. This included confirming that templates rendered correctly, navigation links worked, forms displayed properly, and key user journeys could be completed without broken flow. Validation and code quality checks were used during development to support a cleaner final submission, alongside repeated browser-based testing of interactive features.
