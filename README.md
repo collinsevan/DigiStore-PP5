@@ -235,7 +235,24 @@ The marketing approach for DigiStore was planned around presenting the business 
 
 The homepage was designed to communicate the store purpose immediately through a clear headline, supporting copy, and a direct call to action. Product categories are also visible in the main navigation, helping guide users toward relevant sections of the store quickly and supporting both usability and discoverability.
 
-A Facebook business mockup was planned as part of the project marketing materials and will be added to this section. This was intended to represent how the brand could be promoted through social media in a realistic e-commerce context.
+## Facebook Business Mock-Up
+
+To support the marketing section of the project, a Facebook business page mock-up was created for DigiStore. This was included to demonstrate how the brand could be presented on social media as part of a wider digital marketing approach.
+
+The mock-up reflects the DigiStore identity by using the project name, a consistent dark blue visual style, and featured digital products from the store. It presents DigiStore as a professional digital downloads business and shows how products such as audio books, software, productivity tools, and digital art could be promoted through a business social page.
+
+The Facebook mock-up was created to show:
+
+- brand identity and presentation
+- social media marketing potential
+- product promotion outside the main website
+- support for the project’s marketing requirements
+
+### Facebook Mock-Up Screenshots
+
+![DigiStore Facebook business page mock-up](assets/readme/DigiStore-business-page-mockup.png)
+
+![DigiStore Facebook business page mock-up alternative](assets/readme/DigiStore-Facebook-business-page-mockup2.png)
 
 Newsletter marketing was also considered as part of the wider promotional strategy for encouraging repeat visits and future customer engagement.
 
@@ -857,10 +874,6 @@ A gift card or digital credit feature would expand the business model and create
 ### Newsletter Signup Integration
 
 Newsletter marketing was considered as part of the wider marketing strategy, and a future version of the site could include a fully connected newsletter signup flow. This could support customer retention, product launches, and promotional campaigns.
-
-### Facebook Business Integration
-
-A stronger social media presence could be supported by expanding the current marketing assets into a fuller Facebook business strategy, including post examples, promotional content, and campaign planning.
 
 ### Enhanced Filtering
 
