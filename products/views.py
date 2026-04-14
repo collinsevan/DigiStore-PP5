@@ -10,7 +10,7 @@ from django.shortcuts import (
 )
 from django.urls import reverse
 
-from users.models import ProductSuggestion, SavedSearch
+from users.models import ProductSuggestion, SavedSearch, SupportTicket
 
 from .forms import ProductForm, PromoCodeForm
 from .models import Category, Product, PromoCode
@@ -148,7 +148,7 @@ def product_detail(request, product_id):
 def product_management(request):
     """
     Display product management options, promo codes,
-    and product suggestions for store owners.
+    support tickets, and product suggestions for store owners.
     """
     if not request.user.is_superuser:
         messages.error(
@@ -220,11 +220,16 @@ def product_management(request):
 
     promo_codes = PromoCode.objects.all().order_by("code")
 
+    support_tickets = SupportTicket.objects.select_related(
+        "user"
+    ).order_by("-created_on")
+
     context = {
         "suggestion_form": suggestion_form,
         "promo_code_form": promo_code_form,
         "suggestions": suggestions,
         "promo_codes": promo_codes,
+        "support_tickets": support_tickets,
     }
 
     return render(request, "products/product_management.html", context)
