@@ -204,6 +204,41 @@ The main colours used in the project include:
 
 ## SEO and Marketing
 
+### SEO
+
+Search engine optimisation was implemented to improve the visibility, structure, and crawlability of the DigiStore website. The project uses a combination of technical SEO foundations and on-page content improvements to help search engines understand the purpose of the site and its individual pages.
+
+A reusable SEO structure was added through the base template, including meta description and meta keyword blocks, as well as canonical links. This allows the site to provide a default SEO foundation across pages while also supporting more specific SEO content on key templates such as the products page and product detail pages.
+
+The products page includes targeted copy describing the digital catalogue, while individual product detail pages generate more specific meta content based on the product being viewed. This helps make category and product pages more relevant to search intent and supports better page indexing.
+
+Technical SEO was also implemented through a live `robots.txt` file and a working `sitemap.xml`, helping search engines crawl the website more effectively. The sitemap includes important site URLs and product pages, while the robots file directs crawlers to the sitemap location.
+
+<p align="center">
+  <img src="assets/readme/robots-txt.png" alt="DigiStore robots.txt file" width="700">
+</p>
+
+<p align="center">
+  <img src="assets/readme/sitemap-xml.png" alt="DigiStore sitemap.xml file" width="700">
+</p>
+
+The screenshots below show the main catalogue and homepage content that support keyword targeting and page relevance for search engines.
+
+<p align="center">
+  <img src="assets/readme/homepage-overview.png" alt="DigiStore homepage SEO content" width="48%">
+  <img src="assets/readme/products-overview.png" alt="DigiStore products page SEO content" width="48%">
+</p>
+
+### Marketing
+
+The marketing approach for DigiStore was planned around presenting the business as a digital-only online store with a clear and focused niche. The project targets users looking for downloadable products such as software, productivity tools, digital art, and audio books, and the content across the site reflects those product types consistently.
+
+The homepage was designed to communicate the store purpose immediately through a clear headline, supporting copy, and a direct call to action. Product categories are also visible in the main navigation, helping guide users toward relevant sections of the store quickly and supporting both usability and discoverability.
+
+A Facebook business mockup was planned as part of the project marketing materials and will be added to this section. This was intended to represent how the brand could be promoted through social media in a realistic e-commerce context.
+
+Newsletter marketing was also considered as part of the wider promotional strategy for encouraging repeat visits and future customer engagement.
+
 ---
 
 ## Testing
