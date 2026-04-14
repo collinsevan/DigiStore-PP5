@@ -10,7 +10,7 @@ from django.shortcuts import (
 )
 from django.urls import reverse
 
-from users.models import ProductSuggestion
+from users.models import ProductSuggestion, SavedSearch
 
 from .forms import ProductForm, PromoCodeForm
 from .models import Category, Product, PromoCode
@@ -26,6 +26,14 @@ AdminProductSuggestionForm = modelform_factory(
         "reference_url",
         "status",
         "admin_notes",
+    ),
+)
+
+SavedSearchForm = modelform_factory(
+    SavedSearch,
+    fields=(
+        "title",
+        "query",
     ),
 )
 
@@ -45,52 +53,79 @@ def all_products(request):
     sort = None
     direction = None
 
-    if request.GET:
-        if "q" in request.GET:
-            query = request.GET.get("q")
+    if request.method == "POST" and request.user.is_authenticated:
+        saved_search_form = SavedSearchForm(request.POST)
 
-            if not query:
-                messages.error(
-                    request, "You didn't enter any search criteria."
-                )
-                return redirect(reverse("products"))
-
-            queries = Q(name__icontains=query) | Q(
-                description__icontains=query
+        if saved_search_form.is_valid():
+            saved_search = saved_search_form.save(commit=False)
+            saved_search.user = request.user
+            saved_search.save()
+            messages.success(
+                request,
+                "Search saved successfully."
             )
-            products = products.filter(queries)
+            return redirect(reverse("profile"))
 
-        if "category" in request.GET:
-            category_slug = request.GET.get("category")
-            categories = Category.objects.filter(slug=category_slug)
-            products = products.filter(category__in=categories)
+        messages.error(
+            request,
+            "Failed to save search. Please check the form and try again."
+        )
 
-        if "sort" in request.GET:
-            sort = request.GET.get("sort")
-            sortkey = sort
+    else:
+        if request.GET:
+            if "q" in request.GET:
+                query = request.GET.get("q")
 
-            if sortkey == "name":
-                products = products.annotate(lower_name=Lower("name"))
-                sortkey = "lower_name"
+                if not query:
+                    messages.error(
+                        request, "You didn't enter any search criteria."
+                    )
+                    return redirect(reverse("products"))
 
-            if sortkey == "category":
-                sortkey = "category__name"
+                queries = Q(name__icontains=query) | Q(
+                    description__icontains=query
+                )
+                products = products.filter(queries)
 
-            if "direction" in request.GET:
-                direction = request.GET.get("direction")
+            if "category" in request.GET:
+                category_slug = request.GET.get("category")
+                categories = Category.objects.filter(slug=category_slug)
+                products = products.filter(category__in=categories)
 
-            if direction == "desc":
-                sortkey = f"-{sortkey}"
+            if "sort" in request.GET:
+                sort = request.GET.get("sort")
+                sortkey = sort
 
-            products = products.order_by(sortkey)
+                if sortkey == "name":
+                    products = products.annotate(lower_name=Lower("name"))
+                    sortkey = "lower_name"
+
+                if sortkey == "category":
+                    sortkey = "category__name"
+
+                if "direction" in request.GET:
+                    direction = request.GET.get("direction")
+
+                if direction == "desc":
+                    sortkey = f"-{sortkey}"
+
+                products = products.order_by(sortkey)
 
     current_sorting = f"{sort}_{direction}"
+
+    initial_saved_search = {}
+    if query:
+        initial_saved_search["query"] = query
+        initial_saved_search["title"] = query[:100]
+
+    saved_search_form = SavedSearchForm(initial=initial_saved_search)
 
     context = {
         "products": products,
         "search_term": query,
         "current_categories": categories,
         "current_sorting": current_sorting,
+        "saved_search_form": saved_search_form,
     }
 
     return render(request, "products/products.html", context)

@@ -73,6 +73,38 @@ products store, commercial digital products
             <p class="text-muted mb-0">Search: "{{ search_term }}"</p>
             {% endif %}
 
+            {% if request.user.is_authenticated and search_term %}
+            <div class="product-form-wrapper mt-3 text-left">
+                <form method="POST" action="{% url 'products' %}" class="form">
+                    {% csrf_token %}
+
+                    <div class="form-row align-items-end">
+                        <div class="col-12 col-md-5 mb-2">
+                            <label for="id_title" class="small text-muted">
+                                Save this search as
+                            </label>
+                            <input type="text" name="title" value="{{ saved_search_form.title.value|default:'' }}"
+                                maxlength="100" class="form-control border-black rounded-0" id="id_title" required>
+                        </div>
+
+                        <div class="col-12 col-md-5 mb-2">
+                            <label for="id_query" class="small text-muted">
+                                Search query
+                            </label>
+                            <input type="text" name="query" value="{{ saved_search_form.query.value|default:'' }}"
+                                maxlength="255" class="form-control border-black rounded-0" id="id_query" required>
+                        </div>
+
+                        <div class="col-12 col-md-2 mb-2">
+                            <button class="btn btn-black rounded-0 w-100" type="submit">
+                                Save Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+
             {% if search_term or current_categories %}
             <p class="mt-2 mb-0">
                 <a href="{% url 'products' %}" class="text-muted">Clear filters</a>

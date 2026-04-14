@@ -87,6 +87,37 @@ class ProductSuggestion(models.Model):
         return f"{self.suggested_name} ({self.user.username})"
 
 
+class SavedSearch(models.Model):
+    """Store a saved product search for a user."""
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="saved_searches",
+    )
+    title = models.CharField(
+        max_length=100,
+    )
+    query = models.CharField(
+        max_length=255,
+    )
+    created_on = models.DateTimeField(
+        auto_now_add=True,
+    )
+    updated_on = models.DateTimeField(
+        auto_now=True,
+    )
+
+    class Meta:
+        ordering = ["-created_on"]
+        verbose_name = "Saved Search"
+        verbose_name_plural = "Saved Searches"
+
+    def __str__(self):
+        """Return a readable saved search label."""
+        return f"{self.title} ({self.user.username})"
+
+
 @receiver(post_save, sender=get_user_model())
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """Create or update the user's profile after save."""

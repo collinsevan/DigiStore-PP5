@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.forms import modelform_factory
 from django.shortcuts import (
     get_object_or_404,
     redirect,
@@ -9,7 +10,16 @@ from django.urls import reverse
 
 from checkout.models import Order
 from .forms import ProductSuggestionForm, UserProfileForm
-from .models import ProductSuggestion, UserProfile
+from .models import ProductSuggestion, SavedSearch, UserProfile
+
+
+SavedSearchForm = modelform_factory(
+    SavedSearch,
+    fields=(
+        "title",
+        "query",
+    ),
+)
 
 
 @login_required
@@ -18,6 +28,7 @@ def profile(request):
     user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
     orders = user_profile.orders.all()
     suggestions = request.user.product_suggestions.all()
+    saved_searches = request.user.saved_searches.all()
 
     if request.method == "POST":
         if "update_profile" in request.POST:
@@ -26,6 +37,7 @@ def profile(request):
                 instance=user_profile,
             )
             suggestion_form = ProductSuggestionForm()
+            saved_search_form = SavedSearchForm()
 
             if form.is_valid():
                 form.save()
@@ -40,6 +52,7 @@ def profile(request):
         elif "add_suggestion" in request.POST:
             form = UserProfileForm(instance=user_profile)
             suggestion_form = ProductSuggestionForm(request.POST)
+            saved_search_form = SavedSearchForm()
 
             if suggestion_form.is_valid():
                 suggestion = suggestion_form.save(commit=False)
@@ -59,19 +72,46 @@ def profile(request):
                 ),
             )
 
+        elif "add_saved_search" in request.POST:
+            form = UserProfileForm(instance=user_profile)
+            suggestion_form = ProductSuggestionForm()
+            saved_search_form = SavedSearchForm(request.POST)
+
+            if saved_search_form.is_valid():
+                saved_search = saved_search_form.save(commit=False)
+                saved_search.user = request.user
+                saved_search.save()
+                messages.success(
+                    request,
+                    "Saved search added successfully."
+                )
+                return redirect(reverse("profile"))
+
+            messages.error(
+                request,
+                (
+                    "Failed to save search. "
+                    "Please check the form and try again."
+                ),
+            )
+
         else:
             form = UserProfileForm(instance=user_profile)
             suggestion_form = ProductSuggestionForm()
+            saved_search_form = SavedSearchForm()
 
     else:
         form = UserProfileForm(instance=user_profile)
         suggestion_form = ProductSuggestionForm()
+        saved_search_form = SavedSearchForm()
 
     context = {
         "form": form,
         "orders": orders,
         "suggestions": suggestions,
         "suggestion_form": suggestion_form,
+        "saved_searches": saved_searches,
+        "saved_search_form": saved_search_form,
         "on_profile_page": True,
     }
     return render(request, "users/profile.html", context)
@@ -148,6 +188,78 @@ def delete_product_suggestion(request, suggestion_id):
     return render(
         request,
         "users/delete_product_suggestion.html",
+        context,
+    )
+
+
+@login_required
+def edit_saved_search(request, saved_search_id):
+    """Allow a user to edit their own saved search."""
+    saved_search = get_object_or_404(
+        SavedSearch,
+        pk=saved_search_id,
+        user=request.user,
+    )
+
+    if request.method == "POST":
+        form = SavedSearchForm(
+            request.POST,
+            instance=saved_search,
+        )
+
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request,
+                "Saved search updated successfully."
+            )
+            return redirect(reverse("profile"))
+
+        messages.error(
+            request,
+            (
+                "Failed to update saved search. "
+                "Please check the form and try again."
+            ),
+        )
+
+    else:
+        form = SavedSearchForm(instance=saved_search)
+        messages.info(
+            request,
+            f"You are editing saved search {saved_search.title}."
+        )
+
+    context = {
+        "saved_search": saved_search,
+        "form": form,
+    }
+    return render(request, "users/edit_saved_search.html", context)
+
+
+@login_required
+def delete_saved_search(request, saved_search_id):
+    """Allow a user to delete their own saved search."""
+    saved_search = get_object_or_404(
+        SavedSearch,
+        pk=saved_search_id,
+        user=request.user,
+    )
+
+    if request.method == "POST":
+        saved_search.delete()
+        messages.success(
+            request,
+            "Saved search deleted successfully."
+        )
+        return redirect(reverse("profile"))
+
+    context = {
+        "saved_search": saved_search,
+    }
+    return render(
+        request,
+        "users/delete_saved_search.html",
         context,
     )
 
