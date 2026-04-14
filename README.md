@@ -664,20 +664,40 @@ Existing testing screenshots were also reused as supporting validation evidence 
 | Authenticated pages | Checked profile, order history, and suggestion features | Passed |
 | Superuser pages | Checked product management CRUD pages | Passed |
 
-### Bugs and Fixes During Testing
+## Bugs
 
-A number of issues were identified and improved during development through repeated testing. These included layout and responsive issues, product management routing issues, image upload feedback improvements, header and footer alignment adjustments, and deployment-related static file troubleshooting. Addressing these issues helped improve the usability, structure, and reliability of the final project.
+During testing and development, a small number of issues were identified across the project. Most were resolved during implementation, while a couple of minor issues remained inconsistent but did not prevent the core user flows from working for the final submission.
+
+### Resolved Bugs
+
+A number of bugs were identified and fixed throughout development, including:
+
+- responsive layout and spacing issues across different screen sizes
+- footer alignment and mobile layout issues
+- navigation and hero section display inconsistencies
+- product management routing issues
+- image upload feedback display issues
+- profile and order history integration issues
+- static and media file deployment issues during Heroku and AWS setup
+
+These fixes improved the overall usability, consistency, and reliability of the final application.
+
+### Remaining Minor Bugs
+
+Two minor form feedback issues were observed during testing:
+
+- when an incorrect password is entered during login, the form may reset without showing clear on-screen feedback
+- when attempting to register with a username that already exists, the form may sometimes reset without displaying the expected validation message
+
+These issues were inconsistent rather than constant, and the related account functionality still worked correctly overall. Existing users were still recognised by the system, and the authentication and registration flows passed recent final testing. As a result, these issues were considered minor and did not block the main required user journeys for the submitted project.
+
+### Overall Bug Status
+
+Although a few minor inconsistencies remained, the core features of DigiStore were tested successfully and functioned correctly for the final submission. The main customer and store-owner flows, including browsing products, managing the bag, completing checkout, using profile features, and carrying out product management actions, all worked as intended.
 
 ### Overall Testing Summary
 
 Overall, testing confirmed that DigiStore delivers the core functionality expected of a digital e-commerce application. Users can browse products, search and sort the catalogue, view product details, add products to their bag, create an account, log in, complete checkout, and use profile-related features. The store owner can also manage products and review product suggestions through dedicated management areas. Together, these results show that the final project meets its intended goals as a full stack Django e-commerce application.
-
----
----
-
-## Bugs
-
----
 
 ## Existing Features
 
