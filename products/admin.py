@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, PromoCode
+from .models import Category, Product, ProductBadge, PromoCode
 
 
 @admin.register(Category)
@@ -15,6 +15,27 @@ class CategoryAdmin(admin.ModelAdmin):
     ordering = ("name",)
 
 
+@admin.register(ProductBadge)
+class ProductBadgeAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for product badges.
+    """
+    list_display = (
+        "name",
+        "slug",
+        "colour_class",
+        "is_active",
+    )
+    list_filter = (
+        "is_active",
+    )
+    search_fields = (
+        "name",
+        "slug",
+    )
+    ordering = ("name",)
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     """
@@ -24,6 +45,7 @@ class ProductAdmin(admin.ModelAdmin):
         "sku",
         "name",
         "category",
+        "badge",
         "price",
         "rating",
         "license_type",

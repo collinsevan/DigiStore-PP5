@@ -43,6 +43,14 @@ and digital products store, commercial digital products
 
         <!-- Product info -->
         <div class="col-12 col-md-7 col-lg-5">
+            {% if product.badge and product.badge.is_active %}
+            <p class="mb-2">
+                <span class="badge badge-dark">
+                    {{ product.badge.name }}
+                </span>
+            </p>
+            {% endif %}
+
             <h1 class="mb-2">{{ product.name }}</h1>
             <p class="lead mb-3 font-weight-bold">€{{ product.price }}</p>
 

@@ -171,6 +171,13 @@ products store, commercial digital products
 
                         <!-- Product info -->
                         <div class="card-body pb-0">
+                            {% if product.badge and product.badge.is_active %}
+                            <p class="mb-2">
+                                <span class="badge badge-dark">
+                                    {{ product.badge.name }}
+                                </span>
+                            </p>
+                            {% endif %}
                             <p class="mb-0">{{ product.name }}</p>
                         </div>
 

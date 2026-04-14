@@ -28,6 +28,28 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
 
+class ProductBadge(models.Model):
+    """
+    Stores admin-managed badges that can be assigned to products.
+    """
+
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=50, unique=True, blank=True)
+    colour_class = models.CharField(max_length=50, blank=True)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+
 class Product(models.Model):
     """
     Stores digital products available to browse and purchase.
@@ -45,6 +67,13 @@ class Product(models.Model):
 
     category = models.ForeignKey(
         Category,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="products",
+    )
+    badge = models.ForeignKey(
+        ProductBadge,
         null=True,
         blank=True,
         on_delete=models.SET_NULL,

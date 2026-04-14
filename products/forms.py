@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Category, Product, PromoCode
+from .models import Category, Product, ProductBadge, PromoCode
 from .widgets import CustomClearableFileInput
 
 
@@ -29,6 +29,12 @@ class ProductForm(forms.ModelForm):
         ]
 
         self.fields["category"].choices = friendly_names
+
+        badges = ProductBadge.objects.filter(is_active=True)
+        badge_choices = [("", "---------")] + [
+            (badge.id, badge.name) for badge in badges
+        ]
+        self.fields["badge"].choices = badge_choices
 
         for field_name, field in self.fields.items():
             field.widget.attrs["class"] = "border-black rounded-0"
