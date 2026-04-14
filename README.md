@@ -501,91 +501,104 @@ Some pages also showed lower performance scores than others. This was influenced
 
 Due to project time constraints, I prioritised completing the core functionality, testing evidence, deployment, and pass criteria requirements rather than carrying out another full round of performance and accessibility refinement on the small number of pages that scored lower. Even so, the overall Lighthouse results were positive, with strong scores across the application and particularly high results in best practices and SEO.
 
-#### Home page — Passed  
+#### Home page — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/`
 
 <p align="center">
   <img src="assets/readme/heroku-app.png" alt="Lighthouse test results for home page" width="700">
 </p>
 
-#### Products page — Passed  
+#### Products page — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/products/`
 
 <p align="center">
   <img src="assets/readme/products-light.png" alt="Lighthouse test results for products page" width="700">
 </p>
 
-#### Product detail page — Passed  
+#### Product detail page — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/products/2/`
 
 <p align="center">
   <img src="assets/readme/products-detail-light.png" alt="Lighthouse test results for product detail page" width="700">
 </p>
 
-#### Shopping bag page — Passed  
+#### Shopping bag page — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/bag/`
 
 <p align="center">
   <img src="assets/readme/bag-lighthouse.png" alt="Lighthouse test results for shopping bag page" width="700">
 </p>
 
-#### Checkout page — Passed  
+#### Checkout page — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/checkout/`
 
 <p align="center">
   <img src="assets/readme/checkout-lighthouse.png" alt="Lighthouse test results for checkout page" width="700">
 </p>
 
-#### Profile page — Passed  
+#### Profile page — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/users/profile/`
 
 <p align="center">
   <img src="assets/readme/USERSPROFILE-LIGHT.png" alt="Lighthouse test results for profile page" width="700">
 </p>
 
-#### Product management page — Passed  
+#### Product management page — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/products/management/`
 
 <p align="center">
   <img src="assets/readme/products-manage-light.png" alt="Lighthouse test results for product management page" width="700">
 </p>
 
-#### Add product page — Passed  
+#### Add product page — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/products/add/`
 
 <p align="center">
   <img src="assets/readme/PRODUCT-ADD-LIGHT.png" alt="Lighthouse test results for add product page" width="700">
 </p>
 
-#### Edit product selection page — Passed  
+#### Edit product selection page — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/products/edit/`
 
 <p align="center">
   <img src="assets/readme/product-edit-select-light.png" alt="Lighthouse test results for edit product selection page" width="700">
 </p>
 
-#### Edit product page — Passed  
+#### Edit product page — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/products/edit/32/`
 
 <p align="center">
   <img src="assets/readme/product-edit-32-light.png" alt="Lighthouse test results for edit product page" width="700">
 </p>
 
-#### Delete product selection page — Passed  
+#### Delete product selection page — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/products/delete/`
 
 <p align="center">
   <img src="assets/readme/products-delete-light.png" alt="Lighthouse test results for delete product selection page" width="700">
 </p>
 
-#### Delete product page — Passed  
+#### Delete product page — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/products/delete/4/`
 
 <p align="center">
   <img src="assets/readme/product-delete-4-light.png" alt="Lighthouse test results for delete product page" width="700">
 </p>
 
-#### Profile page with product suggestions — Passed  
+#### Profile page with product suggestions — Passed
+
 `https://digi-store-pp5-4acfa738d458.herokuapp.com/users/profile/`
 
 <p align="center">
@@ -655,14 +668,14 @@ Existing testing screenshots were also reused as supporting validation evidence 
   <img src="assets/readme/delete-product.png" alt="Delete product success message validation evidence" width="48%">
 </p>
 
-| Element tested | Check carried out | Result |
-|---|---|---|
-| Navigation links | Opened key pages from navbar and account links | Passed |
-| Buttons | Checked account, bag, checkout, update, and delete buttons | Passed |
-| Forms | Entered valid data and confirmed successful submission | Passed |
-| Success messages | Confirmed feedback messages displayed after actions | Passed |
-| Authenticated pages | Checked profile, order history, and suggestion features | Passed |
-| Superuser pages | Checked product management CRUD pages | Passed |
+| Element tested      | Check carried out                                          | Result |
+| ------------------- | ---------------------------------------------------------- | ------ |
+| Navigation links    | Opened key pages from navbar and account links             | Passed |
+| Buttons             | Checked account, bag, checkout, update, and delete buttons | Passed |
+| Forms               | Entered valid data and confirmed successful submission     | Passed |
+| Success messages    | Confirmed feedback messages displayed after actions        | Passed |
+| Authenticated pages | Checked profile, order history, and suggestion features    | Passed |
+| Superuser pages     | Checked product management CRUD pages                      | Passed |
 
 ## Bugs
 
@@ -856,6 +869,7 @@ The site currently supports search, category browsing, and sorting, but could be
 ### Improved Product Suggestion Workflow
 
 The product suggestion system is already functional, but future improvements could include:
+
 - suggestion status filtering
 - richer moderation tools
 - suggestion approval notifications
@@ -868,6 +882,7 @@ As DigiStore is a digital-only store, future development could introduce more ad
 ### Enhanced Admin Reporting
 
 The store owner area could be expanded with reporting features such as:
+
 - best-selling products
 - recent orders overview
 - revenue summaries
@@ -876,6 +891,7 @@ The store owner area could be expanded with reporting features such as:
 ### Improved Customer Communication
 
 Future versions could include stronger customer communication features such as:
+
 - better order confirmation messaging
 - profile notifications
 - suggestion response messages
@@ -884,6 +900,7 @@ Future versions could include stronger customer communication features such as:
 ### Additional Accessibility Improvements
 
 The project was built with usability in mind, but accessibility could be improved further over time through expanded testing and refinement, including:
+
 - deeper keyboard navigation testing
 - more detailed screen reader checks
 - further accessibility audits across forms and interactive components
@@ -986,7 +1003,62 @@ Overall, the chosen stack supported the creation of a practical digital e-commer
 
 ## Credits
 
----
+## Credits
+
+DigiStore was developed with help from course material, official documentation, and tutorial resources used for reference while building and troubleshooting the project.
+
+### Project Inspiration
+
+- The main e-commerce project structure was inspired by the **Code Institute Boutique Ado walkthrough project**, which was used as the primary educational reference for the product catalogue, navigation patterns, bag flow, checkout concepts, and general Django e-commerce structure.  
+  [Boutique Ado Repository](https://github.com/Code-Institute-Solutions/Boutique-Ado)
+
+- Some navigation items and layout ideas were adapted from Boutique Ado and then customised to suit DigiStore as a **digital-only store** rather than a physical goods store.
+
+### Official Documentation
+
+The following official documentation was used regularly during development:
+
+- **Django Documentation**
+  - [Working with Forms](https://docs.djangoproject.com/en/6.0/topics/forms/)
+  - [User Authentication in Django](https://docs.djangoproject.com/en/6.0/topics/auth/)
+  - [Using the Django Authentication System](https://docs.djangoproject.com/en/6.0/topics/auth/default/)
+
+- **Stripe Documentation**
+  - [Stripe Payment Intents](https://docs.stripe.com/payments/payment-intents)
+  - [Stripe PaymentIntent API Reference](https://docs.stripe.com/api/payment_intents)
+  - [Stripe Webhooks](https://docs.stripe.com/webhooks)
+  - [Handling Payment Events with Webhooks](https://docs.stripe.com/webhooks/handling-payment-events)
+
+- **AWS / django-storages Documentation**
+  - [django-storages Amazon S3 Backend](https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html)
+
+### Tutorial and Reference Resources
+
+The following tutorial-style resources were used as supporting references when working on specific parts of the project:
+
+- **Django and Stripe**
+  - [Django Stripe Tutorial – TestDriven.io](https://testdriven.io/blog/django-stripe-tutorial/)
+  - [Django Stripe Payments Tutorial – JustDjango](https://justdjango.com/blog/django-stripe-payments-tutorial)
+  - [Django and Stripe Payments Tutorial – YouTube](https://www.youtube.com/watch?v=722A27IoQnk)
+  - [Django Stripe Payment Gateway Integration – YouTube](https://www.youtube.com/watch?v=VuSiSCIiBgk)
+  - [Stripe Integration in Python – YouTube](https://www.youtube.com/watch?v=5XWzBnghK-g)
+
+- **AWS S3 and Storage**
+  - [Storing Django Static and Media Files on Amazon S3 – TestDriven.io](https://testdriven.io/blog/storing-django-static-and-media-files-on-amazon-s3/)
+  - [Using Amazon S3 to Store Django Static and Media Files – Caktus Group](https://www.caktusgroup.com/blog/2014/11/10/Using-Amazon-S3-to-store-your-Django-sites-static-and-media-files/)
+  - [Set Up AWS S3 Bucket with Django for Static and Media Files – YouTube](https://www.youtube.com/watch?v=Ko52pn1KXS0)
+  - [How to Host Django Media Files in Production using AWS S3 – YouTube](https://www.youtube.com/watch?v=LH0PtR3KvAE)
+
+### Front-End Libraries and Assets
+
+- [Bootstrap 4](https://getbootstrap.com/docs/4.4/getting-started/introduction/) was used for layout, grid structure, responsive utilities, and UI support.
+- [jQuery](https://jquery.com/) was used for interactive front-end behaviour such as sorting controls, back-to-top behaviour, and upload feedback.
+- [Font Awesome](https://fontawesome.com/) was used for icons across the navigation, footer, and user actions.
+- [Google Fonts](https://fonts.google.com/) was used for typography.
+
+### General Credit
+
+## Special credit goes to the Code Institute learning material, official documentation, and tutorial resources that supported the development of DigiStore as a full stack Django e-commerce application.
 
 ## Deployment
 
@@ -1069,5 +1141,4 @@ git push heroku main
 heroku open
 
 ---
-
-## Acknowledgements
+```
