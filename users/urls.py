@@ -19,6 +19,16 @@ urlpatterns = [
         name="delete_saved_search",
     ),
     path(
+        "support-tickets/<int:ticket_id>/edit/",
+        views.edit_support_ticket,
+        name="edit_support_ticket",
+    ),
+    path(
+        "support-tickets/<int:ticket_id>/delete/",
+        views.delete_support_ticket,
+        name="delete_support_ticket",
+    ),
+    path(
         "suggestions/<int:suggestion_id>/edit/",
         views.edit_product_suggestion,
         name="edit_product_suggestion",

@@ -10,7 +10,12 @@ from django.urls import reverse
 
 from checkout.models import Order
 from .forms import ProductSuggestionForm, UserProfileForm
-from .models import ProductSuggestion, SavedSearch, UserProfile
+from .models import (
+    ProductSuggestion,
+    SavedSearch,
+    SupportTicket,
+    UserProfile,
+)
 
 
 SavedSearchForm = modelform_factory(
@@ -18,6 +23,14 @@ SavedSearchForm = modelform_factory(
     fields=(
         "title",
         "query",
+    ),
+)
+
+SupportTicketForm = modelform_factory(
+    SupportTicket,
+    fields=(
+        "subject",
+        "message",
     ),
 )
 
@@ -29,6 +42,7 @@ def profile(request):
     orders = user_profile.orders.all()
     suggestions = request.user.product_suggestions.all()
     saved_searches = request.user.saved_searches.all()
+    support_tickets = request.user.support_tickets.all()
 
     if request.method == "POST":
         if "update_profile" in request.POST:
@@ -38,6 +52,7 @@ def profile(request):
             )
             suggestion_form = ProductSuggestionForm()
             saved_search_form = SavedSearchForm()
+            support_ticket_form = SupportTicketForm()
 
             if form.is_valid():
                 form.save()
@@ -53,6 +68,7 @@ def profile(request):
             form = UserProfileForm(instance=user_profile)
             suggestion_form = ProductSuggestionForm(request.POST)
             saved_search_form = SavedSearchForm()
+            support_ticket_form = SupportTicketForm()
 
             if suggestion_form.is_valid():
                 suggestion = suggestion_form.save(commit=False)
@@ -76,6 +92,7 @@ def profile(request):
             form = UserProfileForm(instance=user_profile)
             suggestion_form = ProductSuggestionForm()
             saved_search_form = SavedSearchForm(request.POST)
+            support_ticket_form = SupportTicketForm()
 
             if saved_search_form.is_valid():
                 saved_search = saved_search_form.save(commit=False)
@@ -95,15 +112,41 @@ def profile(request):
                 ),
             )
 
+        elif "add_support_ticket" in request.POST:
+            form = UserProfileForm(instance=user_profile)
+            suggestion_form = ProductSuggestionForm()
+            saved_search_form = SavedSearchForm()
+            support_ticket_form = SupportTicketForm(request.POST)
+
+            if support_ticket_form.is_valid():
+                support_ticket = support_ticket_form.save(commit=False)
+                support_ticket.user = request.user
+                support_ticket.save()
+                messages.success(
+                    request,
+                    "Support ticket submitted successfully."
+                )
+                return redirect(reverse("profile"))
+
+            messages.error(
+                request,
+                (
+                    "Failed to submit support ticket. "
+                    "Please check the form and try again."
+                ),
+            )
+
         else:
             form = UserProfileForm(instance=user_profile)
             suggestion_form = ProductSuggestionForm()
             saved_search_form = SavedSearchForm()
+            support_ticket_form = SupportTicketForm()
 
     else:
         form = UserProfileForm(instance=user_profile)
         suggestion_form = ProductSuggestionForm()
         saved_search_form = SavedSearchForm()
+        support_ticket_form = SupportTicketForm()
 
     context = {
         "form": form,
@@ -112,6 +155,8 @@ def profile(request):
         "suggestion_form": suggestion_form,
         "saved_searches": saved_searches,
         "saved_search_form": saved_search_form,
+        "support_tickets": support_tickets,
+        "support_ticket_form": support_ticket_form,
         "on_profile_page": True,
     }
     return render(request, "users/profile.html", context)
@@ -260,6 +305,80 @@ def delete_saved_search(request, saved_search_id):
     return render(
         request,
         "users/delete_saved_search.html",
+        context,
+    )
+
+
+@login_required
+def edit_support_ticket(request, ticket_id):
+    """Allow a user to edit their own support ticket."""
+    support_ticket = get_object_or_404(
+        SupportTicket,
+        pk=ticket_id,
+        user=request.user,
+    )
+
+    if request.method == "POST":
+        form = SupportTicketForm(
+            request.POST,
+            instance=support_ticket,
+        )
+
+        if form.is_valid():
+            updated_ticket = form.save(commit=False)
+            updated_ticket.status = SupportTicket.STATUS_OPEN
+            updated_ticket.save()
+            messages.success(
+                request,
+                "Support ticket updated successfully."
+            )
+            return redirect(reverse("profile"))
+
+        messages.error(
+            request,
+            (
+                "Failed to update support ticket. "
+                "Please check the form and try again."
+            ),
+        )
+
+    else:
+        form = SupportTicketForm(instance=support_ticket)
+        messages.info(
+            request,
+            f"You are editing support ticket {support_ticket.subject}."
+        )
+
+    context = {
+        "support_ticket": support_ticket,
+        "form": form,
+    }
+    return render(request, "users/edit_support_ticket.html", context)
+
+
+@login_required
+def delete_support_ticket(request, ticket_id):
+    """Allow a user to delete their own support ticket."""
+    support_ticket = get_object_or_404(
+        SupportTicket,
+        pk=ticket_id,
+        user=request.user,
+    )
+
+    if request.method == "POST":
+        support_ticket.delete()
+        messages.success(
+            request,
+            "Support ticket deleted successfully."
+        )
+        return redirect(reverse("profile"))
+
+    context = {
+        "support_ticket": support_ticket,
+    }
+    return render(
+        request,
+        "users/delete_support_ticket.html",
         context,
     )
 

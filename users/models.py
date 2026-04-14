@@ -118,6 +118,50 @@ class SavedSearch(models.Model):
         return f"{self.title} ({self.user.username})"
 
 
+class SupportTicket(models.Model):
+    """Store a support ticket submitted by a user."""
+
+    STATUS_OPEN = "open"
+    STATUS_IN_PROGRESS = "in_progress"
+    STATUS_RESOLVED = "resolved"
+
+    STATUS_CHOICES = [
+        (STATUS_OPEN, "Open"),
+        (STATUS_IN_PROGRESS, "In Progress"),
+        (STATUS_RESOLVED, "Resolved"),
+    ]
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="support_tickets",
+    )
+    subject = models.CharField(
+        max_length=120,
+    )
+    message = models.TextField()
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default=STATUS_OPEN,
+    )
+    created_on = models.DateTimeField(
+        auto_now_add=True,
+    )
+    updated_on = models.DateTimeField(
+        auto_now=True,
+    )
+
+    class Meta:
+        ordering = ["-created_on"]
+        verbose_name = "Support Ticket"
+        verbose_name_plural = "Support Tickets"
+
+    def __str__(self):
+        """Return a readable support ticket label."""
+        return f"{self.subject} ({self.user.username})"
+
+
 @receiver(post_save, sender=get_user_model())
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     """Create or update the user's profile after save."""
