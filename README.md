@@ -342,6 +342,17 @@ This was tested by using the category navigation links for Audio Books, Digital 
   <img src="assets/readme/browseproducts.png" alt="Products page showing category navigation" width="700">
 </p>
 
+#### As a store owner, I want to manage product badges so that I can highlight important products in the catalogue
+
+This was tested by opening the Django admin as a superuser, creating a product badge, editing the badge details, and confirming that the badge management screen loaded and saved correctly. This confirmed that product badges can be managed successfully for use across the catalogue.
+
+**Expected result:** Superusers can create, edit, and manage product badges successfully through the admin area.  
+**Outcome:** Passed.
+
+<p align="center">
+  <img src="assets/readme/badgetest.png" alt="Product badge admin edit page" width="700">
+</p>
+
 #### As a user, I want to search for products so that I can find relevant items quickly
 
 This was tested by entering search terms into the search bar and confirming that matching products were returned based on the search input. Search behaviour was also checked when invalid or empty searches were attempted.
@@ -864,6 +875,9 @@ DigiStore includes a range of user-facing and store-owner features designed to c
 - Ability to edit promo codes
 - Ability to delete promo codes
 - Promo code management available through custom store-owner views rather than only through Django admin
+- Product badge system for highlighting products with admin-managed labels
+- Superusers can create and manage product badges through Django admin
+- Product badges can be assigned to products and displayed on both product cards and product detail pages
 
 ### Database Features
 
