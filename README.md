@@ -506,6 +506,23 @@ This was tested by accessing the product suggestion management area as a superus
   <img src="assets/readme/admin-product-suggestions.png" alt="Admin product suggestions area" width="700">
 </p>
 
+#### As a store owner, I want to create, edit, and delete promo codes so that I can manage future discount campaigns
+
+This was tested by opening the product management area as a superuser, creating a promo code with valid details, editing the existing promo code, and then deleting it to confirm that the full management flow worked correctly from the custom store-owner interface.
+
+**Expected result:** Superusers can create, edit, and delete promo codes successfully from the product management area.  
+**Outcome:** Passed.
+
+<p align="center">
+  <img src="assets/readme/addpromo.png" alt="Add promo code form" width="48%">
+  <img src="assets/readme/editpromo.png" alt="Edit promo code page" width="48%">
+</p>
+
+<p align="center">
+  <img src="assets/readme/editsuccesspromo.png" alt="Promo code updated successfully message" width="48%">
+  <img src="assets/readme/promodeleted.png" alt="Promo code deleted successfully message" width="48%">
+</p>
+
 ### Accessibility and Lighthouse Testing
 
 Accessibility and Lighthouse testing were carried out on the live deployed DigiStore application using Google Lighthouse in Chrome DevTools. The main customer-facing and store-owner pages were tested on the Heroku deployment to assess performance, accessibility, best practices, and SEO.
@@ -773,6 +790,7 @@ DigiStore includes a range of user-facing and store-owner features designed to c
   - Quantity selector
   - Add to bag functionality
   - Keep shopping action
+  
 
 ### Bag and Checkout Features
 
@@ -818,6 +836,11 @@ DigiStore includes a range of user-facing and store-owner features designed to c
 - Ability to create a product directly from an approved suggestion
 - Prefilled product creation flow from suggestions
 - Automatic suggestion status updates when a suggestion is used to create a product
+- Ability to create promo codes from the product management area
+- Ability to view existing promo codes in the product management area
+- Ability to edit promo codes
+- Ability to delete promo codes
+- Promo code management available through custom store-owner views rather than only through Django admin
 
 ### Database Features
 
@@ -862,10 +885,6 @@ A wishlist feature would allow users to save products they are interested in wit
 ### Product Reviews
 
 Customer reviews would provide social proof and help users make more informed purchasing decisions. Reviews could be restricted to verified purchasers in order to keep feedback relevant and reliable.
-
-### Promo Codes and Discounts
-
-A promotional code feature would allow the store owner to run seasonal promotions, encourage repeat purchases, and support marketing campaigns. This would also make the project feel even closer to a real-world e-commerce platform.
 
 ### Gift Card or Store Credit Functionality
 
