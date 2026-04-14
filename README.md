@@ -523,6 +523,24 @@ This was tested by opening the product management area as a superuser, creating 
   <img src="assets/readme/promodeleted.png" alt="Promo code deleted successfully message" width="48%">
 </p>
 
+#### As an authenticated user, I want to save searches so that I can quickly revisit products I am interested in
+
+This was tested by searching for a product on the products page, saving the search, then opening the profile page to confirm that the saved search appeared correctly with working edit and delete options.
+
+**Expected result:** Logged-in users can save a search, view it on their profile, and manage it with edit and delete actions.  
+**Outcome:** Passed.
+
+#### As an authenticated user, I want to submit support tickets so that I can keep track of requests for help
+
+This was tested by submitting a support ticket from the profile page and confirming that it appeared in the user’s support ticket section with the correct status and working edit and delete options.
+
+**Expected result:** Logged-in users can create, view, edit, and delete their own support tickets from the profile page.  
+**Outcome:** Passed.
+
+<p align="center">
+  <img src="assets/readme/support&searches.png" alt="Saved searches and support tickets on profile page" width="85%">
+</p>
+
 ### Accessibility and Lighthouse Testing
 
 Accessibility and Lighthouse testing were carried out on the live deployed DigiStore application using Google Lighthouse in Chrome DevTools. The main customer-facing and store-owner pages were tested on the Heroku deployment to assess performance, accessibility, best practices, and SEO.
@@ -768,6 +786,11 @@ DigiStore includes a range of user-facing and store-owner features designed to c
 - Automatic user profile creation when a user account is created
 - Saved default user information through the user profile model
 - Order history available through the user profile section
+- Logged-in users can save product searches for quick access later
+- Saved searches can be viewed, edited, and deleted from the profile page
+- Logged-in users can submit support tickets from the profile page
+- Support tickets can be viewed, edited, and deleted by the user from the profile page
+- Support tickets are also visible to the store owner in the product management area
 
 ### Product Browsing Features
 
