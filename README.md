@@ -254,7 +254,52 @@ The Facebook mock-up was created to show:
 
 ![DigiStore Facebook business page mock-up alternative](assets/readme/DigiStore-Facebook-business-page-mockup2.png)
 
-Newsletter marketing was also considered as part of the wider promotional strategy for encouraging repeat visits and future customer engagement.
+## Newsletter Signup
+
+To encourage repeat engagement and strengthen customer communication, DigiStore includes a newsletter subscription feature available from the footer of every page. Visitors can subscribe whether they are logged in or browsing as guests.
+
+The newsletter functionality provides a simple way for users to receive future product updates, exclusive promotions, and store announcements while also helping the business maintain long-term customer engagement.
+
+The newsletter feature includes:
+
+- Newsletter signup available from every page through the site footer.
+- Browser and Django email validation.
+- Prevention of duplicate subscriptions.
+- Secure storage of subscriber email addresses in the database.
+- Automatic welcome email after successful subscription.
+- Newsletter subscriber management through the Django administration panel.
+
+This feature satisfies the marketing requirements of the project by providing an effective method for communicating with customers after they leave the website and encouraging future return visits.
+
+### Newsletter Feature
+
+<p align="center">
+    <img src="assets/readme/emailresponsive7.png" alt="Newsletter signup form" width="700">
+</p>
+
+### Successful Newsletter Subscription
+
+<p align="center">
+    <img src="assets/readme/emailvalidationnews.png" alt="Newsletter subscription success message" width="600">
+</p>
+
+### Welcome Email
+
+<p align="center">
+    <img src="assets/readme/emailresponsive4.png" alt="Newsletter welcome email" width="700">
+</p>
+
+<p align="center">
+    <img src="assets/readme/emailwelcome.png"
+         alt="Welcome email received by the subscriber"
+         width="700">
+</p>
+
+### Newsletter Subscribers (Admin)
+
+<p align="center">
+    <img src="assets/readme/emailresponsive2.png" alt="Newsletter subscribers in Django admin" width="700">
+</p>
 
 ---
 
@@ -289,9 +334,81 @@ Examples of areas manually tested included:
 
 These tests helped confirm that DigiStore works as a coherent e-commerce application rather than as a collection of isolated pages.
 
+### Newsletter Testing
+
+The newsletter feature was tested to ensure that users could subscribe successfully, invalid submissions were handled correctly, and subscribers were stored correctly within the database.
+
+| Feature Tested          | Test Performed                      | Expected Result                                        | Outcome |
+| ----------------------- | ----------------------------------- | ------------------------------------------------------ | ------- |
+| Newsletter signup       | Submit a valid email address        | Subscriber added successfully and welcome email sent   | Passed  |
+| Email validation        | Submit an invalid email address     | Validation message displayed and subscription rejected | Passed  |
+| Browser validation      | Submit an incomplete email address  | Browser prevents submission                            | Passed  |
+| Duplicate subscriptions | Submit an existing subscriber email | User informed the email is already subscribed          | Passed  |
+| Welcome email           | Subscribe using a new email address | Welcome email received successfully                    | Passed  |
+| Django Admin            | Check Newsletter Subscribers        | Subscriber stored correctly in the admin panel         | Passed  |
+
+### Shopping Cart Testing
+
+The shopping cart functionality was thoroughly tested to ensure that products could be successfully added, updated, and removed while accurately maintaining basket totals throughout the checkout process.
+
+The following functionality was verified:
+
+| Feature Tested   | Test Performed                             | Expected Result                                               | Outcome |
+| ---------------- | ------------------------------------------ | ------------------------------------------------------------- | ------- |
+| Add to cart      | Add a product from the product detail page | Product added successfully and basket total updated           | Passed  |
+| Update quantity  | Increase and decrease product quantity     | Basket updates correctly and recalculates totals              | Passed  |
+| Remove item      | Remove a product from the shopping cart    | Product removed and totals updated correctly                  | Passed  |
+| Cart persistence | Navigate between pages                     | Basket contents remain stored throughout the browsing session | Passed  |
+
+### Shopping Cart Testing Evidence
+
+The screenshots below demonstrate the shopping cart functionality working correctly. Testing confirms that products can be added to the cart, quantities can be adjusted, totals update correctly, and products can be removed successfully while maintaining an accurate shopping basket.
+
+<p align="center">
+    <img src="assets/readme/cartfunction1.png"
+         alt="Product added to shopping cart"
+         width="48%">
+    <img src="assets/readme/cartfunction2.png"
+         alt="Shopping cart quantity updated"
+         width="48%">
+</p>
+
+<p align="center">
+    <img src="assets/readme/cartfunction3.png"
+         alt="Shopping cart totals updated"
+         width="48%">
+    <img src="assets/readme/cartfunction4.png"
+         alt="Shopping cart after item removal"
+         width="48%">
+</p>
+
 ### Responsive Testing
 
 Responsive testing was carried out to confirm that the site remains usable and visually clear on desktop, tablet, and mobile screen sizes. This included checking the header, navigation, product grid, footer, forms, shopping bag, checkout pages, and management pages. The aim was to ensure that content stayed readable, buttons remained accessible, and layouts adapted appropriately across smaller breakpoints. This supported the overall project goal of delivering a consistent shopping experience across devices.
+
+#### Newsletter Responsive Testing
+
+The newsletter subscription feature was also tested across desktop, tablet, and mobile screen sizes to ensure that it remained fully functional and visually consistent. Testing confirmed that the email input field, subscribe button, validation messages, and overall footer layout adapted correctly to different viewport sizes without affecting usability.
+
+The screenshots below demonstrate the newsletter feature across multiple responsive breakpoints.
+
+<p align="center">
+    <img src="assets/readme/emailresponsive1.png"
+         alt="Newsletter desktop layout"
+         width="48%">
+    <img src="assets/readme/emailresponsive2.png"
+         alt="Newsletter desktop admin view"
+         width="48%">
+</p>
+
+<p align="center">
+    <img src="assets/readme/emailresponsive4.png"
+         alt="Newsletter welcome email"
+         width="48%">
+    <img src="assets/readme/emailresponsive7.png"
+         alt="Newsletter mobile layout"
+         width="48%">
+</p>
 
 ### User Story Testing
 
@@ -318,6 +435,38 @@ This was tested by logging in with valid credentials and checking that the navig
 <p align="center">
   <img src="assets/readme/signinsuccess.png" alt="Signed in success message" width="48%">
   <img src="assets/readme/signout1.png" alt="Signed out success message" width="48%">
+</p>
+
+#### As a visitor, I want to subscribe to the newsletter so that I can receive updates, promotions, and store news
+
+This was tested by submitting both valid and invalid email addresses through the newsletter form located in the footer. The feature was tested using guest users and authenticated users to ensure that the subscription process behaved consistently regardless of login status.
+
+The following functionality was verified:
+
+- Valid email addresses subscribe successfully.
+- Invalid email addresses display validation feedback.
+- Duplicate subscriptions are prevented.
+- Subscribers are stored in the database.
+- A welcome email is automatically sent after a successful subscription.
+- Newsletter subscribers are visible through the Django administration panel.
+
+**Expected result:** Visitors can successfully subscribe to the newsletter and receive a welcome email while invalid and duplicate submissions are handled correctly.
+
+**Outcome:** Passed.
+
+<p align="center">
+    <img src="assets/readme/emailvalidationnews.png" alt="Newsletter subscription success" width="48%">
+    <img src="assets/readme/emailresponsive4.png" alt="Newsletter welcome email" width="48%">
+</p>
+
+<p align="center">
+    <img src="assets/readme/emailwelcome.png"
+         alt="Welcome email received"
+         width="700">
+</p>
+
+<p align="center">
+    <img src="assets/readme/emailresponsive2.png" alt="Newsletter subscribers in Django admin" width="700">
 </p>
 
 #### As a user, I want to browse all products so that I can see what is available in the store
@@ -824,7 +973,6 @@ DigiStore includes a range of user-facing and store-owner features designed to c
   - Quantity selector
   - Add to bag functionality
   - Keep shopping action
-  
 
 ### Bag and Checkout Features
 
@@ -927,9 +1075,48 @@ Customer reviews would provide social proof and help users make more informed pu
 
 A gift card or digital credit feature would expand the business model and create more flexibility for users. This could be especially useful in a digital store where purchases are quick and fulfilment is immediate.
 
-### Newsletter Signup Integration
+### Newsletter Testing Evidence
 
-Newsletter marketing was considered as part of the wider marketing strategy, and a future version of the site could include a fully connected newsletter signup flow. This could support customer retention, product launches, and promotional campaigns.
+The screenshots below demonstrate the complete newsletter subscription workflow from the user's perspective. Testing confirms that the feature correctly validates email addresses, prevents invalid submissions, stores successful subscriptions in the database, sends an automatic welcome email, and allows administrators to manage newsletter subscribers through the Django administration panel.
+
+#### Email Validation
+
+<p align="center">
+    <img src="assets/readme/emailvalidation2.png"
+         alt="Newsletter invalid email validation"
+         width="48%">
+    <img src="assets/readme/emailvalidation3.png"
+         alt="Newsletter email validation"
+         width="48%">
+</p>
+
+<p align="center">
+    <img src="assets/readme/emailvalidation4.png"
+         alt="Newsletter browser validation"
+         width="48%">
+    <img src="assets/readme/emailvalidationnews.png"
+         alt="Newsletter subscription successful"
+         width="48%">
+</p>
+
+#### Welcome Email
+
+<p align="center">
+    <img src="assets/readme/emailresponsive4.png"
+         alt="Newsletter email generated"
+         width="48%">
+    <img src="assets/readme/emailwelcome.png"
+         alt="Newsletter welcome email received"
+         width="48%">
+</p>
+
+#### Newsletter Subscribers
+
+<p align="center">
+    <img src="assets/readme/emailresponsive2.png"
+         alt="Newsletter subscribers in Django admin"
+         width="700">
+</p>
 
 ### Enhanced Filtering
 
