@@ -95,6 +95,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "bag.contexts.bag_contents",
+                "marketing.context_processors.newsletter_form",
             ],
             "builtins": [
                 "crispy_forms.templatetags.crispy_forms_tags",
